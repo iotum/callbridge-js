@@ -1,0 +1,29 @@
+{
+  "overrides": [
+    {
+      "files": [
+        "src/**/*.ts"
+      ]
+    }
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "jest",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "ignorePatterns": [
+    "dist/*"
+  ],
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  }
+}
