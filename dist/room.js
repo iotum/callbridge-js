@@ -4,6 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const widget_1 = __importDefault(require("./widget"));
+/**
+ * Callbridge Room.
+ */
 class Room extends widget_1.default {
     /**
      * @param options
@@ -79,7 +82,7 @@ class Room extends widget_1.default {
         /**
          * Adjusts the audio output volume and/or stereo position of a remote participant.
          * @param participantId participant id.
-         * @param settings @see AudioSettings
+         * @param settings audio settings.
          */
         this.adjustParticipantAudio = (participantId, settings) => {
             const { volume, pan } = settings;

@@ -9,11 +9,17 @@ const room_1 = __importDefault(require("./room"));
  */
 class Meeting extends room_1.default {
     constructor(
-    /** Widget options */
+    /**
+     * Widget options
+     */
     options, 
-    /** The room to join */
+    /**
+     * The room to join
+     */
     roomId, 
-    /** Meeting options */
+    /**
+     * Meeting options
+     */
     meetingOptions = {}) {
         super(options);
         const { name, skipJoin, mute: { mic: muteMic, camera: muteCamera } = {}, observer, moderatorToken, resolution, view, tiles, audioLevel, stripLayout, autoView, afterCallUrl, } = meetingOptions;

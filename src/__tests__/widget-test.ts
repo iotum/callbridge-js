@@ -77,10 +77,13 @@ describe('widget', () => {
       });
 
       it('unloads correctly', () => {
+        widget.instance!.onload?.(new Event('load'));
+        expect(widget.isReady).toBeTruthy();
+
         widget.unload();
         expect(eventRmSpy).toHaveBeenCalledWith('message', expect.anything());
         expect(widget.instance).toBeNull();
-        expect(widget.ready).toBeFalsy();
+        expect(widget.isReady).toBeFalsy();
       });
     });
   });

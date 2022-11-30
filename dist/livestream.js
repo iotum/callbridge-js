@@ -9,11 +9,17 @@ const room_1 = __importDefault(require("./room"));
  */
 class Livestream extends room_1.default {
     constructor(
-    /** Widget options */
+    /**
+     * Widget options
+     */
     options, 
-    /** The room to stream */
+    /**
+     * The room to stream
+     */
     roomId, 
-    /** Livestream options */
+    /**
+     * Livestream options
+     */
     livestreamOptions) {
         super(options);
         this.load(Object.assign(Object.assign({}, livestreamOptions), { redirect_url: `/livestream/${roomId}` }));

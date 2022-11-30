@@ -1,22 +1,41 @@
 import { EventEmitter } from 'events';
 
+/**
+ * Widget options.
+ */
 export type WidgetOptions = {
-  /** The container for the widget. Supports attached or detached DOM element, document selector, or window (new tab). */
+  /**
+   * The container for the widget. Supports attached or detached DOM element, document selector, or `window` (new tab).
+   */
   container: Window | HTMLElement | string | null;
-  /** The Callbridge domain of the user. */
+  /**
+   * The Callbridge domain of the user.
+   */
   domain: string;
-  /** Optional, Single Sign-On */
+  /**
+   * Optional, Single Sign-On
+   */
   sso?: {
-    /** Optional host-specific authorization token. */
+    /**
+     * Optional host-specific authorization token.
+     */
     token?: string;
-    /** Optional account number of the user. */
+    /**
+     * Optional account number of the user.
+     */
     hostId?: number;
   };
-  /** Optional, @see https://developer.mozilla.org/en-US/docs/Web/API/Window/open. */
+  /**
+   * Optional, options for `window.open` when `container` is `window`. @see [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open).
+   */
   target?: {
-    /** The window target name. */
+    /**
+     * The window target name.
+     */
     name?: string;
-    /** The window features. */
+    /**
+     * The window features.
+     */
     features?: string;
   };
 };
@@ -71,6 +90,9 @@ function setParams(url: URL, params: SearchParams) {
   url.searchParams.set('events', 'true');
 }
 
+/**
+ * Callbridge Widget.
+ */
 export default class Widget extends EventEmitter {
   /** @internal */
   protected _container: Window | Element | null = null;
@@ -128,34 +150,102 @@ export default class Widget extends EventEmitter {
     }
   }
 
+  /**
+   * Unloads the widget by removing the iframe or close the tab/window.
+   */
   unload() {
     window.removeEventListener('message', this._processEvent);
     if (this._instance) {
-      if (this._instance instanceof Window) {
-        this._instance.close();
-      } else {
+      if (this._instance instanceof Element) {
         this._instance.remove();
+      } else {
+        this._instance.close();
       }
       this._instance = null;
     }
     this._ready = false;
   }
 
-  get ready() {
+  /**
+   * Whether the widget is ready.
+   */
+  get isReady() {
     return this._ready;
   }
 
+  /**
+   * The widget instance.
+   */
   get instance() {
     return this._instance;
   }
 
+  /**
+   * The Window or WindowProxy instance of the widget.
+   */
   get wnd() {
     if (this._instance) {
-      return this._instance instanceof Window
-        ? this._instance
-        : this._instance.contentWindow;
+      return this._instance instanceof Element
+        ? this._instance.contentWindow
+        : this._instance;
     }
     return null;
+  }
+
+  /**
+   * Adds the `listener` function to the end of the listeners array for the event named `eventName`.
+   */
+  override on(
+    eventName: string | symbol,
+    // eslint-disable-next-line no-unused-vars
+    listener: (...args: any[]) => void,
+  ): this {
+    super.on(eventName, listener);
+    return this;
+  }
+
+  /**
+   * Alias for {@link removeListener}.
+   */
+  override off(
+    eventName: string | symbol,
+    // eslint-disable-next-line no-unused-vars
+    listener: (...args: any[]) => void,
+  ): this {
+    super.off(eventName, listener);
+    return this;
+  }
+
+  /**
+   * Alias for {@link on}.
+   */
+  override addListener(
+    eventName: string | symbol,
+    // eslint-disable-next-line no-unused-vars
+    listener: (...args: any[]) => void,
+  ): this {
+    super.addListener(eventName, listener);
+    return this;
+  }
+
+  /**
+   * Removes the specified `listener` from the listener array for the event named `eventName`.
+   */
+  override removeListener(
+    eventName: string | symbol,
+    // eslint-disable-next-line no-unused-vars
+    listener: (...args: any[]) => void,
+  ): this {
+    super.removeListener(eventName, listener);
+    return this;
+  }
+
+  /**
+   * Removes all listeners, or those of the specified `eventName`.
+   */
+  override removeAllListeners(event?: string | symbol | undefined): this {
+    super.removeAllListeners(event);
+    return this;
   }
 
   /** @internal */

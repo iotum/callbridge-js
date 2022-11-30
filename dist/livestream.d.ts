@@ -1,11 +1,20 @@
 import Room from './room';
 import { WidgetOptions } from './widget';
+/**
+ * Livestream options.
+ */
 export type LivestreamOptions = {
-    /** If provided, sets the viewer's name. */
+    /**
+     * If provided, sets the viewer's name.
+     */
     name?: string;
-    /** If provided, shows the chat panel to the right of the livestream player. If set to 'intercept', emits an event instead of sending the message. */
+    /**
+     * If provided, shows the chat panel to the right of the livestream player. If set to 'intercept', emits an event instead of sending the message.
+     */
     chat?: boolean | 'intercept';
-    /** If set, hides the native media controls on the livestream player. */
+    /**
+     * If set, hides the native media controls on the livestream player.
+     */
     hideControls?: boolean;
 };
 /**
@@ -13,10 +22,16 @@ export type LivestreamOptions = {
  */
 export default class Livestream extends Room {
     constructor(
-    /** Widget options */
+    /**
+     * Widget options
+     */
     options: WidgetOptions, 
-    /** The room to stream */
+    /**
+     * The room to stream
+     */
     roomId: string, 
-    /** Livestream options */
+    /**
+     * Livestream options
+     */
     livestreamOptions?: LivestreamOptions);
 }

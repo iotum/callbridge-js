@@ -9,17 +9,25 @@ const widget_1 = __importDefault(require("./widget"));
  */
 class Dashboard extends widget_1.default {
     constructor(
-    /** Widget options */
+    /**
+     * Widget options
+     */
     options, 
-    /** The page to load after logging in */
+    /**
+     * The page to load after logging in
+     */
     page = '') {
         super(options);
         this.load({
             redirect_url: `/conf/${page || ''}`,
         });
     }
-    setPage(page) {
-        this._send('portal', 'setPage', { page });
+    /**
+     * Loads the page.
+     * @param page the page to load.
+     */
+    loadPage(page) {
+        this._send('portal', 'loadPage', { page });
     }
 }
 exports.default = Dashboard;

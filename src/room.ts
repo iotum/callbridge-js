@@ -18,6 +18,9 @@ export type AudioSettings = {
   volume?: number;
 };
 
+/**
+ * Callbridge Room.
+ */
 export default class Room extends Widget {
   /**
    * @param options
@@ -105,7 +108,7 @@ export default class Room extends Widget {
   /**
    * Adjusts the audio output volume and/or stereo position of a remote participant.
    * @param participantId participant id.
-   * @param settings @see AudioSettings
+   * @param settings audio settings.
    */
   adjustParticipantAudio = (participantId: number, settings: AudioSettings) => {
     const { volume, pan } = settings;

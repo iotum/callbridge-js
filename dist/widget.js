@@ -45,6 +45,9 @@ function setParams(url, params) {
     // Always enable events
     url.searchParams.set('events', 'true');
 }
+/**
+ * Callbridge Widget.
+ */
 class Widget extends events_1.EventEmitter {
     constructor({ container, domain, sso, target: { name, features } = {} }, autoLoad = false) {
         super();
@@ -137,32 +140,87 @@ class Widget extends events_1.EventEmitter {
             this.load({ redirect_url: '/page_to_see' });
         }
     }
+    /**
+     * Unloads the widget by removing the iframe or close the tab/window.
+     */
     unload() {
         window.removeEventListener('message', this._processEvent);
         if (this._instance) {
-            if (this._instance instanceof Window) {
-                this._instance.close();
+            if (this._instance instanceof Element) {
+                this._instance.remove();
             }
             else {
-                this._instance.remove();
+                this._instance.close();
             }
             this._instance = null;
         }
         this._ready = false;
     }
-    get ready() {
+    /**
+     * Whether the widget is ready.
+     */
+    get isReady() {
         return this._ready;
     }
+    /**
+     * The widget instance.
+     */
     get instance() {
         return this._instance;
     }
+    /**
+     * The Window or WindowProxy instance of the widget.
+     */
     get wnd() {
         if (this._instance) {
-            return this._instance instanceof Window
-                ? this._instance
-                : this._instance.contentWindow;
+            return this._instance instanceof Element
+                ? this._instance.contentWindow
+                : this._instance;
         }
         return null;
+    }
+    /**
+     * Adds the `listener` function to the end of the listeners array for the event named `eventName`.
+     */
+    on(eventName, 
+    // eslint-disable-next-line no-unused-vars
+    listener) {
+        super.on(eventName, listener);
+        return this;
+    }
+    /**
+     * Alias for {@link removeListener}.
+     */
+    off(eventName, 
+    // eslint-disable-next-line no-unused-vars
+    listener) {
+        super.off(eventName, listener);
+        return this;
+    }
+    /**
+     * Alias for {@link on}.
+     */
+    addListener(eventName, 
+    // eslint-disable-next-line no-unused-vars
+    listener) {
+        super.addListener(eventName, listener);
+        return this;
+    }
+    /**
+     * Removes the specified `listener` from the listener array for the event named `eventName`.
+     */
+    removeListener(eventName, 
+    // eslint-disable-next-line no-unused-vars
+    listener) {
+        super.removeListener(eventName, listener);
+        return this;
+    }
+    /**
+     * Removes all listeners, or those of the specified `eventName`.
+     */
+    removeAllListeners(event) {
+        super.removeAllListeners(event);
+        return this;
     }
 }
 exports.default = Widget;
