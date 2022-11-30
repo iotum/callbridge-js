@@ -1,0 +1,6 @@
+{
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  },
+  "rootDir": "src"
+}
