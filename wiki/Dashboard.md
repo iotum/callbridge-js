@@ -49,7 +49,7 @@ Widget.constructor
 
 #### Defined in
 
-[dashboard.ts:12](https://github.com/iotum/callbridge-js/blob/9ab2941/src/dashboard.ts#L12)
+[dashboard.ts:12](https://github.com/iotum/callbridge-js/blob/a577923/src/dashboard.ts#L12)
 
 ## Accessors
 
@@ -69,7 +69,7 @@ Widget.instance
 
 #### Defined in
 
-[widget.ts:179](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L179)
+[widget.ts:183](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L183)
 
 ___
 
@@ -89,7 +89,7 @@ Widget.isReady
 
 #### Defined in
 
-[widget.ts:172](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L172)
+[widget.ts:176](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L176)
 
 ___
 
@@ -109,7 +109,7 @@ Widget.wnd
 
 #### Defined in
 
-[widget.ts:186](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L186)
+[widget.ts:190](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L190)
 
 ## Methods
 
@@ -136,7 +136,7 @@ Widget.addListener
 
 #### Defined in
 
-[widget.ts:222](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L222)
+[widget.ts:226](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L226)
 
 ___
 
@@ -158,7 +158,7 @@ Loads the page.
 
 #### Defined in
 
-[dashboard.ts:33](https://github.com/iotum/callbridge-js/blob/9ab2941/src/dashboard.ts#L33)
+[dashboard.ts:33](https://github.com/iotum/callbridge-js/blob/a577923/src/dashboard.ts#L33)
 
 ___
 
@@ -185,7 +185,7 @@ Widget.off
 
 #### Defined in
 
-[widget.ts:210](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L210)
+[widget.ts:214](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L214)
 
 ___
 
@@ -212,7 +212,7 @@ Widget.on
 
 #### Defined in
 
-[widget.ts:198](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L198)
+[widget.ts:202](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L202)
 
 ___
 
@@ -238,7 +238,7 @@ Widget.removeAllListeners
 
 #### Defined in
 
-[widget.ts:246](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L246)
+[widget.ts:250](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L250)
 
 ___
 
@@ -265,7 +265,7 @@ Widget.removeListener
 
 #### Defined in
 
-[widget.ts:234](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L234)
+[widget.ts:238](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L238)
 
 ___
 
@@ -285,4 +285,4 @@ Widget.unload
 
 #### Defined in
 
-[widget.ts:156](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L156)
+[widget.ts:160](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L160)

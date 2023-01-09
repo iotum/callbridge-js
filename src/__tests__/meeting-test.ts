@@ -39,7 +39,11 @@ describe('meeting', () => {
       autoView: true,
       afterCallUrl: 'https://test.com/test#done',
     };
-    meeting = new Meeting({ container, domain }, roomId, options);
+    meeting = new Meeting(
+      { container, domain, target: { autoClose: true } },
+      roomId,
+      options,
+    );
 
     const { host, pathname, searchParams } = new URL(
       container.firstElementChild?.getAttribute('src')!,
@@ -52,7 +56,7 @@ describe('meeting', () => {
     expect(searchParams.get('name')).toBe(options.name);
     expect(searchParams.get('skip_join')).toBe(String(options.skipJoin));
     expect(searchParams.get('observer')).toBe(String(options.observer));
-    expect(searchParams.get('moderatorToken')).toBe(options.moderatorToken);
+    expect(searchParams.get('moderator_token')).toBe(options.moderatorToken);
     expect(searchParams.get('res')).toBe(String(options.resolution));
     expect(searchParams.get('view')).toBe(options.view);
     expect(searchParams.get('tiles')).toBe(String(options.tiles));
@@ -61,6 +65,7 @@ describe('meeting', () => {
     expect(searchParams.get('auto_view')).toBe(String(options.autoView));
     expect(searchParams.get('after_call_url')).toBe(options.afterCallUrl);
     expect(searchParams.get('mute')).toBe(['mic', 'camera'].join(','));
+    expect(searchParams.get('auto_close')).toBe(String(true));
   });
 
   it('supports meeting options under sso', () => {
