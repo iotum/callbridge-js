@@ -37,6 +37,10 @@ export type WidgetOptions = {
          * The window features.
          */
         features?: string;
+        /**
+         * Whether to close the popup when the meeting is over.
+         */
+        autoClose?: boolean;
     };
 };
 /**

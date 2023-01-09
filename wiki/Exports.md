@@ -33,7 +33,7 @@ Audio output settings.
 
 #### Defined in
 
-[room.ts:6](https://github.com/iotum/callbridge-js/blob/9ab2941/src/room.ts#L6)
+[room.ts:6](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L6)
 
 ___
 
@@ -53,7 +53,7 @@ Livestream options.
 
 #### Defined in
 
-[livestream.ts:7](https://github.com/iotum/callbridge-js/blob/9ab2941/src/livestream.ts#L7)
+[livestream.ts:7](https://github.com/iotum/callbridge-js/blob/a577923/src/livestream.ts#L7)
 
 ___
 
@@ -84,7 +84,7 @@ Meeting options.
 
 #### Defined in
 
-[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/9ab2941/src/meeting.ts#L7)
+[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/a577923/src/meeting.ts#L7)
 
 ___
 
@@ -96,7 +96,7 @@ Dashboard page.
 
 #### Defined in
 
-[dashboard.ts:6](https://github.com/iotum/callbridge-js/blob/9ab2941/src/dashboard.ts#L6)
+[dashboard.ts:6](https://github.com/iotum/callbridge-js/blob/a577923/src/dashboard.ts#L6)
 
 ___
 
@@ -115,10 +115,11 @@ Widget options.
 | `sso?` | { `hostId?`: `number` ; `token?`: `string`  } | Optional, Single Sign-On |
 | `sso.hostId?` | `number` | Optional account number of the user. |
 | `sso.token?` | `string` | Optional host-specific authorization token. |
-| `target?` | { `features?`: `string` ; `name?`: `string`  } | Optional, options for `window.open` when `container` is `window`.  **`See`**  [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open). |
+| `target?` | { `autoClose?`: `boolean` ; `features?`: `string` ; `name?`: `string`  } | Optional, options for `window.open` when `container` is `window`.  **`See`**  [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open). |
+| `target.autoClose?` | `boolean` | Whether to close the popup when the meeting is over. |
 | `target.features?` | `string` | The window features. |
 | `target.name?` | `string` | The window target name. |
 
 #### Defined in
 
-[widget.ts:6](https://github.com/iotum/callbridge-js/blob/9ab2941/src/widget.ts#L6)
+[widget.ts:6](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L6)
