@@ -48,9 +48,9 @@ function setParams(url, params) {
 /**
  * Callbridge Widget.
  */
-class Widget extends events_1.EventEmitter {
+class Widget {
     constructor({ container, domain, sso, target: { name, features } = {} }, autoLoad = false) {
-        super();
+        this.emitter = new events_1.EventEmitter();
         /** @internal */
         this._container = null;
         /** @internal */
@@ -182,44 +182,41 @@ class Widget extends events_1.EventEmitter {
     /**
      * Adds the `listener` function to the end of the listeners array for the event named `eventName`.
      */
-    on(eventName, 
-    // eslint-disable-next-line no-unused-vars
-    listener) {
-        super.on(eventName, listener);
-        return this;
-    }
-    /**
-     * Alias for {@link removeListener}.
-     */
-    off(eventName, 
-    // eslint-disable-next-line no-unused-vars
-    listener) {
-        super.off(eventName, listener);
-        return this;
-    }
-    /**
-     * Alias for {@link on}.
-     */
-    addListener(eventName, 
-    // eslint-disable-next-line no-unused-vars
-    listener) {
-        super.addListener(eventName, listener);
+    on(eventName, listener) {
+        this.emitter.on(eventName, listener);
         return this;
     }
     /**
      * Removes the specified `listener` from the listener array for the event named `eventName`.
      */
-    removeListener(eventName, 
-    // eslint-disable-next-line no-unused-vars
-    listener) {
-        super.removeListener(eventName, listener);
+    off(eventName, listener) {
+        this.emitter.off(eventName, listener);
         return this;
     }
     /**
+     * Adds a one-timelistener function for the event named eventName.
+     * The next time eventName is triggered, this listener is removed and then invoked.
+     */
+    once(eventName, listener) {
+        this.emitter.once(eventName, listener);
+        return this;
+    }
+    /**
+     * Synchronously calls each of the listeners registered for the event namedeventName,
+     * in the order they were registered, passing the supplied arguments to each.
+     * Returns true if the event had listeners, false otherwise.
+     */
+    emit(eventName, data) {
+        return this.emitter.emit(eventName, data);
+    }
+    /**
      * Removes all listeners, or those of the specified `eventName`.
+     *
+     * It is bad practice to remove listeners added elsewhere in the code,
+     * particularly when the instance was created by some other component or module.
      */
     removeAllListeners(event) {
-        super.removeAllListeners(event);
+        this.emitter.removeAllListeners(event);
         return this;
     }
 }

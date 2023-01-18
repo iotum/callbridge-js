@@ -22,7 +22,7 @@ class Dashboard extends widget_1.default {
             case 'Team':
             case 'Drive':
             case 'Contacts':
-                this.once('dashboard.ready', () => this.load(service));
+                this.once('dashboard.READY', () => this.load(service));
                 break;
         }
         this._load({

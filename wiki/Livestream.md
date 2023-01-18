@@ -1,10 +1,10 @@
 # Class: Livestream
 
-Callbridge Meeting Room.
+Callbridge Livesteam Viewer.
 
 ## Hierarchy
 
-- `default`
+- `default`<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: ``null``  }\>
 
   ↳ **`Livestream`**
 
@@ -22,20 +22,11 @@ Callbridge Meeting Room.
 
 ### Methods
 
-- [addListener](../wiki/Livestream#addlistener)
-- [adjustParticipantAudio](../wiki/Livestream#adjustparticipantaudio)
-- [muteParticipant](../wiki/Livestream#muteparticipant)
+- [emit](../wiki/Livestream#emit)
 - [off](../wiki/Livestream#off)
 - [on](../wiki/Livestream#on)
+- [once](../wiki/Livestream#once)
 - [removeAllListeners](../wiki/Livestream#removealllisteners)
-- [removeListener](../wiki/Livestream#removelistener)
-- [setAudioInput](../wiki/Livestream#setaudioinput)
-- [setAudioOutput](../wiki/Livestream#setaudiooutput)
-- [setCamera](../wiki/Livestream#setcamera)
-- [setIncomingVideo](../wiki/Livestream#setincomingvideo)
-- [setMute](../wiki/Livestream#setmute)
-- [setVideoInput](../wiki/Livestream#setvideoinput)
-- [setVolume](../wiki/Livestream#setvolume)
 - [unload](../wiki/Livestream#unload)
 
 ## Constructors
@@ -54,11 +45,13 @@ Callbridge Meeting Room.
 
 #### Overrides
 
-Room.constructor
+Widget&lt;{
+  &#x27;livestream.LIVE\_STREAM\_INTERCEPT\_CHAT&#x27;: null;
+}\&gt;.constructor
 
 #### Defined in
 
-[livestream.ts:26](https://github.com/iotum/callbridge-js/blob/52a0b50/src/livestream.ts#L26)
+[livestream.ts:27](https://github.com/iotum/callbridge-js/blob/c07ca62/src/livestream.ts#L27)
 
 ## Accessors
 
@@ -74,11 +67,11 @@ The widget instance.
 
 #### Inherited from
 
-Room.instance
+Widget.instance
 
 #### Defined in
 
-[widget.ts:183](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L183)
+[widget.ts:203](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L203)
 
 ___
 
@@ -94,11 +87,11 @@ Whether the widget is ready.
 
 #### Inherited from
 
-Room.isReady
+Widget.isReady
 
 #### Defined in
 
-[widget.ts:176](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L176)
+[widget.ts:196](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L196)
 
 ___
 
@@ -114,106 +107,67 @@ The Window or WindowProxy instance of the widget.
 
 #### Inherited from
 
-Room.wnd
+Widget.wnd
 
 #### Defined in
 
-[widget.ts:190](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L190)
+[widget.ts:210](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L210)
 
 ## Methods
 
-### addListener
+### emit
 
-▸ **addListener**(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
+▸ **emit**<`K`\>(`eventName`, `data?`): `boolean`
 
-Alias for [on](../wiki/Livestream#on).
+Synchronously calls each of the listeners registered for the event namedeventName,
+in the order they were registered, passing the supplied arguments to each.
+Returns true if the event had listeners, false otherwise.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends ``"livestream.LIVE_STREAM_INTERCEPT_CHAT"`` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
+| `eventName` | `K` |
+| `data?` | { `livestream.LIVE_STREAM_INTERCEPT_CHAT`: ``null``  }[`K`] |
 
 #### Returns
 
-[`Livestream`](../wiki/Livestream)
+`boolean`
 
 #### Inherited from
 
-Room.addListener
+Widget.emit
 
 #### Defined in
 
-[widget.ts:226](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L226)
-
-___
-
-### adjustParticipantAudio
-
-▸ **adjustParticipantAudio**(`participantId`, `settings`): `void`
-
-Adjusts the audio output volume and/or stereo position of a remote participant.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `participantId` | `number` | participant id. |
-| `settings` | [`AudioSettings`](../wiki/Exports#audiosettings) | audio settings. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Room.adjustParticipantAudio
-
-#### Defined in
-
-[room.ts:113](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L113)
-
-___
-
-### muteParticipant
-
-▸ **muteParticipant**(`participantId`): `void`
-
-Mutes a remote participant, requires Moderator.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `participantId` | `number` | participant id. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Room.muteParticipant
-
-#### Defined in
-
-[room.ts:102](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L102)
+[widget.ts:249](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L249)
 
 ___
 
 ### off
 
-▸ **off**(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
+▸ **off**<`K`\>(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
 
-Alias for [removeListener](../wiki/Livestream#removelistener).
+Removes the specified `listener` from the listener array for the event named `eventName`.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends ``"livestream.LIVE_STREAM_INTERCEPT_CHAT"`` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
+| `eventName` | `K` |
+| `listener` | `Listener`<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: ``null``  }[`K`]\> |
 
 #### Returns
 
@@ -221,26 +175,32 @@ Alias for [removeListener](../wiki/Livestream#removelistener).
 
 #### Inherited from
 
-Room.off
+Widget.off
 
 #### Defined in
 
-[widget.ts:214](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L214)
+[widget.ts:230](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L230)
 
 ___
 
 ### on
 
-▸ **on**(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
+▸ **on**<`K`\>(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
 
 Adds the `listener` function to the end of the listeners array for the event named `eventName`.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends ``"livestream.LIVE_STREAM_INTERCEPT_CHAT"`` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
+| `eventName` | `K` |
+| `listener` | `Listener`<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: ``null``  }[`K`]\> |
 
 #### Returns
 
@@ -248,11 +208,45 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Inherited from
 
-Room.on
+Widget.on
 
 #### Defined in
 
-[widget.ts:202](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L202)
+[widget.ts:222](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L222)
+
+___
+
+### once
+
+▸ **once**<`K`\>(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
+
+Adds a one-timelistener function for the event named eventName.
+The next time eventName is triggered, this listener is removed and then invoked.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends ``"livestream.LIVE_STREAM_INTERCEPT_CHAT"`` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `K` |
+| `listener` | `Listener`<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: ``null``  }[`K`]\> |
+
+#### Returns
+
+[`Livestream`](../wiki/Livestream)
+
+#### Inherited from
+
+Widget.once
+
+#### Defined in
+
+[widget.ts:239](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L239)
 
 ___
 
@@ -261,6 +255,9 @@ ___
 ▸ **removeAllListeners**(`event?`): [`Livestream`](../wiki/Livestream)
 
 Removes all listeners, or those of the specified `eventName`.
+
+It is bad practice to remove listeners added elsewhere in the code,
+particularly when the instance was created by some other component or module.
 
 #### Parameters
 
@@ -274,220 +271,11 @@ Removes all listeners, or those of the specified `eventName`.
 
 #### Inherited from
 
-Room.removeAllListeners
+Widget.removeAllListeners
 
 #### Defined in
 
-[widget.ts:250](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L250)
-
-___
-
-### removeListener
-
-▸ **removeListener**(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
-
-Removes the specified `listener` from the listener array for the event named `eventName`.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `eventName` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
-
-#### Returns
-
-[`Livestream`](../wiki/Livestream)
-
-#### Inherited from
-
-Room.removeListener
-
-#### Defined in
-
-[widget.ts:238](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L238)
-
-___
-
-### setAudioInput
-
-▸ **setAudioInput**(`deviceId`): `void`
-
-Manages the audio input device.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `deviceId` | `string` | device id. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Room.setAudioInput
-
-#### Defined in
-
-[room.ts:44](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L44)
-
-___
-
-### setAudioOutput
-
-▸ **setAudioOutput**(`deviceId`): `void`
-
-Manages the audio output device.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `deviceId` | `string` | device id. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Room.setAudioOutput
-
-#### Defined in
-
-[room.ts:52](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L52)
-
-___
-
-### setCamera
-
-▸ **setCamera**(`enable`): `void`
-
-Manages my camera.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `enable` | `boolean` | whether to turn on my camera. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Room.setCamera
-
-#### Defined in
-
-[room.ts:60](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L60)
-
-___
-
-### setIncomingVideo
-
-▸ **setIncomingVideo**(`enable`): `void`
-
-Manages incoming video.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `enable` | `boolean` | whether to receive remote video streams. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Room.setIncomingVideo
-
-#### Defined in
-
-[room.ts:76](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L76)
-
-___
-
-### setMute
-
-▸ **setMute**(`mute`): `void`
-
-Manages my microphone.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `mute` | `boolean` | whether to mute my microphone. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Room.setMute
-
-#### Defined in
-
-[room.ts:68](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L68)
-
-___
-
-### setVideoInput
-
-▸ **setVideoInput**(`deviceId`): `void`
-
-Manages the video input device.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `deviceId` | `string` | device id. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Room.setVideoInput
-
-#### Defined in
-
-[room.ts:36](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L36)
-
-___
-
-### setVolume
-
-▸ **setVolume**(`volume`): `void`
-
-Sets the global audio output volume.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `volume` | `number` | valid range: 0 - 1. (default: 1). |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Room.setVolume
-
-#### Defined in
-
-[room.ts:87](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L87)
+[widget.ts:259](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L259)
 
 ___
 
@@ -503,8 +291,8 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Inherited from
 
-Room.unload
+Widget.unload
 
 #### Defined in
 
-[widget.ts:160](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L160)
+[widget.ts:180](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L180)

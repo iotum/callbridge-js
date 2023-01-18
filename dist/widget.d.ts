@@ -1,5 +1,3 @@
-/// <reference types="node" />
-import { EventEmitter } from 'events';
 /**
  * Widget options.
  */
@@ -43,10 +41,24 @@ export type WidgetOptions = {
         autoClose?: boolean;
     };
 };
+type EventMap = Record<string, any>;
+type EventKey<T extends EventMap> = string & keyof T;
+type Listener<T> = (params: T) => void;
+interface WidgetEventEmitter<T extends EventMap> {
+    on<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
+    off<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
+    once<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
+    emit<K extends EventKey<T>>(eventName: K, data?: T[K]): boolean;
+    removeAllListeners<K extends EventKey<T>>(eventName: K, data: T[K]): this;
+}
 /**
  * Callbridge Widget.
  */
-export default class Widget extends EventEmitter {
+export default class Widget<T extends EventMap | {
+    'widget.LOAD': void;
+    'widget.ERROR': string;
+}> implements WidgetEventEmitter<T> {
+    private emitter;
     constructor({ container, domain, sso, target: { name, features } }: WidgetOptions, autoLoad?: boolean);
     /**
      * Unloads the widget by removing the iframe or close the tab/window.
@@ -67,21 +79,28 @@ export default class Widget extends EventEmitter {
     /**
      * Adds the `listener` function to the end of the listeners array for the event named `eventName`.
      */
-    on(eventName: string | symbol, listener: (...args: any[]) => void): this;
-    /**
-     * Alias for {@link removeListener}.
-     */
-    off(eventName: string | symbol, listener: (...args: any[]) => void): this;
-    /**
-     * Alias for {@link on}.
-     */
-    addListener(eventName: string | symbol, listener: (...args: any[]) => void): this;
+    on<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
     /**
      * Removes the specified `listener` from the listener array for the event named `eventName`.
      */
-    removeListener(eventName: string | symbol, listener: (...args: any[]) => void): this;
+    off<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
+    /**
+     * Adds a one-timelistener function for the event named eventName.
+     * The next time eventName is triggered, this listener is removed and then invoked.
+     */
+    once<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
+    /**
+     * Synchronously calls each of the listeners registered for the event namedeventName,
+     * in the order they were registered, passing the supplied arguments to each.
+     * Returns true if the event had listeners, false otherwise.
+     */
+    emit<K extends EventKey<T>>(eventName: K, data?: T[K]): boolean;
     /**
      * Removes all listeners, or those of the specified `eventName`.
+     *
+     * It is bad practice to remove listeners added elsewhere in the code,
+     * particularly when the instance was created by some other component or module.
      */
     removeAllListeners(event?: string | symbol | undefined): this;
 }
+export {};
