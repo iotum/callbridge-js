@@ -8,7 +8,10 @@ export type Service = '' | 'Team' | 'Drive' | 'Contacts';
 /**
  * Callbridge Dashboard.
  */
-export default class Dashboard extends Widget {
+export default class Dashboard extends Widget<{
+  'dashboard.READY': void;
+  'dashboard.NAVIGATE': string;
+}> {
   constructor(
     /**
      * Widget options
@@ -25,7 +28,7 @@ export default class Dashboard extends Widget {
       case 'Team':
       case 'Drive':
       case 'Contacts':
-        this.once('dashboard.ready', () => this.load(service));
+        this.once('dashboard.READY', () => this.load(service));
         break;
     }
 

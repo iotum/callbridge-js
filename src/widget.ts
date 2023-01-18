@@ -94,10 +94,32 @@ function setParams(url: URL, params: SearchParams) {
   url.searchParams.set('events', 'true');
 }
 
+type EventMap = Record<string, any>;
+type EventKey<T extends EventMap> = string & keyof T;
+type Listener<T> = (params: T) => void;
+
+interface WidgetEventEmitter<T extends EventMap> {
+  on<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
+  off<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
+  once<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
+  emit<K extends EventKey<T>>(eventName: K, data?: T[K]): boolean;
+  removeAllListeners<K extends EventKey<T>>(eventName: K, data: T[K]): this;
+}
+
 /**
  * Callbridge Widget.
  */
-export default class Widget extends EventEmitter {
+export default class Widget<
+  T extends
+    | EventMap
+    | {
+        'widget.LOAD': void;
+        'widget.ERROR': string;
+      },
+> implements WidgetEventEmitter<T>
+{
+  private emitter = new EventEmitter();
+
   /** @internal */
   protected _container: Window | Element | null = null;
   /** @internal */
@@ -118,8 +140,6 @@ export default class Widget extends EventEmitter {
     { container, domain, sso, target: { name, features } = {} }: WidgetOptions,
     autoLoad = false,
   ) {
-    super();
-
     if (container) {
       if (typeof container === 'string') {
         this._container = document.querySelector(container);
@@ -199,56 +219,45 @@ export default class Widget extends EventEmitter {
   /**
    * Adds the `listener` function to the end of the listeners array for the event named `eventName`.
    */
-  override on(
-    eventName: string | symbol,
-    // eslint-disable-next-line no-unused-vars
-    listener: (...args: any[]) => void,
-  ): this {
-    super.on(eventName, listener);
-    return this;
-  }
-
-  /**
-   * Alias for {@link removeListener}.
-   */
-  override off(
-    eventName: string | symbol,
-    // eslint-disable-next-line no-unused-vars
-    listener: (...args: any[]) => void,
-  ): this {
-    super.off(eventName, listener);
-    return this;
-  }
-
-  /**
-   * Alias for {@link on}.
-   */
-  override addListener(
-    eventName: string | symbol,
-    // eslint-disable-next-line no-unused-vars
-    listener: (...args: any[]) => void,
-  ): this {
-    super.addListener(eventName, listener);
+  on<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this {
+    this.emitter.on(eventName, listener);
     return this;
   }
 
   /**
    * Removes the specified `listener` from the listener array for the event named `eventName`.
    */
-  override removeListener(
-    eventName: string | symbol,
-    // eslint-disable-next-line no-unused-vars
-    listener: (...args: any[]) => void,
-  ): this {
-    super.removeListener(eventName, listener);
+  off<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this {
+    this.emitter.off(eventName, listener);
     return this;
   }
 
   /**
-   * Removes all listeners, or those of the specified `eventName`.
+   * Adds a one-timelistener function for the event named eventName.
+   * The next time eventName is triggered, this listener is removed and then invoked.
    */
-  override removeAllListeners(event?: string | symbol | undefined): this {
-    super.removeAllListeners(event);
+  once<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this {
+    this.emitter.once(eventName, listener);
+    return this;
+  }
+
+  /**
+   * Synchronously calls each of the listeners registered for the event namedeventName,
+   * in the order they were registered, passing the supplied arguments to each.
+   * Returns true if the event had listeners, false otherwise.
+   */
+  emit<K extends EventKey<T>>(eventName: K, data?: T[K]): boolean {
+    return this.emitter.emit(eventName, data);
+  }
+
+  /**
+   * Removes all listeners, or those of the specified `eventName`.
+   *
+   * It is bad practice to remove listeners added elsewhere in the code,
+   * particularly when the instance was created by some other component or module.
+   */
+  removeAllListeners(event?: string | symbol | undefined): this {
+    this.emitter.removeAllListeners(event);
     return this;
   }
 
@@ -302,7 +311,7 @@ export default class Widget extends EventEmitter {
     if (this._ready) {
       if (source === this.wnd) {
         const { type, event, ...extra } = data;
-        this.emit(`${type}.${event}`, extra);
+        this.emit(`${type}.${event}` as any, extra);
       }
     }
   };

@@ -6,7 +6,10 @@ export type Service = '' | 'Team' | 'Drive' | 'Contacts';
 /**
  * Callbridge Dashboard.
  */
-export default class Dashboard extends Widget {
+export default class Dashboard extends Widget<{
+    'dashboard.READY': void;
+    'dashboard.NAVIGATE': string;
+}> {
     constructor(
     /**
      * Widget options

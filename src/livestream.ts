@@ -1,5 +1,4 @@
-import Room from './room';
-import { WidgetOptions } from './widget';
+import Widget, { WidgetOptions } from './widget';
 
 /**
  * Livestream options.
@@ -20,9 +19,11 @@ export type LivestreamOptions = {
 };
 
 /**
- * Callbridge Meeting Room.
+ * Callbridge Livesteam Viewer.
  */
-export default class Livestream extends Room {
+export default class Livestream extends Widget<{
+  'livestream.LIVE_STREAM_INTERCEPT_CHAT': null;
+}> {
   constructor(
     /**
      * Widget options

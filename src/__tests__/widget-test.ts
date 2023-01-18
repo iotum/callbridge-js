@@ -8,7 +8,7 @@ describe('widget', () => {
   let eventAddSpy: jest.SpyInstance;
   let eventRmSpy: jest.SpyInstance;
   let container: HTMLElement;
-  let widget: Widget;
+  let widget: Widget<{}>;
 
   beforeEach(() => {
     eventAddSpy = jest.spyOn(window, 'addEventListener');

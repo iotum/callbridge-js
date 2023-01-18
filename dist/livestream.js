@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const room_1 = __importDefault(require("./room"));
+const widget_1 = __importDefault(require("./widget"));
 /**
- * Callbridge Meeting Room.
+ * Callbridge Livesteam Viewer.
  */
-class Livestream extends room_1.default {
+class Livestream extends widget_1.default {
     constructor(
     /**
      * Widget options

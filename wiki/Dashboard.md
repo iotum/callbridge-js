@@ -4,7 +4,7 @@ Callbridge Dashboard.
 
 ## Hierarchy
 
-- `default`
+- `default`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\>
 
   ↳ **`Dashboard`**
 
@@ -22,12 +22,12 @@ Callbridge Dashboard.
 
 ### Methods
 
-- [addListener](../wiki/Dashboard#addlistener)
+- [emit](../wiki/Dashboard#emit)
 - [load](../wiki/Dashboard#load)
 - [off](../wiki/Dashboard#off)
 - [on](../wiki/Dashboard#on)
+- [once](../wiki/Dashboard#once)
 - [removeAllListeners](../wiki/Dashboard#removealllisteners)
-- [removeListener](../wiki/Dashboard#removelistener)
 - [unload](../wiki/Dashboard#unload)
 
 ## Constructors
@@ -45,11 +45,14 @@ Callbridge Dashboard.
 
 #### Overrides
 
-Widget.constructor
+Widget&lt;{
+  &#x27;dashboard.READY&#x27;: void;
+  &#x27;dashboard.NAVIGATE&#x27;: string;
+}\&gt;.constructor
 
 #### Defined in
 
-[dashboard.ts:12](https://github.com/iotum/callbridge-js/blob/52a0b50/src/dashboard.ts#L12)
+[dashboard.ts:15](https://github.com/iotum/callbridge-js/blob/c07ca62/src/dashboard.ts#L15)
 
 ## Accessors
 
@@ -69,7 +72,7 @@ Widget.instance
 
 #### Defined in
 
-[widget.ts:183](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L183)
+[widget.ts:203](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L203)
 
 ___
 
@@ -89,7 +92,7 @@ Widget.isReady
 
 #### Defined in
 
-[widget.ts:176](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L176)
+[widget.ts:196](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L196)
 
 ___
 
@@ -109,34 +112,42 @@ Widget.wnd
 
 #### Defined in
 
-[widget.ts:190](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L190)
+[widget.ts:210](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L210)
 
 ## Methods
 
-### addListener
+### emit
 
-▸ **addListener**(`eventName`, `listener`): [`Dashboard`](../wiki/Dashboard)
+▸ **emit**<`K`\>(`eventName`, `data?`): `boolean`
 
-Alias for [on](../wiki/Dashboard#on).
+Synchronously calls each of the listeners registered for the event namedeventName,
+in the order they were registered, passing the supplied arguments to each.
+Returns true if the event had listeners, false otherwise.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends `EventKey`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
+| `eventName` | `K` |
+| `data?` | { `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }[`K`] |
 
 #### Returns
 
-[`Dashboard`](../wiki/Dashboard)
+`boolean`
 
 #### Inherited from
 
-Widget.addListener
+Widget.emit
 
 #### Defined in
 
-[widget.ts:226](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L226)
+[widget.ts:249](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L249)
 
 ___
 
@@ -158,22 +169,28 @@ Loads the service.
 
 #### Defined in
 
-[dashboard.ts:41](https://github.com/iotum/callbridge-js/blob/52a0b50/src/dashboard.ts#L41)
+[dashboard.ts:44](https://github.com/iotum/callbridge-js/blob/c07ca62/src/dashboard.ts#L44)
 
 ___
 
 ### off
 
-▸ **off**(`eventName`, `listener`): [`Dashboard`](../wiki/Dashboard)
+▸ **off**<`K`\>(`eventName`, `listener`): [`Dashboard`](../wiki/Dashboard)
 
-Alias for [removeListener](../wiki/Dashboard#removelistener).
+Removes the specified `listener` from the listener array for the event named `eventName`.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends `EventKey`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
+| `eventName` | `K` |
+| `listener` | `Listener`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }[`K`]\> |
 
 #### Returns
 
@@ -185,22 +202,28 @@ Widget.off
 
 #### Defined in
 
-[widget.ts:214](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L214)
+[widget.ts:230](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L230)
 
 ___
 
 ### on
 
-▸ **on**(`eventName`, `listener`): [`Dashboard`](../wiki/Dashboard)
+▸ **on**<`K`\>(`eventName`, `listener`): [`Dashboard`](../wiki/Dashboard)
 
 Adds the `listener` function to the end of the listeners array for the event named `eventName`.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends `EventKey`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
+| `eventName` | `K` |
+| `listener` | `Listener`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }[`K`]\> |
 
 #### Returns
 
@@ -212,7 +235,41 @@ Widget.on
 
 #### Defined in
 
-[widget.ts:202](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L202)
+[widget.ts:222](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L222)
+
+___
+
+### once
+
+▸ **once**<`K`\>(`eventName`, `listener`): [`Dashboard`](../wiki/Dashboard)
+
+Adds a one-timelistener function for the event named eventName.
+The next time eventName is triggered, this listener is removed and then invoked.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | extends `EventKey`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\> |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `K` |
+| `listener` | `Listener`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }[`K`]\> |
+
+#### Returns
+
+[`Dashboard`](../wiki/Dashboard)
+
+#### Inherited from
+
+Widget.once
+
+#### Defined in
+
+[widget.ts:239](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L239)
 
 ___
 
@@ -221,6 +278,9 @@ ___
 ▸ **removeAllListeners**(`event?`): [`Dashboard`](../wiki/Dashboard)
 
 Removes all listeners, or those of the specified `eventName`.
+
+It is bad practice to remove listeners added elsewhere in the code,
+particularly when the instance was created by some other component or module.
 
 #### Parameters
 
@@ -238,34 +298,7 @@ Widget.removeAllListeners
 
 #### Defined in
 
-[widget.ts:250](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L250)
-
-___
-
-### removeListener
-
-▸ **removeListener**(`eventName`, `listener`): [`Dashboard`](../wiki/Dashboard)
-
-Removes the specified `listener` from the listener array for the event named `eventName`.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `eventName` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
-
-#### Returns
-
-[`Dashboard`](../wiki/Dashboard)
-
-#### Inherited from
-
-Widget.removeListener
-
-#### Defined in
-
-[widget.ts:238](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L238)
+[widget.ts:259](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L259)
 
 ___
 
@@ -285,4 +318,4 @@ Widget.unload
 
 #### Defined in
 
-[widget.ts:160](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L160)
+[widget.ts:180](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L180)
