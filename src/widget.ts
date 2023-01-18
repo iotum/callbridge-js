@@ -150,7 +150,7 @@ export default class Widget extends EventEmitter {
     this._features = features;
 
     if (autoLoad) {
-      this.load({ redirect_url: '/page_to_see' });
+      this._load({ redirect_url: '/page_to_see' });
     }
   }
 
@@ -253,7 +253,7 @@ export default class Widget extends EventEmitter {
   }
 
   /** @internal */
-  protected load = (params: SearchParams) => {
+  protected _load = (params: SearchParams) => {
     if (!this._container || this._instance) {
       return;
     }

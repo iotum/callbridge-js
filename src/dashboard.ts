@@ -1,9 +1,9 @@
 import Widget, { WidgetOptions } from './widget';
 
 /**
- * Dashboard page.
+ * Dashboard service.
  */
-export type Page = '' | 'chat' | 'drive' | 'contacts' | 'meetings';
+export type Service = '' | 'Team' | 'Drive' | 'Contacts';
 
 /**
  * Callbridge Dashboard.
@@ -17,20 +17,28 @@ export default class Dashboard extends Widget {
     /**
      * The page to load after logging in
      */
-    page: Page = '',
+    service: Service = '',
   ) {
     super(options);
 
-    this.load({
-      redirect_url: `/conf/${page || ''}`,
+    switch (service) {
+      case 'Team':
+      case 'Drive':
+      case 'Contacts':
+        this.once('dashboard.ready', () => this.load(service));
+        break;
+    }
+
+    this._load({
+      redirect_url: `/conf/loading`,
     });
   }
 
   /**
-   * Loads the page.
-   * @param page the page to load.
+   * Loads the service.
+   * @param service the service to load.
    */
-  loadPage(page: Page) {
-    this._send('portal', 'loadPage', { page });
+  load(service: Service) {
+    this._send('dashboard', 'load', { service });
   }
 }
