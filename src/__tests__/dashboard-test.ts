@@ -45,7 +45,7 @@ describe('dashboard', () => {
       `https://${domain}/conf/loading?events=true`,
     );
 
-    dashboard.emit('dashboard.ready');
+    dashboard.emit('dashboard.READY');
     expect(dashboard.wnd?.postMessage).not.toHaveBeenCalled();
   });
 
@@ -60,7 +60,7 @@ describe('dashboard', () => {
     expect(pathname).toBe(`/conf/loading`);
     expect(searchParams.get('events')).toBe('true');
 
-    dashboard.emit('dashboard.ready');
+    dashboard.emit('dashboard.READY');
     expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
       {
         type: 'dashboard',

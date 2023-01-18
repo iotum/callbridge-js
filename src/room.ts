@@ -21,7 +21,51 @@ export type AudioSettings = {
 /**
  * Callbridge Room.
  */
-export default class Room extends Widget {
+export default class Room extends Widget<{
+  'device.DEVICE_LIST_CHANGED': {
+    videoinput: Array<MediaDeviceInfo>;
+    audioinput: Array<MediaDeviceInfo>;
+    audiooutput: Array<MediaDeviceInfo>;
+  };
+  'device.DEVICE_IN_USE': {
+    kind: 'audioinput' | 'audiooutput' | 'videoinput';
+    deviceId: 'default';
+  };
+  'conference.CHANGE': {
+    id: number;
+    name: string;
+    mode: string;
+    roomSize: number;
+    isActive: boolean;
+    isRecording: boolean;
+    isStreaming: boolean;
+    isLocked: boolean;
+    isSecured: boolean;
+    incomingVideo: boolean;
+  };
+  'conference.SPEAKER': { id: number; speakerId: number };
+  'conference.CONFERENCE_CALL_EXIT': { reason: string };
+  'participant.CHANGE': {
+    id: number;
+    name: string;
+    isCurrent: boolean;
+    isOrganizer: boolean;
+    isModerator: boolean;
+    isObserver: boolean;
+    isOnCall: boolean;
+    isViewingOnly: boolean;
+    isLeft: boolean;
+    isBlocked: boolean;
+    isMuted: boolean;
+    isCameraOn: boolean;
+    isPhone: boolean;
+    isInternet: boolean;
+    isJoining: boolean;
+    isStreaming: boolean;
+    handRaised: boolean;
+  };
+  'participant.AUDIO_LEVEL': { id: number; audioLevel: number };
+}> {
   /**
    * @param options
    */
