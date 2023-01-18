@@ -13,7 +13,7 @@
 - [AudioSettings](../wiki/Exports#audiosettings)
 - [LivestreamOptions](../wiki/Exports#livestreamoptions)
 - [MeetingOptions](../wiki/Exports#meetingoptions)
-- [Page](../wiki/Exports#page)
+- [Service](../wiki/Exports#service)
 - [WidgetOptions](../wiki/Exports#widgetoptions)
 
 ## Type Aliases
@@ -33,7 +33,7 @@ Audio output settings.
 
 #### Defined in
 
-[room.ts:6](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L6)
+[room.ts:6](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L6)
 
 ___
 
@@ -53,7 +53,7 @@ Livestream options.
 
 #### Defined in
 
-[livestream.ts:7](https://github.com/iotum/callbridge-js/blob/a577923/src/livestream.ts#L7)
+[livestream.ts:7](https://github.com/iotum/callbridge-js/blob/52a0b50/src/livestream.ts#L7)
 
 ___
 
@@ -84,19 +84,19 @@ Meeting options.
 
 #### Defined in
 
-[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/a577923/src/meeting.ts#L7)
+[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/52a0b50/src/meeting.ts#L7)
 
 ___
 
-### Page
+### Service
 
-Ƭ **Page**: ``""`` \| ``"chat"`` \| ``"drive"`` \| ``"contacts"`` \| ``"meetings"``
+Ƭ **Service**: ``""`` \| ``"Team"`` \| ``"Drive"`` \| ``"Contacts"``
 
-Dashboard page.
+Dashboard service.
 
 #### Defined in
 
-[dashboard.ts:6](https://github.com/iotum/callbridge-js/blob/a577923/src/dashboard.ts#L6)
+[dashboard.ts:6](https://github.com/iotum/callbridge-js/blob/52a0b50/src/dashboard.ts#L6)
 
 ___
 
@@ -122,4 +122,4 @@ Widget options.
 
 #### Defined in
 
-[widget.ts:6](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L6)
+[widget.ts:6](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L6)

@@ -1,8 +1,8 @@
 import Widget, { WidgetOptions } from './widget';
 /**
- * Dashboard page.
+ * Dashboard service.
  */
-export type Page = '' | 'chat' | 'drive' | 'contacts' | 'meetings';
+export type Service = '' | 'Team' | 'Drive' | 'Contacts';
 /**
  * Callbridge Dashboard.
  */
@@ -15,10 +15,10 @@ export default class Dashboard extends Widget {
     /**
      * The page to load after logging in
      */
-    page?: Page);
+    service?: Service);
     /**
-     * Loads the page.
-     * @param page the page to load.
+     * Loads the service.
+     * @param service the service to load.
      */
-    loadPage(page: Page): void;
+    load(service: Service): void;
 }

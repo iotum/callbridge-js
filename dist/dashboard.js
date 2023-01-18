@@ -16,18 +16,25 @@ class Dashboard extends widget_1.default {
     /**
      * The page to load after logging in
      */
-    page = '') {
+    service = '') {
         super(options);
-        this.load({
-            redirect_url: `/conf/${page || ''}`,
+        switch (service) {
+            case 'Team':
+            case 'Drive':
+            case 'Contacts':
+                this.once('dashboard.ready', () => this.load(service));
+                break;
+        }
+        this._load({
+            redirect_url: `/conf/loading`,
         });
     }
     /**
-     * Loads the page.
-     * @param page the page to load.
+     * Loads the service.
+     * @param service the service to load.
      */
-    loadPage(page) {
-        this._send('portal', 'loadPage', { page });
+    load(service) {
+        this._send('dashboard', 'load', { service });
     }
 }
 exports.default = Dashboard;

@@ -39,7 +39,7 @@ export default class Livestream extends Room {
   ) {
     super(options);
 
-    this.load({
+    this._load({
       ...livestreamOptions,
       redirect_url: `/livestream/${roomId}`,
     });

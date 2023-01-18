@@ -101,7 +101,7 @@ export default class Meeting extends Room {
       afterCallUrl,
     } = meetingOptions;
 
-    this.load({
+    this._load({
       redirect_url: `/conf/call/${roomId}`,
       name,
       skip_join: skipJoin,

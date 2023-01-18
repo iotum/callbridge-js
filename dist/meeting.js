@@ -24,7 +24,7 @@ class Meeting extends room_1.default {
         super(options);
         const { target: { autoClose } = {} } = options;
         const { name, skipJoin, mute: { mic: muteMic, camera: muteCamera } = {}, observer, moderatorToken, resolution, view, tiles, audioLevel, stripLayout, autoView, afterCallUrl, } = meetingOptions;
-        this.load({
+        this._load({
             redirect_url: `/conf/call/${roomId}`,
             name,
             skip_join: skipJoin,

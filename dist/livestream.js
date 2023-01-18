@@ -22,7 +22,7 @@ class Livestream extends room_1.default {
      */
     livestreamOptions) {
         super(options);
-        this.load(Object.assign(Object.assign({}, livestreamOptions), { redirect_url: `/livestream/${roomId}` }));
+        this._load(Object.assign(Object.assign({}, livestreamOptions), { redirect_url: `/livestream/${roomId}` }));
     }
 }
 exports.default = Livestream;

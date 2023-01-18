@@ -58,7 +58,7 @@ class Widget extends events_1.EventEmitter {
         /** @internal */
         this._ready = false;
         /** @internal */
-        this.load = (params) => {
+        this._load = (params) => {
             if (!this._container || this._instance) {
                 return;
             }
@@ -137,7 +137,7 @@ class Widget extends events_1.EventEmitter {
         this._target = name;
         this._features = features;
         if (autoLoad) {
-            this.load({ redirect_url: '/page_to_see' });
+            this._load({ redirect_url: '/page_to_see' });
         }
     }
     /**

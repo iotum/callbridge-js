@@ -58,7 +58,7 @@ Room.constructor
 
 #### Defined in
 
-[livestream.ts:26](https://github.com/iotum/callbridge-js/blob/a577923/src/livestream.ts#L26)
+[livestream.ts:26](https://github.com/iotum/callbridge-js/blob/52a0b50/src/livestream.ts#L26)
 
 ## Accessors
 
@@ -78,7 +78,7 @@ Room.instance
 
 #### Defined in
 
-[widget.ts:183](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L183)
+[widget.ts:183](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L183)
 
 ___
 
@@ -98,7 +98,7 @@ Room.isReady
 
 #### Defined in
 
-[widget.ts:176](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L176)
+[widget.ts:176](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L176)
 
 ___
 
@@ -118,7 +118,7 @@ Room.wnd
 
 #### Defined in
 
-[widget.ts:190](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L190)
+[widget.ts:190](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L190)
 
 ## Methods
 
@@ -145,7 +145,7 @@ Room.addListener
 
 #### Defined in
 
-[widget.ts:226](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L226)
+[widget.ts:226](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L226)
 
 ___
 
@@ -172,7 +172,7 @@ Room.adjustParticipantAudio
 
 #### Defined in
 
-[room.ts:113](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L113)
+[room.ts:113](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L113)
 
 ___
 
@@ -198,7 +198,7 @@ Room.muteParticipant
 
 #### Defined in
 
-[room.ts:102](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L102)
+[room.ts:102](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L102)
 
 ___
 
@@ -225,7 +225,7 @@ Room.off
 
 #### Defined in
 
-[widget.ts:214](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L214)
+[widget.ts:214](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L214)
 
 ___
 
@@ -252,7 +252,7 @@ Room.on
 
 #### Defined in
 
-[widget.ts:202](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L202)
+[widget.ts:202](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L202)
 
 ___
 
@@ -278,7 +278,7 @@ Room.removeAllListeners
 
 #### Defined in
 
-[widget.ts:250](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L250)
+[widget.ts:250](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L250)
 
 ___
 
@@ -305,7 +305,7 @@ Room.removeListener
 
 #### Defined in
 
-[widget.ts:238](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L238)
+[widget.ts:238](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L238)
 
 ___
 
@@ -331,7 +331,7 @@ Room.setAudioInput
 
 #### Defined in
 
-[room.ts:44](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L44)
+[room.ts:44](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L44)
 
 ___
 
@@ -357,7 +357,7 @@ Room.setAudioOutput
 
 #### Defined in
 
-[room.ts:52](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L52)
+[room.ts:52](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L52)
 
 ___
 
@@ -383,7 +383,7 @@ Room.setCamera
 
 #### Defined in
 
-[room.ts:60](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L60)
+[room.ts:60](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L60)
 
 ___
 
@@ -409,7 +409,7 @@ Room.setIncomingVideo
 
 #### Defined in
 
-[room.ts:76](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L76)
+[room.ts:76](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L76)
 
 ___
 
@@ -435,7 +435,7 @@ Room.setMute
 
 #### Defined in
 
-[room.ts:68](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L68)
+[room.ts:68](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L68)
 
 ___
 
@@ -461,7 +461,7 @@ Room.setVideoInput
 
 #### Defined in
 
-[room.ts:36](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L36)
+[room.ts:36](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L36)
 
 ___
 
@@ -487,7 +487,7 @@ Room.setVolume
 
 #### Defined in
 
-[room.ts:87](https://github.com/iotum/callbridge-js/blob/a577923/src/room.ts#L87)
+[room.ts:87](https://github.com/iotum/callbridge-js/blob/52a0b50/src/room.ts#L87)
 
 ___
 
@@ -507,4 +507,4 @@ Room.unload
 
 #### Defined in
 
-[widget.ts:160](https://github.com/iotum/callbridge-js/blob/a577923/src/widget.ts#L160)
+[widget.ts:160](https://github.com/iotum/callbridge-js/blob/52a0b50/src/widget.ts#L160)
