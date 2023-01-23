@@ -5,6 +5,18 @@
   "author": "Iotum (https://www.iotum.com)",
   "license": "MIT",
   "homepage": "https://www.callbridge.com/",
+  "bugs": {
+    "url": "https://github.com/iotum/callbridge-js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iotum/callbridge-js.git"
+  },
+  "keywords": [
+    "callbridge",
+    "client",
+    "sdk"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -36,6 +48,6 @@
     "build": "tsc",
     "test": "jest",
     "doc": "typedoc --out wiki --excludeExternals --theme github-wiki src/index.ts",
-    "predeploy": "npm run lint && npm run test && npm run doc && npm run build"
+    "predeploy": "npm install && npm run lint && npm run test && npm run doc && npm run build"
   }
 }
