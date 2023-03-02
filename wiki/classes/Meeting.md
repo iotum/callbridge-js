@@ -1,3 +1,5 @@
+[@iotum/callbridge-js](../README.md) / Meeting
+
 # Class: Meeting
 
 Callbridge Meeting Room.
@@ -12,31 +14,31 @@ Callbridge Meeting Room.
 
 ### Constructors
 
-- [constructor](../wiki/Meeting#constructor)
+- [constructor](Meeting.md#constructor)
 
 ### Accessors
 
-- [instance](../wiki/Meeting#instance)
-- [isReady](../wiki/Meeting#isready)
-- [wnd](../wiki/Meeting#wnd)
+- [instance](Meeting.md#instance)
+- [isReady](Meeting.md#isready)
+- [wnd](Meeting.md#wnd)
 
 ### Methods
 
-- [adjustParticipantAudio](../wiki/Meeting#adjustparticipantaudio)
-- [emit](../wiki/Meeting#emit)
-- [muteParticipant](../wiki/Meeting#muteparticipant)
-- [off](../wiki/Meeting#off)
-- [on](../wiki/Meeting#on)
-- [once](../wiki/Meeting#once)
-- [removeAllListeners](../wiki/Meeting#removealllisteners)
-- [setAudioInput](../wiki/Meeting#setaudioinput)
-- [setAudioOutput](../wiki/Meeting#setaudiooutput)
-- [setCamera](../wiki/Meeting#setcamera)
-- [setIncomingVideo](../wiki/Meeting#setincomingvideo)
-- [setMute](../wiki/Meeting#setmute)
-- [setVideoInput](../wiki/Meeting#setvideoinput)
-- [setVolume](../wiki/Meeting#setvolume)
-- [unload](../wiki/Meeting#unload)
+- [adjustParticipantAudio](Meeting.md#adjustparticipantaudio)
+- [emit](Meeting.md#emit)
+- [muteParticipant](Meeting.md#muteparticipant)
+- [off](Meeting.md#off)
+- [on](Meeting.md#on)
+- [once](Meeting.md#once)
+- [removeAllListeners](Meeting.md#removealllisteners)
+- [setAudioInput](Meeting.md#setaudioinput)
+- [setAudioOutput](Meeting.md#setaudiooutput)
+- [setCamera](Meeting.md#setcamera)
+- [setIncomingVideo](Meeting.md#setincomingvideo)
+- [setMute](Meeting.md#setmute)
+- [setVideoInput](Meeting.md#setvideoinput)
+- [setVolume](Meeting.md#setvolume)
+- [unload](Meeting.md#unload)
 
 ## Constructors
 
@@ -48,9 +50,9 @@ Callbridge Meeting Room.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | [`WidgetOptions`](../wiki/Exports#widgetoptions) | Widget options |
+| `options` | [`WidgetOptions`](../README.md#widgetoptions) | Widget options |
 | `roomId` | `string` | The room to join |
-| `meetingOptions` | [`MeetingOptions`](../wiki/Exports#meetingoptions) | Meeting options |
+| `meetingOptions` | [`MeetingOptions`](../README.md#meetingoptions) | Meeting options |
 
 #### Overrides
 
@@ -58,7 +60,7 @@ Room.constructor
 
 #### Defined in
 
-[meeting.ts:71](https://github.com/iotum/callbridge-js/blob/c07ca62/src/meeting.ts#L71)
+[meeting.ts:71](https://github.com/iotum/callbridge-js/blob/3192544/src/meeting.ts#L71)
 
 ## Accessors
 
@@ -78,7 +80,7 @@ Room.instance
 
 #### Defined in
 
-[widget.ts:203](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L203)
+[widget.ts:203](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L203)
 
 ___
 
@@ -98,7 +100,7 @@ Room.isReady
 
 #### Defined in
 
-[widget.ts:196](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L196)
+[widget.ts:196](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L196)
 
 ___
 
@@ -118,7 +120,7 @@ Room.wnd
 
 #### Defined in
 
-[widget.ts:210](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L210)
+[widget.ts:210](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L210)
 
 ## Methods
 
@@ -133,7 +135,7 @@ Adjusts the audio output volume and/or stereo position of a remote participant.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `participantId` | `number` | participant id. |
-| `settings` | [`AudioSettings`](../wiki/Exports#audiosettings) | audio settings. |
+| `settings` | [`AudioSettings`](../README.md#audiosettings) | audio settings. |
 
 #### Returns
 
@@ -145,7 +147,7 @@ Room.adjustParticipantAudio
 
 #### Defined in
 
-[room.ts:157](https://github.com/iotum/callbridge-js/blob/c07ca62/src/room.ts#L157)
+[room.ts:157](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L157)
 
 ___
 
@@ -180,7 +182,7 @@ Room.emit
 
 #### Defined in
 
-[widget.ts:249](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L249)
+[widget.ts:249](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L249)
 
 ___
 
@@ -206,13 +208,13 @@ Room.muteParticipant
 
 #### Defined in
 
-[room.ts:146](https://github.com/iotum/callbridge-js/blob/c07ca62/src/room.ts#L146)
+[room.ts:146](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L146)
 
 ___
 
 ### off
 
-▸ **off**<`K`\>(`eventName`, `listener`): [`Meeting`](../wiki/Meeting)
+▸ **off**<`K`\>(`eventName`, `listener`): [`Meeting`](Meeting.md)
 
 Removes the specified `listener` from the listener array for the event named `eventName`.
 
@@ -231,7 +233,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Returns
 
-[`Meeting`](../wiki/Meeting)
+[`Meeting`](Meeting.md)
 
 #### Inherited from
 
@@ -239,13 +241,13 @@ Room.off
 
 #### Defined in
 
-[widget.ts:230](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L230)
+[widget.ts:230](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L230)
 
 ___
 
 ### on
 
-▸ **on**<`K`\>(`eventName`, `listener`): [`Meeting`](../wiki/Meeting)
+▸ **on**<`K`\>(`eventName`, `listener`): [`Meeting`](Meeting.md)
 
 Adds the `listener` function to the end of the listeners array for the event named `eventName`.
 
@@ -264,7 +266,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Returns
 
-[`Meeting`](../wiki/Meeting)
+[`Meeting`](Meeting.md)
 
 #### Inherited from
 
@@ -272,13 +274,13 @@ Room.on
 
 #### Defined in
 
-[widget.ts:222](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L222)
+[widget.ts:222](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L222)
 
 ___
 
 ### once
 
-▸ **once**<`K`\>(`eventName`, `listener`): [`Meeting`](../wiki/Meeting)
+▸ **once**<`K`\>(`eventName`, `listener`): [`Meeting`](Meeting.md)
 
 Adds a one-timelistener function for the event named eventName.
 The next time eventName is triggered, this listener is removed and then invoked.
@@ -298,7 +300,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Returns
 
-[`Meeting`](../wiki/Meeting)
+[`Meeting`](Meeting.md)
 
 #### Inherited from
 
@@ -306,13 +308,13 @@ Room.once
 
 #### Defined in
 
-[widget.ts:239](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L239)
+[widget.ts:239](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L239)
 
 ___
 
 ### removeAllListeners
 
-▸ **removeAllListeners**(`event?`): [`Meeting`](../wiki/Meeting)
+▸ **removeAllListeners**(`event?`): [`Meeting`](Meeting.md)
 
 Removes all listeners, or those of the specified `eventName`.
 
@@ -327,7 +329,7 @@ particularly when the instance was created by some other component or module.
 
 #### Returns
 
-[`Meeting`](../wiki/Meeting)
+[`Meeting`](Meeting.md)
 
 #### Inherited from
 
@@ -335,7 +337,7 @@ Room.removeAllListeners
 
 #### Defined in
 
-[widget.ts:259](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L259)
+[widget.ts:259](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L259)
 
 ___
 
@@ -361,7 +363,7 @@ Room.setAudioInput
 
 #### Defined in
 
-[room.ts:88](https://github.com/iotum/callbridge-js/blob/c07ca62/src/room.ts#L88)
+[room.ts:88](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L88)
 
 ___
 
@@ -387,7 +389,7 @@ Room.setAudioOutput
 
 #### Defined in
 
-[room.ts:96](https://github.com/iotum/callbridge-js/blob/c07ca62/src/room.ts#L96)
+[room.ts:96](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L96)
 
 ___
 
@@ -413,7 +415,7 @@ Room.setCamera
 
 #### Defined in
 
-[room.ts:104](https://github.com/iotum/callbridge-js/blob/c07ca62/src/room.ts#L104)
+[room.ts:104](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L104)
 
 ___
 
@@ -439,7 +441,7 @@ Room.setIncomingVideo
 
 #### Defined in
 
-[room.ts:120](https://github.com/iotum/callbridge-js/blob/c07ca62/src/room.ts#L120)
+[room.ts:120](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L120)
 
 ___
 
@@ -465,7 +467,7 @@ Room.setMute
 
 #### Defined in
 
-[room.ts:112](https://github.com/iotum/callbridge-js/blob/c07ca62/src/room.ts#L112)
+[room.ts:112](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L112)
 
 ___
 
@@ -491,7 +493,7 @@ Room.setVideoInput
 
 #### Defined in
 
-[room.ts:80](https://github.com/iotum/callbridge-js/blob/c07ca62/src/room.ts#L80)
+[room.ts:80](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L80)
 
 ___
 
@@ -517,7 +519,7 @@ Room.setVolume
 
 #### Defined in
 
-[room.ts:131](https://github.com/iotum/callbridge-js/blob/c07ca62/src/room.ts#L131)
+[room.ts:131](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L131)
 
 ___
 
@@ -537,4 +539,4 @@ Room.unload
 
 #### Defined in
 
-[widget.ts:180](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L180)
+[widget.ts:180](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L180)

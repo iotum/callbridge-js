@@ -1,3 +1,5 @@
+[@iotum/callbridge-js](../README.md) / Livestream
+
 # Class: Livestream
 
 Callbridge Livesteam Viewer.
@@ -12,22 +14,22 @@ Callbridge Livesteam Viewer.
 
 ### Constructors
 
-- [constructor](../wiki/Livestream#constructor)
+- [constructor](Livestream.md#constructor)
 
 ### Accessors
 
-- [instance](../wiki/Livestream#instance)
-- [isReady](../wiki/Livestream#isready)
-- [wnd](../wiki/Livestream#wnd)
+- [instance](Livestream.md#instance)
+- [isReady](Livestream.md#isready)
+- [wnd](Livestream.md#wnd)
 
 ### Methods
 
-- [emit](../wiki/Livestream#emit)
-- [off](../wiki/Livestream#off)
-- [on](../wiki/Livestream#on)
-- [once](../wiki/Livestream#once)
-- [removeAllListeners](../wiki/Livestream#removealllisteners)
-- [unload](../wiki/Livestream#unload)
+- [emit](Livestream.md#emit)
+- [off](Livestream.md#off)
+- [on](Livestream.md#on)
+- [once](Livestream.md#once)
+- [removeAllListeners](Livestream.md#removealllisteners)
+- [unload](Livestream.md#unload)
 
 ## Constructors
 
@@ -39,9 +41,9 @@ Callbridge Livesteam Viewer.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | [`WidgetOptions`](../wiki/Exports#widgetoptions) | Widget options |
+| `options` | [`WidgetOptions`](../README.md#widgetoptions) | Widget options |
 | `roomId` | `string` | The room to stream |
-| `livestreamOptions?` | [`LivestreamOptions`](../wiki/Exports#livestreamoptions) | Livestream options |
+| `livestreamOptions?` | [`LivestreamOptions`](../README.md#livestreamoptions) | Livestream options |
 
 #### Overrides
 
@@ -51,7 +53,7 @@ Widget&lt;{
 
 #### Defined in
 
-[livestream.ts:27](https://github.com/iotum/callbridge-js/blob/c07ca62/src/livestream.ts#L27)
+[livestream.ts:27](https://github.com/iotum/callbridge-js/blob/3192544/src/livestream.ts#L27)
 
 ## Accessors
 
@@ -71,7 +73,7 @@ Widget.instance
 
 #### Defined in
 
-[widget.ts:203](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L203)
+[widget.ts:203](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L203)
 
 ___
 
@@ -91,7 +93,7 @@ Widget.isReady
 
 #### Defined in
 
-[widget.ts:196](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L196)
+[widget.ts:196](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L196)
 
 ___
 
@@ -111,7 +113,7 @@ Widget.wnd
 
 #### Defined in
 
-[widget.ts:210](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L210)
+[widget.ts:210](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L210)
 
 ## Methods
 
@@ -146,13 +148,13 @@ Widget.emit
 
 #### Defined in
 
-[widget.ts:249](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L249)
+[widget.ts:249](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L249)
 
 ___
 
 ### off
 
-▸ **off**<`K`\>(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
+▸ **off**<`K`\>(`eventName`, `listener`): [`Livestream`](Livestream.md)
 
 Removes the specified `listener` from the listener array for the event named `eventName`.
 
@@ -171,7 +173,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Returns
 
-[`Livestream`](../wiki/Livestream)
+[`Livestream`](Livestream.md)
 
 #### Inherited from
 
@@ -179,13 +181,13 @@ Widget.off
 
 #### Defined in
 
-[widget.ts:230](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L230)
+[widget.ts:230](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L230)
 
 ___
 
 ### on
 
-▸ **on**<`K`\>(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
+▸ **on**<`K`\>(`eventName`, `listener`): [`Livestream`](Livestream.md)
 
 Adds the `listener` function to the end of the listeners array for the event named `eventName`.
 
@@ -204,7 +206,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Returns
 
-[`Livestream`](../wiki/Livestream)
+[`Livestream`](Livestream.md)
 
 #### Inherited from
 
@@ -212,13 +214,13 @@ Widget.on
 
 #### Defined in
 
-[widget.ts:222](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L222)
+[widget.ts:222](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L222)
 
 ___
 
 ### once
 
-▸ **once**<`K`\>(`eventName`, `listener`): [`Livestream`](../wiki/Livestream)
+▸ **once**<`K`\>(`eventName`, `listener`): [`Livestream`](Livestream.md)
 
 Adds a one-timelistener function for the event named eventName.
 The next time eventName is triggered, this listener is removed and then invoked.
@@ -238,7 +240,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Returns
 
-[`Livestream`](../wiki/Livestream)
+[`Livestream`](Livestream.md)
 
 #### Inherited from
 
@@ -246,13 +248,13 @@ Widget.once
 
 #### Defined in
 
-[widget.ts:239](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L239)
+[widget.ts:239](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L239)
 
 ___
 
 ### removeAllListeners
 
-▸ **removeAllListeners**(`event?`): [`Livestream`](../wiki/Livestream)
+▸ **removeAllListeners**(`event?`): [`Livestream`](Livestream.md)
 
 Removes all listeners, or those of the specified `eventName`.
 
@@ -267,7 +269,7 @@ particularly when the instance was created by some other component or module.
 
 #### Returns
 
-[`Livestream`](../wiki/Livestream)
+[`Livestream`](Livestream.md)
 
 #### Inherited from
 
@@ -275,7 +277,7 @@ Widget.removeAllListeners
 
 #### Defined in
 
-[widget.ts:259](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L259)
+[widget.ts:259](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L259)
 
 ___
 
@@ -295,4 +297,4 @@ Widget.unload
 
 #### Defined in
 
-[widget.ts:180](https://github.com/iotum/callbridge-js/blob/c07ca62/src/widget.ts#L180)
+[widget.ts:180](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L180)
