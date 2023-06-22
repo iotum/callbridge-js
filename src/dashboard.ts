@@ -61,9 +61,13 @@ export default class Dashboard extends Widget<{
      */
     options: WidgetOptions,
     /**
-     * The page to load after logging in
+     * Optional, the page to load after logging in
      */
     service = Service.None,
+    /**
+     * Optional, service options.
+     */
+    serviceOptions: ServiceOptions = {},
   ) {
     super(options);
 
@@ -71,7 +75,7 @@ export default class Dashboard extends Widget<{
       case Service.Team:
       case Service.Drive:
       case Service.Contacts:
-        this.once('dashboard.READY', () => this.load(service));
+        this.once('dashboard.READY', () => this.load(service, serviceOptions));
         break;
     }
 

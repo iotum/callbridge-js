@@ -43,15 +43,19 @@ class Dashboard extends widget_1.default {
      */
     options, 
     /**
-     * The page to load after logging in
+     * Optional, the page to load after logging in
      */
-    service = Service.None) {
+    service = Service.None, 
+    /**
+     * Optional, service options.
+     */
+    serviceOptions = {}) {
         super(options);
         switch (service) {
             case Service.Team:
             case Service.Drive:
             case Service.Contacts:
-                this.once('dashboard.READY', () => this.load(service));
+                this.once('dashboard.READY', () => this.load(service, serviceOptions));
                 break;
         }
         this._load({
