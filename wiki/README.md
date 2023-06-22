@@ -44,7 +44,7 @@ Audio output settings.
 
 #### Defined in
 
-[room.ts:6](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/room.ts#L6)
+[room.ts:6](https://github.com/iotum/callbridge-js/blob/49e1851/src/room.ts#L6)
 
 ___
 
@@ -64,7 +64,7 @@ Livestream options.
 
 #### Defined in
 
-[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/livestream.ts#L6)
+[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/49e1851/src/livestream.ts#L6)
 
 ___
 
@@ -95,7 +95,7 @@ Meeting options.
 
 #### Defined in
 
-[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/meeting.ts#L7)
+[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/49e1851/src/meeting.ts#L7)
 
 ___
 
@@ -114,7 +114,7 @@ Dashboard service options.
 
 #### Defined in
 
-[dashboard.ts:34](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/dashboard.ts#L34)
+[dashboard.ts:34](https://github.com/iotum/callbridge-js/blob/49e1851/src/dashboard.ts#L34)
 
 ___
 
@@ -140,4 +140,4 @@ Widget options.
 
 #### Defined in
 
-[widget.ts:6](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L6)
+[widget.ts:6](https://github.com/iotum/callbridge-js/blob/49e1851/src/widget.ts#L6)

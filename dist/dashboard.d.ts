@@ -56,9 +56,13 @@ export default class Dashboard extends Widget<{
      */
     options: WidgetOptions, 
     /**
-     * The page to load after logging in
+     * Optional, the page to load after logging in
      */
-    service?: Service);
+    service?: Service, 
+    /**
+     * Optional, service options.
+     */
+    serviceOptions?: ServiceOptions);
     /**
      * Loads the service.
      * @param service the service to load.
