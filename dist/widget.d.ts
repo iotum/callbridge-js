@@ -3,7 +3,9 @@
  */
 export type WidgetOptions = {
     /**
-     * The container for the widget. Supports attached or detached DOM element, document selector, or `window` (new tab).
+     * The container for the widget.
+     * Supports attached or detached DOM element, document selector, or `window` (new tab).
+     * If the element is detached, it will be set to invisible and attached to the main document.
      */
     container: Window | HTMLElement | string | null;
     /**
@@ -56,6 +58,7 @@ interface WidgetEventEmitter<T extends EventMap> {
  */
 export default class Widget<T extends EventMap | {
     'widget.LOAD': void;
+    'widget.UNLOAD': void;
     'widget.ERROR': string;
 }> implements WidgetEventEmitter<T> {
     private emitter;
@@ -64,6 +67,14 @@ export default class Widget<T extends EventMap | {
      * Unloads the widget by removing the iframe or close the tab/window.
      */
     unload(): void;
+    /**
+     * Toggles the visibility of the widget on the page.
+     *
+     * Not available for pop-up.
+     *
+     * @param visible whether the widget should be visible
+     */
+    toggle(visible: boolean): void;
     /**
      * Whether the widget is ready.
      */

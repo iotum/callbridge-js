@@ -1,58 +1,89 @@
-[@iotum/callbridge-js](../README.md) / Livestream
+[@iotum/callbridge-js](../README.md) / [\_internal](../modules/internal.md) / default
 
-# Class: Livestream
+# Class: default<T\>
 
-Callbridge Livesteam Viewer.
+[_internal](../modules/internal.md).default
+
+Callbridge Widget.
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends [`EventMap`](../modules/internal.md#eventmap) \| { `widget.ERROR`: `string` ; `widget.LOAD`: `void` ; `widget.UNLOAD`: `void`  } |
 
 ## Hierarchy
 
-- [`default`](internal.default.md)<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void` ; `livestream.READY`: `void`  }\>
+- **`default`**
 
-  ↳ **`Livestream`**
+  ↳ [`Dashboard`](Dashboard.md)
+
+  ↳ [`Livestream`](Livestream.md)
+
+  ↳ [`default`](internal.default-1.md)
+
+## Implements
+
+- [`WidgetEventEmitter`](../interfaces/internal.WidgetEventEmitter.md)<`T`\>
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](Livestream.md#constructor)
+- [constructor](internal.default.md#constructor)
+
+### Properties
+
+- [emitter](internal.default.md#emitter)
 
 ### Accessors
 
-- [instance](Livestream.md#instance)
-- [isReady](Livestream.md#isready)
-- [wnd](Livestream.md#wnd)
+- [instance](internal.default.md#instance)
+- [isReady](internal.default.md#isready)
+- [wnd](internal.default.md#wnd)
 
 ### Methods
 
-- [emit](Livestream.md#emit)
-- [off](Livestream.md#off)
-- [on](Livestream.md#on)
-- [once](Livestream.md#once)
-- [removeAllListeners](Livestream.md#removealllisteners)
-- [toggle](Livestream.md#toggle)
-- [unload](Livestream.md#unload)
+- [emit](internal.default.md#emit)
+- [off](internal.default.md#off)
+- [on](internal.default.md#on)
+- [once](internal.default.md#once)
+- [removeAllListeners](internal.default.md#removealllisteners)
+- [toggle](internal.default.md#toggle)
+- [unload](internal.default.md#unload)
 
 ## Constructors
 
 ### constructor
 
-• **new Livestream**(`options`, `roomId`, `livestreamOptions?`)
+• **new default**<`T`\>(`«destructured»`, `autoLoad?`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends [`EventMap`](../modules/internal.md#eventmap) \| { `widget.ERROR`: `string` ; `widget.LOAD`: `void` ; `widget.UNLOAD`: `void`  } |
 
 #### Parameters
 
-| Name | Type | Description |
+| Name | Type | Default value |
 | :------ | :------ | :------ |
-| `options` | [`WidgetOptions`](../README.md#widgetoptions) | Widget options |
-| `roomId` | `string` | The room to stream |
-| `livestreamOptions?` | [`LivestreamOptions`](../README.md#livestreamoptions) | Livestream options |
-
-#### Overrides
-
-[default](internal.default.md).[constructor](internal.default.md#constructor)
+| `«destructured»` | [`WidgetOptions`](../README.md#widgetoptions) | `undefined` |
+| `autoLoad` | `boolean` | `false` |
 
 #### Defined in
 
-[livestream.ts:28](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/livestream.ts#L28)
+[widget.ts:154](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L154)
+
+## Properties
+
+### emitter
+
+• `Private` **emitter**: `EventEmitter`
+
+#### Defined in
+
+[widget.ts:136](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L136)
 
 ## Accessors
 
@@ -65,10 +96,6 @@ The widget instance.
 #### Returns
 
 ``null`` \| `Window` \| `HTMLIFrameElement`
-
-#### Inherited from
-
-Widget.instance
 
 #### Defined in
 
@@ -86,10 +113,6 @@ Whether the widget is ready.
 
 `boolean`
 
-#### Inherited from
-
-Widget.isReady
-
 #### Defined in
 
 [widget.ts:228](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L228)
@@ -105,10 +128,6 @@ The Window or WindowProxy instance of the widget.
 #### Returns
 
 ``null`` \| `Window`
-
-#### Inherited from
-
-Widget.wnd
 
 #### Defined in
 
@@ -128,22 +147,22 @@ Returns true if the event had listeners, false otherwise.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void` ; `livestream.READY`: `void`  }\> |
+| `K` | extends `string` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `data?` | { `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void` ; `livestream.READY`: `void`  }[`K`] |
+| `data?` | `T`[`K`] |
 
 #### Returns
 
 `boolean`
 
-#### Inherited from
+#### Implementation of
 
-[default](internal.default.md).[emit](internal.default.md#emit)
+[WidgetEventEmitter](../interfaces/internal.WidgetEventEmitter.md).[emit](../interfaces/internal.WidgetEventEmitter.md#emit)
 
 #### Defined in
 
@@ -153,7 +172,7 @@ ___
 
 ### off
 
-▸ **off**<`K`\>(`eventName`, `listener`): [`Livestream`](Livestream.md)
+▸ **off**<`K`\>(`eventName`, `listener`): [`default`](internal.default.md)<`T`\>
 
 Removes the specified `listener` from the listener array for the event named `eventName`.
 
@@ -161,22 +180,22 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void` ; `livestream.READY`: `void`  }\> |
+| `K` | extends `string` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void` ; `livestream.READY`: `void`  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)<`T`[`K`]\> |
 
 #### Returns
 
-[`Livestream`](Livestream.md)
+[`default`](internal.default.md)<`T`\>
 
-#### Inherited from
+#### Implementation of
 
-[default](internal.default.md).[off](internal.default.md#off)
+[WidgetEventEmitter](../interfaces/internal.WidgetEventEmitter.md).[off](../interfaces/internal.WidgetEventEmitter.md#off)
 
 #### Defined in
 
@@ -186,7 +205,7 @@ ___
 
 ### on
 
-▸ **on**<`K`\>(`eventName`, `listener`): [`Livestream`](Livestream.md)
+▸ **on**<`K`\>(`eventName`, `listener`): [`default`](internal.default.md)<`T`\>
 
 Adds the `listener` function to the end of the listeners array for the event named `eventName`.
 
@@ -194,22 +213,22 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void` ; `livestream.READY`: `void`  }\> |
+| `K` | extends `string` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void` ; `livestream.READY`: `void`  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)<`T`[`K`]\> |
 
 #### Returns
 
-[`Livestream`](Livestream.md)
+[`default`](internal.default.md)<`T`\>
 
-#### Inherited from
+#### Implementation of
 
-[default](internal.default.md).[on](internal.default.md#on)
+[WidgetEventEmitter](../interfaces/internal.WidgetEventEmitter.md).[on](../interfaces/internal.WidgetEventEmitter.md#on)
 
 #### Defined in
 
@@ -219,7 +238,7 @@ ___
 
 ### once
 
-▸ **once**<`K`\>(`eventName`, `listener`): [`Livestream`](Livestream.md)
+▸ **once**<`K`\>(`eventName`, `listener`): [`default`](internal.default.md)<`T`\>
 
 Adds a one-timelistener function for the event named eventName.
 The next time eventName is triggered, this listener is removed and then invoked.
@@ -228,22 +247,22 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void` ; `livestream.READY`: `void`  }\> |
+| `K` | extends `string` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void` ; `livestream.READY`: `void`  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)<`T`[`K`]\> |
 
 #### Returns
 
-[`Livestream`](Livestream.md)
+[`default`](internal.default.md)<`T`\>
 
-#### Inherited from
+#### Implementation of
 
-[default](internal.default.md).[once](internal.default.md#once)
+[WidgetEventEmitter](../interfaces/internal.WidgetEventEmitter.md).[once](../interfaces/internal.WidgetEventEmitter.md#once)
 
 #### Defined in
 
@@ -253,7 +272,7 @@ ___
 
 ### removeAllListeners
 
-▸ **removeAllListeners**(`event?`): [`Livestream`](Livestream.md)
+▸ **removeAllListeners**(`event?`): [`default`](internal.default.md)<`T`\>
 
 Removes all listeners, or those of the specified `eventName`.
 
@@ -268,11 +287,11 @@ particularly when the instance was created by some other component or module.
 
 #### Returns
 
-[`Livestream`](Livestream.md)
+[`default`](internal.default.md)<`T`\>
 
-#### Inherited from
+#### Implementation of
 
-[default](internal.default.md).[removeAllListeners](internal.default.md#removealllisteners)
+[WidgetEventEmitter](../interfaces/internal.WidgetEventEmitter.md).[removeAllListeners](../interfaces/internal.WidgetEventEmitter.md#removealllisteners)
 
 #### Defined in
 
@@ -298,10 +317,6 @@ Not available for pop-up.
 
 `void`
 
-#### Inherited from
-
-[default](internal.default.md).[toggle](internal.default.md#toggle)
-
 #### Defined in
 
 [widget.ts:219](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L219)
@@ -317,10 +332,6 @@ Unloads the widget by removing the iframe or close the tab/window.
 #### Returns
 
 `void`
-
-#### Inherited from
-
-[default](internal.default.md).[unload](internal.default.md#unload)
 
 #### Defined in
 

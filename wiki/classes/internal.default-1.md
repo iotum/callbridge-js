@@ -1,67 +1,69 @@
-[@iotum/callbridge-js](../README.md) / Meeting
+[@iotum/callbridge-js](../README.md) / [\_internal](../modules/internal.md) / default
 
-# Class: Meeting
+# Class: default
 
-Callbridge Meeting Room.
+[_internal](../modules/internal.md).default
+
+Callbridge Room.
 
 ## Hierarchy
 
-- [`default`](internal.default-1.md)
+- [`default`](internal.default.md)<{ `conference.CHANGE`: { `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: { `reason`: `string`  } ; `conference.SPEAKER`: { `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: { `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: { `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: { `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: { `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }\>
 
-  ↳ **`Meeting`**
+  ↳ **`default`**
+
+  ↳↳ [`Meeting`](Meeting.md)
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](Meeting.md#constructor)
+- [constructor](internal.default-1.md#constructor)
 
 ### Accessors
 
-- [instance](Meeting.md#instance)
-- [isReady](Meeting.md#isready)
-- [wnd](Meeting.md#wnd)
+- [instance](internal.default-1.md#instance)
+- [isReady](internal.default-1.md#isready)
+- [wnd](internal.default-1.md#wnd)
 
 ### Methods
 
-- [adjustParticipantAudio](Meeting.md#adjustparticipantaudio)
-- [emit](Meeting.md#emit)
-- [muteParticipant](Meeting.md#muteparticipant)
-- [off](Meeting.md#off)
-- [on](Meeting.md#on)
-- [once](Meeting.md#once)
-- [removeAllListeners](Meeting.md#removealllisteners)
-- [setAudioInput](Meeting.md#setaudioinput)
-- [setAudioOutput](Meeting.md#setaudiooutput)
-- [setCamera](Meeting.md#setcamera)
-- [setIncomingVideo](Meeting.md#setincomingvideo)
-- [setMute](Meeting.md#setmute)
-- [setVideoInput](Meeting.md#setvideoinput)
-- [setVolume](Meeting.md#setvolume)
-- [toggle](Meeting.md#toggle)
-- [unload](Meeting.md#unload)
+- [adjustParticipantAudio](internal.default-1.md#adjustparticipantaudio)
+- [emit](internal.default-1.md#emit)
+- [muteParticipant](internal.default-1.md#muteparticipant)
+- [off](internal.default-1.md#off)
+- [on](internal.default-1.md#on)
+- [once](internal.default-1.md#once)
+- [removeAllListeners](internal.default-1.md#removealllisteners)
+- [setAudioInput](internal.default-1.md#setaudioinput)
+- [setAudioOutput](internal.default-1.md#setaudiooutput)
+- [setCamera](internal.default-1.md#setcamera)
+- [setIncomingVideo](internal.default-1.md#setincomingvideo)
+- [setMute](internal.default-1.md#setmute)
+- [setVideoInput](internal.default-1.md#setvideoinput)
+- [setVolume](internal.default-1.md#setvolume)
+- [toggle](internal.default-1.md#toggle)
+- [unload](internal.default-1.md#unload)
 
 ## Constructors
 
 ### constructor
 
-• **new Meeting**(`options`, `roomId`, `meetingOptions?`)
+• **new default**(`options`)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `options` | [`WidgetOptions`](../README.md#widgetoptions) | Widget options |
-| `roomId` | `string` | The room to join |
-| `meetingOptions` | [`MeetingOptions`](../README.md#meetingoptions) | Meeting options |
+| Name | Type |
+| :------ | :------ |
+| `options` | [`WidgetOptions`](../README.md#widgetoptions) |
 
 #### Overrides
 
-[default](internal.default-1.md).[constructor](internal.default-1.md#constructor)
+[default](internal.default.md).[constructor](internal.default.md#constructor)
 
 #### Defined in
 
-[meeting.ts:71](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/meeting.ts#L71)
+[room.ts:73](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/room.ts#L73)
 
 ## Accessors
 
@@ -77,7 +79,7 @@ The widget instance.
 
 #### Inherited from
 
-Room.instance
+Widget.instance
 
 #### Defined in
 
@@ -97,7 +99,7 @@ Whether the widget is ready.
 
 #### Inherited from
 
-Room.isReady
+Widget.isReady
 
 #### Defined in
 
@@ -117,7 +119,7 @@ The Window or WindowProxy instance of the widget.
 
 #### Inherited from
 
-Room.wnd
+Widget.wnd
 
 #### Defined in
 
@@ -141,10 +143,6 @@ Adjusts the audio output volume and/or stereo position of a remote participant.
 #### Returns
 
 `void`
-
-#### Inherited from
-
-[default](internal.default-1.md).[adjustParticipantAudio](internal.default-1.md#adjustparticipantaudio)
 
 #### Defined in
 
@@ -179,7 +177,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Inherited from
 
-[default](internal.default-1.md).[emit](internal.default-1.md#emit)
+[default](internal.default.md).[emit](internal.default.md#emit)
 
 #### Defined in
 
@@ -203,10 +201,6 @@ Mutes a remote participant, requires Moderator.
 
 `void`
 
-#### Inherited from
-
-[default](internal.default-1.md).[muteParticipant](internal.default-1.md#muteparticipant)
-
 #### Defined in
 
 [room.ts:147](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/room.ts#L147)
@@ -215,7 +209,7 @@ ___
 
 ### off
 
-▸ **off**<`K`\>(`eventName`, `listener`): [`Meeting`](Meeting.md)
+▸ **off**<`K`\>(`eventName`, `listener`): [`default`](internal.default-1.md)
 
 Removes the specified `listener` from the listener array for the event named `eventName`.
 
@@ -234,11 +228,11 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Returns
 
-[`Meeting`](Meeting.md)
+[`default`](internal.default-1.md)
 
 #### Inherited from
 
-[default](internal.default-1.md).[off](internal.default-1.md#off)
+[default](internal.default.md).[off](internal.default.md#off)
 
 #### Defined in
 
@@ -248,7 +242,7 @@ ___
 
 ### on
 
-▸ **on**<`K`\>(`eventName`, `listener`): [`Meeting`](Meeting.md)
+▸ **on**<`K`\>(`eventName`, `listener`): [`default`](internal.default-1.md)
 
 Adds the `listener` function to the end of the listeners array for the event named `eventName`.
 
@@ -267,11 +261,11 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Returns
 
-[`Meeting`](Meeting.md)
+[`default`](internal.default-1.md)
 
 #### Inherited from
 
-[default](internal.default-1.md).[on](internal.default-1.md#on)
+[default](internal.default.md).[on](internal.default.md#on)
 
 #### Defined in
 
@@ -281,7 +275,7 @@ ___
 
 ### once
 
-▸ **once**<`K`\>(`eventName`, `listener`): [`Meeting`](Meeting.md)
+▸ **once**<`K`\>(`eventName`, `listener`): [`default`](internal.default-1.md)
 
 Adds a one-timelistener function for the event named eventName.
 The next time eventName is triggered, this listener is removed and then invoked.
@@ -301,11 +295,11 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Returns
 
-[`Meeting`](Meeting.md)
+[`default`](internal.default-1.md)
 
 #### Inherited from
 
-[default](internal.default-1.md).[once](internal.default-1.md#once)
+[default](internal.default.md).[once](internal.default.md#once)
 
 #### Defined in
 
@@ -315,7 +309,7 @@ ___
 
 ### removeAllListeners
 
-▸ **removeAllListeners**(`event?`): [`Meeting`](Meeting.md)
+▸ **removeAllListeners**(`event?`): [`default`](internal.default-1.md)
 
 Removes all listeners, or those of the specified `eventName`.
 
@@ -330,11 +324,11 @@ particularly when the instance was created by some other component or module.
 
 #### Returns
 
-[`Meeting`](Meeting.md)
+[`default`](internal.default-1.md)
 
 #### Inherited from
 
-[default](internal.default-1.md).[removeAllListeners](internal.default-1.md#removealllisteners)
+[default](internal.default.md).[removeAllListeners](internal.default.md#removealllisteners)
 
 #### Defined in
 
@@ -358,10 +352,6 @@ Manages the audio input device.
 
 `void`
 
-#### Inherited from
-
-[default](internal.default-1.md).[setAudioInput](internal.default-1.md#setaudioinput)
-
 #### Defined in
 
 [room.ts:89](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/room.ts#L89)
@@ -383,10 +373,6 @@ Manages the audio output device.
 #### Returns
 
 `void`
-
-#### Inherited from
-
-[default](internal.default-1.md).[setAudioOutput](internal.default-1.md#setaudiooutput)
 
 #### Defined in
 
@@ -410,10 +396,6 @@ Manages my camera.
 
 `void`
 
-#### Inherited from
-
-[default](internal.default-1.md).[setCamera](internal.default-1.md#setcamera)
-
 #### Defined in
 
 [room.ts:105](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/room.ts#L105)
@@ -435,10 +417,6 @@ Manages incoming video.
 #### Returns
 
 `void`
-
-#### Inherited from
-
-[default](internal.default-1.md).[setIncomingVideo](internal.default-1.md#setincomingvideo)
 
 #### Defined in
 
@@ -462,10 +440,6 @@ Manages my microphone.
 
 `void`
 
-#### Inherited from
-
-[default](internal.default-1.md).[setMute](internal.default-1.md#setmute)
-
 #### Defined in
 
 [room.ts:113](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/room.ts#L113)
@@ -488,10 +462,6 @@ Manages the video input device.
 
 `void`
 
-#### Inherited from
-
-[default](internal.default-1.md).[setVideoInput](internal.default-1.md#setvideoinput)
-
 #### Defined in
 
 [room.ts:81](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/room.ts#L81)
@@ -513,10 +483,6 @@ Sets the global audio output volume.
 #### Returns
 
 `void`
-
-#### Inherited from
-
-[default](internal.default-1.md).[setVolume](internal.default-1.md#setvolume)
 
 #### Defined in
 
@@ -544,7 +510,7 @@ Not available for pop-up.
 
 #### Inherited from
 
-[default](internal.default-1.md).[toggle](internal.default-1.md#toggle)
+[default](internal.default.md).[toggle](internal.default.md#toggle)
 
 #### Defined in
 
@@ -564,7 +530,7 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Inherited from
 
-[default](internal.default-1.md).[unload](internal.default-1.md#unload)
+[default](internal.default.md).[unload](internal.default.md#unload)
 
 #### Defined in
 

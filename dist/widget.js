@@ -23,17 +23,21 @@ function createInstance(container, url, { target, features }) {
     if (container instanceof Window) {
         return container.open(url, target, features);
     }
+    const attached = document.body.contains(container);
+    if (!attached) {
+        // nothing will happen if the iframe is not attached to the document
+        document.body.appendChild(container);
+    }
     const instance = document.createElement('iframe');
-    Object.assign(instance.style, {
-        border: 'none',
-        width: '100%',
-        height: '100%',
-    });
+    Object.assign(instance.style, Object.assign(Object.assign({}, getStyles(attached)), { border: 'none', width: '100%', height: '100%' }));
     container.appendChild(Object.assign(instance, {
         allow: FramePermissionsPolicy,
         src: url,
     }));
     return instance;
+}
+function getStyles(visible) {
+    return { display: visible ? 'block' : 'none' };
 }
 function setParams(url, params) {
     for (const opt of Object.keys(params)) {
@@ -84,10 +88,6 @@ class Widget {
                 features: this._features,
             });
             if (this._instance) {
-                this._instance.onload = () => {
-                    this._ready = true;
-                    this.emit(`widget.LOAD`);
-                };
                 this._instance.onerror = (ev) => {
                     this._error = ev;
                     this.emit('widget.ERROR', ev instanceof Error ? ev.message : ev);
@@ -99,9 +99,22 @@ class Widget {
         };
         /** @internal */
         this._processEvent = ({ data, source }) => {
-            if (this._ready) {
-                if (source === this.wnd) {
-                    const { type, event } = data, extra = __rest(data, ["type", "event"]);
+            if (source === this.wnd) {
+                const { type, event } = data, extra = __rest(data, ["type", "event"]);
+                if (type && event) {
+                    switch (event) {
+                        case 'READY':
+                            // the bi-di messaging channel is ready
+                            this._ready = true;
+                            this.emit('widget.LOAD');
+                            break;
+                        case 'UNLOAD':
+                            this.unload();
+                            this.emit('widget.UNLOAD');
+                            break;
+                        default:
+                            break;
+                    }
                     this.emit(`${type}.${event}`, extra);
                 }
             }
@@ -144,9 +157,14 @@ class Widget {
      * Unloads the widget by removing the iframe or close the tab/window.
      */
     unload() {
+        var _a;
         window.removeEventListener('message', this._processEvent);
         if (this._instance) {
             if (this._instance instanceof Element) {
+                if (this._instance.style.display === 'none') {
+                    // detach from DOM
+                    (_a = this._instance.parentElement) === null || _a === void 0 ? void 0 : _a.remove();
+                }
                 this._instance.remove();
             }
             else {
@@ -155,6 +173,18 @@ class Widget {
             this._instance = null;
         }
         this._ready = false;
+    }
+    /**
+     * Toggles the visibility of the widget on the page.
+     *
+     * Not available for pop-up.
+     *
+     * @param visible whether the widget should be visible
+     */
+    toggle(visible) {
+        if (this._instance instanceof HTMLElement) {
+            Object.assign(this._instance.style, getStyles(visible));
+        }
     }
     /**
      * Whether the widget is ready.

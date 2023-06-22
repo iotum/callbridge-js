@@ -5,7 +5,9 @@ import { EventEmitter } from 'events';
  */
 export type WidgetOptions = {
   /**
-   * The container for the widget. Supports attached or detached DOM element, document selector, or `window` (new tab).
+   * The container for the widget.
+   * Supports attached or detached DOM element, document selector, or `window` (new tab).
+   * If the element is detached, it will be set to invisible and attached to the main document.
    */
   container: Window | HTMLElement | string | null;
   /**
@@ -58,7 +60,7 @@ const FramePermissionsPolicy = [
 ].join(';');
 
 function createInstance(
-  container: Window | Element,
+  container: Window | HTMLElement,
   url: string,
   { target, features }: { target?: string; features?: string },
 ) {
@@ -66,20 +68,32 @@ function createInstance(
     return container.open(url, target, features);
   }
 
+  const attached = document.body.contains(container);
+  if (!attached) {
+    // nothing will happen if the iframe is not attached to the document
+    document.body.appendChild(container);
+  }
+
   const instance = document.createElement('iframe');
   Object.assign(instance.style, {
+    ...getStyles(attached),
     border: 'none',
     width: '100%',
     height: '100%',
-  });
+  } as CSSStyleDeclaration);
+
   container.appendChild(
     Object.assign(instance, {
       allow: FramePermissionsPolicy,
       src: url,
-    }),
+    } as HTMLIFrameElement),
   );
 
   return instance;
+}
+
+function getStyles(visible: boolean) {
+  return { display: visible ? 'block' : 'none' } as CSSStyleDeclaration;
 }
 
 function setParams(url: URL, params: SearchParams) {
@@ -114,6 +128,7 @@ export default class Widget<
     | EventMap
     | {
         'widget.LOAD': void;
+        'widget.UNLOAD': void;
         'widget.ERROR': string;
       },
 > implements WidgetEventEmitter<T>
@@ -121,7 +136,7 @@ export default class Widget<
   private emitter = new EventEmitter();
 
   /** @internal */
-  protected _container: Window | Element | null = null;
+  protected _container: Window | HTMLElement | null = null;
   /** @internal */
   protected _instance: Window | HTMLIFrameElement | null = null;
   /** @internal */
@@ -142,7 +157,7 @@ export default class Widget<
   ) {
     if (container) {
       if (typeof container === 'string') {
-        this._container = document.querySelector(container);
+        this._container = document.querySelector(container) as HTMLElement;
       } else {
         this._container = container;
       }
@@ -181,6 +196,10 @@ export default class Widget<
     window.removeEventListener('message', this._processEvent);
     if (this._instance) {
       if (this._instance instanceof Element) {
+        if (this._instance.style.display === 'none') {
+          // detach from DOM
+          this._instance.parentElement?.remove();
+        }
         this._instance.remove();
       } else {
         this._instance.close();
@@ -188,6 +207,19 @@ export default class Widget<
       this._instance = null;
     }
     this._ready = false;
+  }
+
+  /**
+   * Toggles the visibility of the widget on the page.
+   *
+   * Not available for pop-up.
+   *
+   * @param visible whether the widget should be visible
+   */
+  toggle(visible: boolean) {
+    if (this._instance instanceof HTMLElement) {
+      Object.assign(this._instance.style, getStyles(visible));
+    }
   }
 
   /**
@@ -293,10 +325,6 @@ export default class Widget<
     });
 
     if (this._instance) {
-      this._instance.onload = () => {
-        this._ready = true;
-        this.emit(`widget.LOAD`);
-      };
       this._instance.onerror = (ev) => {
         this._error = ev;
         this.emit('widget.ERROR', ev instanceof Error ? ev.message : ev);
@@ -308,9 +336,24 @@ export default class Widget<
 
   /** @internal */
   protected _processEvent = ({ data, source }: MessageEvent) => {
-    if (this._ready) {
-      if (source === this.wnd) {
-        const { type, event, ...extra } = data;
+    if (source === this.wnd) {
+      const { type, event, ...extra } = data;
+      if (type && event) {
+        switch (event) {
+          case 'READY':
+            // the bi-di messaging channel is ready
+            this._ready = true;
+            this.emit('widget.LOAD');
+            break;
+
+          case 'UNLOAD':
+            this.unload();
+            this.emit('widget.UNLOAD');
+            break;
+
+          default:
+            break;
+        }
         this.emit(`${type}.${event}` as any, extra);
       }
     }

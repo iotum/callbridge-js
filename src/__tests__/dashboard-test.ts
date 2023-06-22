@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 
-import Dashboard from '../dashboard';
+import Dashboard, { LayoutOption, Service } from '../dashboard';
 
 const createElement = document.createElement.bind(document);
 
@@ -18,7 +18,7 @@ const mockIFrame = Object.defineProperty(
 
 describe('dashboard', () => {
   const domain = 'test.callbridge';
-  const service = 'Drive';
+  const service = Service.Drive;
 
   let container: HTMLElement;
   let dashboard: Dashboard;
@@ -66,6 +66,23 @@ describe('dashboard', () => {
         type: 'dashboard',
         action: 'load',
         service,
+      },
+      '*',
+    );
+  });
+
+  it('loads a specific path with options', () => {
+    dashboard = new Dashboard({ container, domain }, service);
+
+    dashboard.load(service, { pathname: '/path', layout: LayoutOption.main });
+
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+      {
+        type: 'dashboard',
+        action: 'load',
+        service,
+        pathname: '/path',
+        layout: 'main',
       },
       '*',
     );

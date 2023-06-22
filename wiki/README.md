@@ -4,6 +4,15 @@
 
 ## Table of contents
 
+### Modules
+
+- [\_internal](modules/internal.md)
+
+### Enumerations
+
+- [LayoutOption](enums/LayoutOption.md)
+- [Service](enums/Service.md)
+
 ### Classes
 
 - [Dashboard](classes/Dashboard.md)
@@ -15,7 +24,7 @@
 - [AudioSettings](README.md#audiosettings)
 - [LivestreamOptions](README.md#livestreamoptions)
 - [MeetingOptions](README.md#meetingoptions)
-- [Service](README.md#service)
+- [ServiceOptions](README.md#serviceoptions)
 - [WidgetOptions](README.md#widgetoptions)
 
 ## Type Aliases
@@ -30,12 +39,12 @@ Audio output settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `pan?` | `number` | The output volume. Valid range: 0 (silence) - 1 (max).  **`Default`**  1 |
-| `volume?` | `number` | The stereo position. Valid range: -1 (left) - 1 (right).  **`Default`**  0 |
+| `pan?` | `number` | The output volume. Valid range: 0 (silence) - 1 (max). **`Default`** ```ts 1 ``` |
+| `volume?` | `number` | The stereo position. Valid range: -1 (left) - 1 (right). **`Default`** ```ts 0 ``` |
 
 #### Defined in
 
-[room.ts:6](https://github.com/iotum/callbridge-js/blob/3192544/src/room.ts#L6)
+[room.ts:6](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/room.ts#L6)
 
 ___
 
@@ -55,7 +64,7 @@ Livestream options.
 
 #### Defined in
 
-[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/3192544/src/livestream.ts#L6)
+[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/livestream.ts#L6)
 
 ___
 
@@ -86,19 +95,26 @@ Meeting options.
 
 #### Defined in
 
-[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/3192544/src/meeting.ts#L7)
+[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/meeting.ts#L7)
 
 ___
 
-### Service
+### ServiceOptions
 
-Ƭ **Service**: ``""`` \| ``"Team"`` \| ``"Drive"`` \| ``"Contacts"``
+Ƭ **ServiceOptions**: `Object`
 
-Dashboard service.
+Dashboard service options.
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `layout?` | [`LayoutOption`](enums/LayoutOption.md) | The service layout. |
+| `pathname?` | `string` | The initial path to load. |
 
 #### Defined in
 
-[dashboard.ts:6](https://github.com/iotum/callbridge-js/blob/3192544/src/dashboard.ts#L6)
+[dashboard.ts:34](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/dashboard.ts#L34)
 
 ___
 
@@ -112,16 +128,16 @@ Widget options.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `container` | `Window` \| `HTMLElement` \| `string` \| ``null`` | The container for the widget. Supports attached or detached DOM element, document selector, or `window` (new tab). |
+| `container` | `Window` \| `HTMLElement` \| `string` \| ``null`` | The container for the widget. Supports attached or detached DOM element, document selector, or `window` (new tab). If the element is detached, it will be set to invisible and attached to the main document. |
 | `domain` | `string` | The Callbridge domain of the user. |
 | `sso?` | { `hostId?`: `number` ; `token?`: `string`  } | Optional, Single Sign-On |
 | `sso.hostId?` | `number` | Optional account number of the user. |
 | `sso.token?` | `string` | Optional host-specific authorization token. |
-| `target?` | { `autoClose?`: `boolean` ; `features?`: `string` ; `name?`: `string`  } | Optional, options for `window.open` when `container` is `window`.  **`See`**  [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open). |
+| `target?` | { `autoClose?`: `boolean` ; `features?`: `string` ; `name?`: `string`  } | Optional, options for `window.open` when `container` is `window`. **`See`** [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open). |
 | `target.autoClose?` | `boolean` | Whether to close the popup when the meeting is over. |
 | `target.features?` | `string` | The window features. |
 | `target.name?` | `string` | The window target name. |
 
 #### Defined in
 
-[widget.ts:6](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L6)
+[widget.ts:6](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L6)

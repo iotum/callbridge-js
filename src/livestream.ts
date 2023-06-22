@@ -22,7 +22,8 @@ export type LivestreamOptions = {
  * Callbridge Livesteam Viewer.
  */
 export default class Livestream extends Widget<{
-  'livestream.LIVE_STREAM_INTERCEPT_CHAT': null;
+  'livestream.READY': void;
+  'livestream.LIVE_STREAM_INTERCEPT_CHAT': void;
 }> {
   constructor(
     /**

@@ -6,7 +6,7 @@ Callbridge Dashboard.
 
 ## Hierarchy
 
-- `default`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\>
+- [`default`](internal.default.md)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void`  }\>
 
   ↳ **`Dashboard`**
 
@@ -30,6 +30,7 @@ Callbridge Dashboard.
 - [on](Dashboard.md#on)
 - [once](Dashboard.md#once)
 - [removeAllListeners](Dashboard.md#removealllisteners)
+- [toggle](Dashboard.md#toggle)
 - [unload](Dashboard.md#unload)
 
 ## Constructors
@@ -43,18 +44,15 @@ Callbridge Dashboard.
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `options` | [`WidgetOptions`](../README.md#widgetoptions) | `undefined` | Widget options |
-| `service` | [`Service`](../README.md#service) | `''` | The page to load after logging in |
+| `service` | [`Service`](../enums/Service.md) | `Service.None` | The page to load after logging in |
 
 #### Overrides
 
-Widget&lt;{
-  &#x27;dashboard.READY&#x27;: void;
-  &#x27;dashboard.NAVIGATE&#x27;: string;
-}\&gt;.constructor
+[default](internal.default.md).[constructor](internal.default.md#constructor)
 
 #### Defined in
 
-[dashboard.ts:15](https://github.com/iotum/callbridge-js/blob/3192544/src/dashboard.ts#L15)
+[dashboard.ts:58](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/dashboard.ts#L58)
 
 ## Accessors
 
@@ -74,7 +72,7 @@ Widget.instance
 
 #### Defined in
 
-[widget.ts:203](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L203)
+[widget.ts:235](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L235)
 
 ___
 
@@ -94,7 +92,7 @@ Widget.isReady
 
 #### Defined in
 
-[widget.ts:196](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L196)
+[widget.ts:228](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L228)
 
 ___
 
@@ -114,7 +112,7 @@ Widget.wnd
 
 #### Defined in
 
-[widget.ts:210](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L210)
+[widget.ts:242](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L242)
 
 ## Methods
 
@@ -130,14 +128,14 @@ Returns true if the event had listeners, false otherwise.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends `EventKey`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void`  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `data?` | { `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }[`K`] |
+| `data?` | { `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void`  }[`K`] |
 
 #### Returns
 
@@ -145,17 +143,17 @@ Returns true if the event had listeners, false otherwise.
 
 #### Inherited from
 
-Widget.emit
+[default](internal.default.md).[emit](internal.default.md#emit)
 
 #### Defined in
 
-[widget.ts:249](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L249)
+[widget.ts:281](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L281)
 
 ___
 
 ### load
 
-▸ **load**(`service`): `void`
+▸ **load**(`service`, `options?`): `void`
 
 Loads the service.
 
@@ -163,7 +161,8 @@ Loads the service.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `service` | [`Service`](../README.md#service) | the service to load. |
+| `service` | [`Service`](../enums/Service.md) | the service to load. |
+| `options` | [`ServiceOptions`](../README.md#serviceoptions) | Optional, service options. |
 
 #### Returns
 
@@ -171,7 +170,7 @@ Loads the service.
 
 #### Defined in
 
-[dashboard.ts:44](https://github.com/iotum/callbridge-js/blob/3192544/src/dashboard.ts#L44)
+[dashboard.ts:88](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/dashboard.ts#L88)
 
 ___
 
@@ -185,14 +184,14 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends `EventKey`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void`  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | `Listener`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void`  }[`K`]\> |
 
 #### Returns
 
@@ -200,11 +199,11 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Inherited from
 
-Widget.off
+[default](internal.default.md).[off](internal.default.md#off)
 
 #### Defined in
 
-[widget.ts:230](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L230)
+[widget.ts:262](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L262)
 
 ___
 
@@ -218,14 +217,14 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends `EventKey`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void`  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | `Listener`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void`  }[`K`]\> |
 
 #### Returns
 
@@ -233,11 +232,11 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Inherited from
 
-Widget.on
+[default](internal.default.md).[on](internal.default.md#on)
 
 #### Defined in
 
-[widget.ts:222](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L222)
+[widget.ts:254](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L254)
 
 ___
 
@@ -252,14 +251,14 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends `EventKey`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void`  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | `Listener`<{ `dashboard.NAVIGATE`: `string` ; `dashboard.READY`: `void`  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void`  }[`K`]\> |
 
 #### Returns
 
@@ -267,11 +266,11 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Inherited from
 
-Widget.once
+[default](internal.default.md).[once](internal.default.md#once)
 
 #### Defined in
 
-[widget.ts:239](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L239)
+[widget.ts:271](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L271)
 
 ___
 
@@ -296,11 +295,39 @@ particularly when the instance was created by some other component or module.
 
 #### Inherited from
 
-Widget.removeAllListeners
+[default](internal.default.md).[removeAllListeners](internal.default.md#removealllisteners)
 
 #### Defined in
 
-[widget.ts:259](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L259)
+[widget.ts:291](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L291)
+
+___
+
+### toggle
+
+▸ **toggle**(`visible`): `void`
+
+Toggles the visibility of the widget on the page.
+
+Not available for pop-up.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `visible` | `boolean` | whether the widget should be visible |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[default](internal.default.md).[toggle](internal.default.md#toggle)
+
+#### Defined in
+
+[widget.ts:219](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L219)
 
 ___
 
@@ -316,8 +343,8 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Inherited from
 
-Widget.unload
+[default](internal.default.md).[unload](internal.default.md#unload)
 
 #### Defined in
 
-[widget.ts:180](https://github.com/iotum/callbridge-js/blob/3192544/src/widget.ts#L180)
+[widget.ts:195](https://github.com/iotum/callbridge-js/blob/f8d63a3/src/widget.ts#L195)
