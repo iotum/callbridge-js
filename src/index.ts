@@ -4,6 +4,7 @@ export {
   Service,
   LayoutOption,
   ServiceOptions,
+  ChatRoom,
 } from './dashboard';
 export { AudioSettings } from './room';
 export { default as Meeting, MeetingOptions } from './meeting';

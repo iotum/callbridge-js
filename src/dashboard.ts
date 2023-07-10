@@ -43,6 +43,19 @@ export type ServiceOptions = {
   layout?: LayoutOption;
 };
 
+export type ChatRoom = {
+  /** Room path, used for navigation. @see `Dashboard.load` */
+  path: string;
+  /** Room description. */
+  description?: string;
+  /** Accounts added to the room. */
+  accounts: Array<{
+    id: number;
+    name: string;
+    picture_url: string;
+  }>;
+};
+
 /**
  * Callbridge Dashboard.
  */
@@ -53,6 +66,19 @@ export default class Dashboard extends Widget<{
     pathname: string;
     search: string;
     hash: string;
+  };
+  'dashboard.ROOM_LIST': {
+    /** Rooms */
+    rooms: {
+      [roomId: string]: ChatRoom;
+    };
+    /** Channels */
+    channels: {
+      [channelId: string]: ChatRoom;
+    };
+  };
+  'dashboard.UNREAD_MESSAGES': {
+    rooms: { [/** Room Id */ id: string]: number };
   };
 }> {
   constructor(
