@@ -23,7 +23,7 @@ Full UI (default)
 
 #### Defined in
 
-[dashboard.ts:22](https://github.com/iotum/callbridge-js/blob/49e1851/src/dashboard.ts#L22)
+[dashboard.ts:22](https://github.com/iotum/callbridge-js/blob/2066c52/src/dashboard.ts#L22)
 
 ___
 
@@ -35,7 +35,7 @@ Only the list (sidebar), applicable to Team and Drive
 
 #### Defined in
 
-[dashboard.ts:24](https://github.com/iotum/callbridge-js/blob/49e1851/src/dashboard.ts#L24)
+[dashboard.ts:24](https://github.com/iotum/callbridge-js/blob/2066c52/src/dashboard.ts#L24)
 
 ___
 
@@ -47,7 +47,7 @@ Only the main content, applicable to Team and Drive
 
 #### Defined in
 
-[dashboard.ts:26](https://github.com/iotum/callbridge-js/blob/49e1851/src/dashboard.ts#L26)
+[dashboard.ts:26](https://github.com/iotum/callbridge-js/blob/2066c52/src/dashboard.ts#L26)
 
 ___
 
@@ -59,4 +59,4 @@ No UI
 
 #### Defined in
 
-[dashboard.ts:28](https://github.com/iotum/callbridge-js/blob/49e1851/src/dashboard.ts#L28)
+[dashboard.ts:28](https://github.com/iotum/callbridge-js/blob/2066c52/src/dashboard.ts#L28)
