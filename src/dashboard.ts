@@ -60,7 +60,9 @@ export type ChatRoom = {
  * Callbridge Dashboard.
  */
 export default class Dashboard extends Widget<{
-  'dashboard.READY': void;
+  'dashboard.READY': {
+    existing?: boolean;
+  };
   'dashboard.NAVIGATE': {
     service: Service;
     pathname: string;

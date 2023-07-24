@@ -7,7 +7,7 @@ export type WidgetOptions = {
      * Supports attached or detached DOM element, document selector, or `window` (new tab).
      * If the element is detached, it will be set to invisible and attached to the main document.
      */
-    container: Window | HTMLElement | string | null;
+    container: Window | HTMLElement | string;
     /**
      * The Callbridge domain of the user.
      */
@@ -41,6 +41,11 @@ export type WidgetOptions = {
          * Whether to close the popup when the meeting is over.
          */
         autoClose?: boolean;
+        /**
+         * Whether to wait (up to 1.5 sec) for the existing widget.
+         * Requires a matching "window target name".
+         */
+        checkExisting?: boolean;
     };
 };
 type EventMap = Record<string, any>;
@@ -62,7 +67,7 @@ export default class Widget<T extends EventMap | {
     'widget.ERROR': string;
 }> implements WidgetEventEmitter<T> {
     private emitter;
-    constructor({ container, domain, sso, target: { name, features } }: WidgetOptions, autoLoad?: boolean);
+    constructor({ container, domain, sso, target: { name, features, checkExisting }, }: WidgetOptions, autoLoad?: boolean);
     /**
      * Unloads the widget by removing the iframe or close the tab/window.
      */
