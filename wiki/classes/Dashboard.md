@@ -6,7 +6,7 @@ Callbridge Dashboard.
 
 ## Hierarchy
 
-- [`default`](internal.default.md)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void` ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\>
+- [`default`](internal.default.md)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: { `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\>
 
   ↳ **`Dashboard`**
 
@@ -53,7 +53,7 @@ Callbridge Dashboard.
 
 #### Defined in
 
-[dashboard.ts:84](https://github.com/iotum/callbridge-js/blob/2066c52/src/dashboard.ts#L84)
+[dashboard.ts:86](https://github.com/iotum/callbridge-js/blob/5b639d5/src/dashboard.ts#L86)
 
 ## Accessors
 
@@ -73,7 +73,7 @@ Widget.instance
 
 #### Defined in
 
-[widget.ts:235](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L235)
+[widget.ts:255](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L255)
 
 ___
 
@@ -93,7 +93,7 @@ Widget.isReady
 
 #### Defined in
 
-[widget.ts:228](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L228)
+[widget.ts:248](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L248)
 
 ___
 
@@ -113,7 +113,7 @@ Widget.wnd
 
 #### Defined in
 
-[widget.ts:242](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L242)
+[widget.ts:262](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L262)
 
 ## Methods
 
@@ -129,14 +129,14 @@ Returns true if the event had listeners, false otherwise.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void` ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: { `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `data?` | { `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void` ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }[`K`] |
+| `data?` | { `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: { `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }[`K`] |
 
 #### Returns
 
@@ -148,7 +148,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:281](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L281)
+[widget.ts:301](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L301)
 
 ___
 
@@ -171,7 +171,7 @@ Loads the service.
 
 #### Defined in
 
-[dashboard.ts:118](https://github.com/iotum/callbridge-js/blob/2066c52/src/dashboard.ts#L118)
+[dashboard.ts:120](https://github.com/iotum/callbridge-js/blob/5b639d5/src/dashboard.ts#L120)
 
 ___
 
@@ -185,14 +185,14 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void` ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: { `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void` ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: { `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }[`K`]\> |
 
 #### Returns
 
@@ -204,7 +204,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:262](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L262)
+[widget.ts:282](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L282)
 
 ___
 
@@ -218,14 +218,14 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void` ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: { `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void` ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: { `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }[`K`]\> |
 
 #### Returns
 
@@ -237,7 +237,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:254](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L254)
+[widget.ts:274](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L274)
 
 ___
 
@@ -252,14 +252,14 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void` ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: { `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: `void` ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)<{ `dashboard.NAVIGATE`: { `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.READY`: { `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: { `channels`: { `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: { `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: { `rooms`: { `[id: string]`: `number`;  }  }  }[`K`]\> |
 
 #### Returns
 
@@ -271,7 +271,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:271](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L271)
+[widget.ts:291](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L291)
 
 ___
 
@@ -300,7 +300,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:291](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L291)
+[widget.ts:311](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L311)
 
 ___
 
@@ -328,7 +328,7 @@ Not available for pop-up.
 
 #### Defined in
 
-[widget.ts:219](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L219)
+[widget.ts:239](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L239)
 
 ___
 
@@ -348,4 +348,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:195](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L195)
+[widget.ts:214](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L214)

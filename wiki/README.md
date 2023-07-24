@@ -45,7 +45,7 @@ Audio output settings.
 
 #### Defined in
 
-[room.ts:6](https://github.com/iotum/callbridge-js/blob/2066c52/src/room.ts#L6)
+[room.ts:6](https://github.com/iotum/callbridge-js/blob/5b639d5/src/room.ts#L6)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[dashboard.ts:46](https://github.com/iotum/callbridge-js/blob/2066c52/src/dashboard.ts#L46)
+[dashboard.ts:46](https://github.com/iotum/callbridge-js/blob/5b639d5/src/dashboard.ts#L46)
 
 ___
 
@@ -83,7 +83,7 @@ Livestream options.
 
 #### Defined in
 
-[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/2066c52/src/livestream.ts#L6)
+[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/5b639d5/src/livestream.ts#L6)
 
 ___
 
@@ -114,7 +114,7 @@ Meeting options.
 
 #### Defined in
 
-[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/2066c52/src/meeting.ts#L7)
+[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/5b639d5/src/meeting.ts#L7)
 
 ___
 
@@ -133,7 +133,7 @@ Dashboard service options.
 
 #### Defined in
 
-[dashboard.ts:34](https://github.com/iotum/callbridge-js/blob/2066c52/src/dashboard.ts#L34)
+[dashboard.ts:34](https://github.com/iotum/callbridge-js/blob/5b639d5/src/dashboard.ts#L34)
 
 ___
 
@@ -147,16 +147,17 @@ Widget options.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `container` | `Window` \| `HTMLElement` \| `string` \| ``null`` | The container for the widget. Supports attached or detached DOM element, document selector, or `window` (new tab). If the element is detached, it will be set to invisible and attached to the main document. |
+| `container` | `Window` \| `HTMLElement` \| `string` | The container for the widget. Supports attached or detached DOM element, document selector, or `window` (new tab). If the element is detached, it will be set to invisible and attached to the main document. |
 | `domain` | `string` | The Callbridge domain of the user. |
 | `sso?` | { `hostId?`: `number` ; `token?`: `string`  } | Optional, Single Sign-On |
 | `sso.hostId?` | `number` | Optional account number of the user. |
 | `sso.token?` | `string` | Optional host-specific authorization token. |
-| `target?` | { `autoClose?`: `boolean` ; `features?`: `string` ; `name?`: `string`  } | Optional, options for `window.open` when `container` is `window`. **`See`** [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open). |
+| `target?` | { `autoClose?`: `boolean` ; `checkExisting?`: `boolean` ; `features?`: `string` ; `name?`: `string`  } | Optional, options for `window.open` when `container` is `window`. **`See`** [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open). |
 | `target.autoClose?` | `boolean` | Whether to close the popup when the meeting is over. |
+| `target.checkExisting?` | `boolean` | Whether to wait (up to 1.5 sec) for the existing widget. Requires a matching "window target name". |
 | `target.features?` | `string` | The window features. |
 | `target.name?` | `string` | The window target name. |
 
 #### Defined in
 
-[widget.ts:6](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L6)
+[widget.ts:9](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L9)
