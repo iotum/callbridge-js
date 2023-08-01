@@ -105,4 +105,19 @@ describe('dashboard', () => {
     const redirectUrl = searchParams.get('redirect_url');
     expect(redirectUrl).toBe(`/conf/loading?events=true`);
   });
+
+  it('can navigate the history', () => {
+    dashboard = new Dashboard({ container, domain }, service);
+
+    dashboard.go(-2);
+
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+      {
+        type: 'dashboard',
+        action: 'go',
+        delta: -2,
+      },
+      '*',
+    );
+  });
 });

@@ -70,5 +70,14 @@ class Dashboard extends widget_1.default {
     load(service, options = {}) {
         this._send('dashboard', 'load', Object.assign({ service }, options));
     }
+    /**
+     * Loads a specific page from the session history.
+     * @param delta The position in the history to which you want to move,
+     * relative to the current page. A negative value moves backwards,
+     * a positive value moves forwards.
+     */
+    go(delta) {
+        this._send('dashboard', 'go', { delta });
+    }
 }
 exports.default = Dashboard;
