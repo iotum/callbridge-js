@@ -25,6 +25,7 @@ Callbridge Dashboard.
 ### Methods
 
 - [emit](Dashboard.md#emit)
+- [go](Dashboard.md#go)
 - [load](Dashboard.md#load)
 - [off](Dashboard.md#off)
 - [on](Dashboard.md#on)
@@ -53,7 +54,7 @@ Callbridge Dashboard.
 
 #### Defined in
 
-[dashboard.ts:86](https://github.com/iotum/callbridge-js/blob/5b639d5/src/dashboard.ts#L86)
+[dashboard.ts:86](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/dashboard.ts#L86)
 
 ## Accessors
 
@@ -73,7 +74,7 @@ Widget.instance
 
 #### Defined in
 
-[widget.ts:255](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L255)
+[widget.ts:255](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L255)
 
 ___
 
@@ -93,7 +94,7 @@ Widget.isReady
 
 #### Defined in
 
-[widget.ts:248](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L248)
+[widget.ts:248](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L248)
 
 ___
 
@@ -113,7 +114,7 @@ Widget.wnd
 
 #### Defined in
 
-[widget.ts:262](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L262)
+[widget.ts:262](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L262)
 
 ## Methods
 
@@ -148,7 +149,29 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:301](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L301)
+[widget.ts:301](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L301)
+
+___
+
+### go
+
+▸ **go**(`delta`): `void`
+
+Loads a specific page from the session history.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `delta` | `number` | The position in the history to which you want to move, relative to the current page. A negative value moves backwards, a positive value moves forwards. |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[dashboard.ts:130](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/dashboard.ts#L130)
 
 ___
 
@@ -171,7 +194,7 @@ Loads the service.
 
 #### Defined in
 
-[dashboard.ts:120](https://github.com/iotum/callbridge-js/blob/5b639d5/src/dashboard.ts#L120)
+[dashboard.ts:120](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/dashboard.ts#L120)
 
 ___
 
@@ -204,7 +227,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:282](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L282)
+[widget.ts:282](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L282)
 
 ___
 
@@ -237,7 +260,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:274](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L274)
+[widget.ts:274](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L274)
 
 ___
 
@@ -271,7 +294,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:291](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L291)
+[widget.ts:291](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L291)
 
 ___
 
@@ -300,7 +323,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:311](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L311)
+[widget.ts:311](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L311)
 
 ___
 
@@ -328,7 +351,7 @@ Not available for pop-up.
 
 #### Defined in
 
-[widget.ts:239](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L239)
+[widget.ts:239](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L239)
 
 ___
 
@@ -348,4 +371,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:214](https://github.com/iotum/callbridge-js/blob/5b639d5/src/widget.ts#L214)
+[widget.ts:214](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L214)
