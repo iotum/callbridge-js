@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -12,6 +21,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const events_1 = require("events");
+const PING = '_ping';
+const PONG = '_pong';
 const FramePermissionsPolicy = [
     'camera',
     'microphone',
@@ -53,16 +64,18 @@ function setParams(url, params) {
  * Callbridge Widget.
  */
 class Widget {
-    constructor({ container, domain, sso, target: { name, features } = {} }, autoLoad = false) {
+    constructor({ container, domain, sso, target: { name, features, checkExisting } = {}, }, autoLoad = false) {
         this.emitter = new events_1.EventEmitter();
         /** @internal */
         this._container = null;
         /** @internal */
         this._instance = null;
         /** @internal */
+        this._checkExisting = false;
+        /** @internal */
         this._ready = false;
         /** @internal */
-        this._load = (params) => {
+        this._load = (params) => __awaiter(this, void 0, void 0, function* () {
             if (!this._container || this._instance) {
                 return;
             }
@@ -83,22 +96,50 @@ class Widget {
             else {
                 setParams(this._url, params);
             }
+            if (this._checkExisting) {
+                yield new Promise((resolve) => {
+                    this.once('widget.LOAD', resolve);
+                    // existing widget pings every 1000ms
+                    setTimeout(resolve, 1500);
+                });
+                if (this._instance) {
+                    // existing widget will emit READY event after the PONG
+                    this._send('widget', PONG);
+                    return;
+                }
+            }
             this._instance = createInstance(this._container, this._url.href, {
                 target: this._target,
                 features: this._features,
             });
-            if (this._instance) {
+            try {
                 this._instance.onerror = (ev) => {
                     this._error = ev;
                     this.emit('widget.ERROR', ev instanceof Error ? ev.message : ev);
                 };
             }
-            else {
+            catch (ex) {
                 this.emit('widget.ERROR', 'Unable to open');
+            }
+        });
+        /** @internal */
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        this._beforeUnload = (ev) => {
+            if (this.wnd && !this.wnd.closed) {
+                this._send('widget', PING, { name: this._target });
             }
         };
         /** @internal */
         this._processEvent = ({ data, source }) => {
+            if (!this._instance && data) {
+                const { type, event, name } = data;
+                if (type === 'widget' && event === PING && name === this._target) {
+                    this._instance = source;
+                    this._ready = true;
+                    this.emit('widget.LOAD');
+                    return;
+                }
+            }
             if (source === this.wnd) {
                 const { type, event } = data, extra = __rest(data, ["type", "event"]);
                 if (type && event) {
@@ -112,6 +153,8 @@ class Widget {
                             this.unload();
                             this.emit('widget.UNLOAD');
                             break;
+                        case PING:
+                            return;
                         default:
                             break;
                     }
@@ -147,8 +190,12 @@ class Widget {
             this._url.searchParams.set('login_token_public_key', token);
         }
         window.addEventListener('message', this._processEvent);
+        if (this._container === window) {
+            window.addEventListener('beforeunload', this._beforeUnload);
+        }
         this._target = name;
         this._features = features;
+        this._checkExisting = Boolean(name && checkExisting);
         if (autoLoad) {
             this._load({ redirect_url: '/page_to_see' });
         }
@@ -159,6 +206,7 @@ class Widget {
     unload() {
         var _a;
         window.removeEventListener('message', this._processEvent);
+        window.removeEventListener('beforeunload', this._beforeUnload);
         if (this._instance) {
             if (this._instance instanceof Element) {
                 if (this._instance.style.display === 'none') {

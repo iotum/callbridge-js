@@ -1,7 +1,7 @@
 {
   "name": "@iotum/callbridge-js",
   "description": "Loading wrapper for Callbridge",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Iotum (https://www.iotum.com)",
   "license": "MIT",
   "homepage": "https://www.callbridge.com/",
@@ -48,6 +48,6 @@
     "build": "tsc",
     "test": "jest",
     "doc": "typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-missing-exports --out wiki --excludeExternals --internalModule _internal --readme none src/index.ts",
-    "predeploy": "npm install && npm run lint && npm run test && npm run doc && npm run build"
+    "predeploy": "npm install && npm run lint && npm run test && npm run build"
   }
 }

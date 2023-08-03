@@ -1,5 +1,8 @@
 import { EventEmitter } from 'events';
 
+const PING = '_ping';
+const PONG = '_pong';
+
 /**
  * Widget options.
  */
@@ -9,7 +12,7 @@ export type WidgetOptions = {
    * Supports attached or detached DOM element, document selector, or `window` (new tab).
    * If the element is detached, it will be set to invisible and attached to the main document.
    */
-  container: Window | HTMLElement | string | null;
+  container: Window | HTMLElement | string;
   /**
    * The Callbridge domain of the user.
    */
@@ -43,6 +46,11 @@ export type WidgetOptions = {
      * Whether to close the popup when the meeting is over.
      */
     autoClose?: boolean;
+    /**
+     * Whether to wait (up to 1.5 sec) for the existing widget.
+     * Requires a matching "window target name".
+     */
+    checkExisting?: boolean;
   };
 };
 
@@ -145,6 +153,8 @@ export default class Widget<
   protected _target?: string;
   /** @internal */
   protected _features?: string;
+  /** @internal */
+  protected _checkExisting = false;
 
   /** @internal */
   protected _ready = false;
@@ -152,7 +162,12 @@ export default class Widget<
   protected _error: Event | string | undefined;
 
   constructor(
-    { container, domain, sso, target: { name, features } = {} }: WidgetOptions,
+    {
+      container,
+      domain,
+      sso,
+      target: { name, features, checkExisting } = {},
+    }: WidgetOptions,
     autoLoad = false,
   ) {
     if (container) {
@@ -180,9 +195,13 @@ export default class Widget<
     }
 
     window.addEventListener('message', this._processEvent);
+    if (this._container === window) {
+      window.addEventListener('beforeunload', this._beforeUnload);
+    }
 
     this._target = name;
     this._features = features;
+    this._checkExisting = Boolean(name && checkExisting);
 
     if (autoLoad) {
       this._load({ redirect_url: '/page_to_see' });
@@ -194,6 +213,7 @@ export default class Widget<
    */
   unload() {
     window.removeEventListener('message', this._processEvent);
+    window.removeEventListener('beforeunload', this._beforeUnload);
     if (this._instance) {
       if (this._instance instanceof Element) {
         if (this._instance.style.display === 'none') {
@@ -294,7 +314,7 @@ export default class Widget<
   }
 
   /** @internal */
-  protected _load = (params: SearchParams) => {
+  protected _load = async (params: SearchParams) => {
     if (!this._container || this._instance) {
       return;
     }
@@ -319,23 +339,55 @@ export default class Widget<
       setParams(this._url, params);
     }
 
+    if (this._checkExisting) {
+      await new Promise((resolve) => {
+        this.once('widget.LOAD', resolve);
+        // existing widget pings every 1000ms
+        setTimeout(resolve, 1500);
+      });
+
+      if (this._instance) {
+        // existing widget will emit READY event after the PONG
+        this._send('widget', PONG);
+        return;
+      }
+    }
+
     this._instance = createInstance(this._container, this._url.href, {
       target: this._target,
       features: this._features,
     });
 
-    if (this._instance) {
-      this._instance.onerror = (ev) => {
+    try {
+      this._instance!.onerror = (ev) => {
         this._error = ev;
         this.emit('widget.ERROR', ev instanceof Error ? ev.message : ev);
       };
-    } else {
+    } catch (ex) {
       this.emit('widget.ERROR', 'Unable to open');
     }
   };
 
   /** @internal */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  protected _beforeUnload = (ev: BeforeUnloadEvent) => {
+    if (this.wnd && !this.wnd.closed) {
+      this._send('widget', PING, { name: this._target });
+    }
+  };
+
+  /** @internal */
   protected _processEvent = ({ data, source }: MessageEvent) => {
+    if (!this._instance && data) {
+      const { type, event, name } = data;
+      if (type === 'widget' && event === PING && name === this._target) {
+        this._instance = source as Window;
+        this._ready = true;
+        this.emit('widget.LOAD');
+        return;
+      }
+    }
+
     if (source === this.wnd) {
       const { type, event, ...extra } = data;
       if (type && event) {
@@ -351,6 +403,9 @@ export default class Widget<
             this.emit('widget.UNLOAD');
             break;
 
+          case PING:
+            return;
+
           default:
             break;
         }
@@ -360,7 +415,7 @@ export default class Widget<
   };
 
   /** @internal */
-  protected _send = (type: string, action: string, data: object = {}) => {
+  protected _send = (type: string, action: string, data: Object = {}) => {
     this.wnd?.postMessage(
       {
         type,

@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[widget.ts:112](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L112)
+[widget.ts:120](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L120)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[widget.ts:111](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L111)
+[widget.ts:119](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L119)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[widget.ts:113](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L113)
+[widget.ts:121](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L121)
 
 ___
 
@@ -94,4 +94,4 @@ ___
 
 #### Defined in
 
-[widget.ts:49](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L49)
+[widget.ts:57](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L57)

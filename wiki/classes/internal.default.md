@@ -73,7 +73,7 @@ Callbridge Widget.
 
 #### Defined in
 
-[widget.ts:154](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L154)
+[widget.ts:164](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L164)
 
 ## Properties
 
@@ -83,7 +83,7 @@ Callbridge Widget.
 
 #### Defined in
 
-[widget.ts:136](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L136)
+[widget.ts:144](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L144)
 
 ## Accessors
 
@@ -99,7 +99,7 @@ The widget instance.
 
 #### Defined in
 
-[widget.ts:235](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L235)
+[widget.ts:255](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L255)
 
 ___
 
@@ -115,7 +115,7 @@ Whether the widget is ready.
 
 #### Defined in
 
-[widget.ts:228](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L228)
+[widget.ts:248](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L248)
 
 ___
 
@@ -131,7 +131,7 @@ The Window or WindowProxy instance of the widget.
 
 #### Defined in
 
-[widget.ts:242](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L242)
+[widget.ts:262](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L262)
 
 ## Methods
 
@@ -166,7 +166,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:281](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L281)
+[widget.ts:301](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L301)
 
 ___
 
@@ -199,7 +199,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:262](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L262)
+[widget.ts:282](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L282)
 
 ___
 
@@ -232,7 +232,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:254](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L254)
+[widget.ts:274](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L274)
 
 ___
 
@@ -266,7 +266,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:271](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L271)
+[widget.ts:291](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L291)
 
 ___
 
@@ -295,7 +295,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:291](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L291)
+[widget.ts:311](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L311)
 
 ___
 
@@ -319,7 +319,7 @@ Not available for pop-up.
 
 #### Defined in
 
-[widget.ts:219](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L219)
+[widget.ts:239](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L239)
 
 ___
 
@@ -335,4 +335,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:195](https://github.com/iotum/callbridge-js/blob/2066c52/src/widget.ts#L195)
+[widget.ts:214](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L214)

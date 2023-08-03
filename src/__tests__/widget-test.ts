@@ -5,20 +5,40 @@ import Widget from '../widget';
 describe('widget', () => {
   const domain = 'test.callbridge';
 
-  let eventAddSpy: jest.SpyInstance;
-  let eventRmSpy: jest.SpyInstance;
+  let windowSpy: jest.SpyInstance;
+  let mockWindow: Window;
+  let popupWindow: Window;
   let container: HTMLElement;
   let widget: Widget<{}>;
 
+  const processEvent = (type: string, event: any) => {
+    (mockWindow.addEventListener as jest.Mock).mock.calls.find(
+      (call) => call[0] === type,
+    )[1](event);
+  };
+
   beforeEach(() => {
-    eventAddSpy = jest.spyOn(window, 'addEventListener');
-    eventRmSpy = jest.spyOn(window, 'removeEventListener');
+    popupWindow = Object.assign(Object.create(Window.prototype), {
+      close: jest.fn(() => popupWindow),
+      postMessage: jest.fn(),
+      closed: false,
+    });
+
+    mockWindow = Object.assign(Object.create(Window.prototype), {
+      open: jest.fn().mockReturnValue(popupWindow),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      postMessage: jest.fn(),
+    });
+
+    windowSpy = jest
+      .spyOn(window, 'window', 'get')
+      .mockImplementation(() => mockWindow as any);
   });
 
   afterEach(() => {
-    eventAddSpy.mockReset();
-    eventRmSpy.mockReset();
     widget?.unload();
+    windowSpy.mockRestore();
   });
 
   describe('constructor', () => {
@@ -26,35 +46,122 @@ describe('widget', () => {
       expect(() => new Widget({ domain } as any)).toThrow();
     });
 
-    it('supports document selector', () => {
-      container = document.body.appendChild(
-        Object.assign(document.createElement('div'), { className: 'c' }),
-      );
-      widget = new Widget({ container: '.c', domain }, true);
-      expect(container.childElementCount).toBe(1);
-      expect(container.firstElementChild?.tagName).toBe('IFRAME');
-      expect(container.firstElementChild?.getAttribute('src')).toBe(
-        `https://${domain}/page_to_see?events=true`,
-      );
+    describe('supports document selector', () => {
+      beforeEach(() => {
+        container = document.body.appendChild(
+          Object.assign(document.createElement('div'), { className: 'c' }),
+        );
+        widget = new Widget({ container: '.c', domain }, true);
+      });
+
+      it('creates iframe', () => {
+        expect(container.childElementCount).toBe(1);
+        expect(container.firstElementChild?.tagName).toBe('IFRAME');
+        expect(container.firstElementChild?.getAttribute('src')).toBe(
+          `https://${domain}/page_to_see?events=true`,
+        );
+      });
+
+      it('does not listen to beforeunload', () => {
+        expect(mockWindow.addEventListener).not.toHaveBeenCalledWith(
+          'beforeunload',
+          expect.anything(),
+        );
+      });
     });
 
-    it('supports window', () => {
-      const mockWindow = Object.assign(Object.create(Window.prototype), {
-        open: jest.fn(),
+    describe('supports window', () => {
+      describe('single page app', () => {
+        beforeEach(() => {
+          widget = new Widget(
+            {
+              container: window,
+              domain,
+              target: { name: 'new-tab' },
+            },
+            true,
+          );
+        });
+
+        it('opens in popup', () => {
+          expect(mockWindow.open).toHaveBeenCalledWith(
+            `https://${domain}/page_to_see?events=true`,
+            'new-tab',
+            undefined,
+          );
+        });
+
+        it('listens to beforeunload', () => {
+          expect(mockWindow.addEventListener).toHaveBeenCalledWith(
+            'beforeunload',
+            expect.anything(),
+          );
+        });
       });
-      widget = new Widget(
-        {
-          container: mockWindow,
-          domain,
-          target: { name: 'new-tab' },
-        },
-        true,
-      );
-      expect(mockWindow.open).toHaveBeenCalledWith(
-        `https://${domain}/page_to_see?events=true`,
-        'new-tab',
-        undefined,
-      );
+
+      describe('re-attach popup widget', () => {
+        beforeEach(() => {
+          jest.useFakeTimers();
+
+          widget = new Widget(
+            {
+              container: window,
+              domain,
+              target: { name: 'new-tab', checkExisting: true },
+            },
+            true,
+          );
+        });
+
+        it('waits for any existing widget', () => {
+          expect(mockWindow.open).not.toHaveBeenCalled();
+        });
+
+        describe('found', () => {
+          beforeEach(() => {
+            processEvent('message', {
+              data: { type: 'widget', event: '_ping', name: 'new-tab' },
+              source: popupWindow,
+            });
+          });
+
+          it('replies to the widget', () => {
+            expect(widget.wnd?.postMessage).toHaveBeenCalledWith(
+              {
+                type: 'widget',
+                action: '_pong',
+              },
+              '*',
+            );
+          });
+
+          it('does not open a new window', () => {
+            expect(mockWindow.open).not.toHaveBeenCalled();
+          });
+        });
+
+        describe('after waiting', () => {
+          beforeEach(() => {
+            jest.runOnlyPendingTimers();
+          });
+
+          it('opens a new one if no existing widget', () => {
+            expect(mockWindow.open).toHaveBeenCalled();
+          });
+
+          it('demands that widget pingback when host app unloads', () => {
+            processEvent('beforeunload', {});
+            expect(widget.wnd?.postMessage).toHaveBeenCalledWith(
+              {
+                type: 'widget',
+                action: '_ping',
+                name: 'new-tab',
+              },
+              '*',
+            );
+          });
+        });
+      });
     });
 
     describe('detached HTMLElement', () => {
@@ -74,8 +181,11 @@ describe('widget', () => {
       });
 
       it('handles events', () => {
-        expect(eventAddSpy).toHaveBeenCalledTimes(1);
-        expect(eventAddSpy).toHaveBeenCalledWith('message', expect.anything());
+        expect(mockWindow.addEventListener).toHaveBeenCalledTimes(1);
+        expect(mockWindow.addEventListener).toHaveBeenCalledWith(
+          'message',
+          expect.anything(),
+        );
       });
 
       it('waits for the ready event', () => {
@@ -97,9 +207,16 @@ describe('widget', () => {
         ).toBe('block');
       });
 
+      it('does not listen to beforeunload', () => {
+        expect(mockWindow.addEventListener).not.toHaveBeenCalledWith(
+          'beforeunload',
+          expect.anything(),
+        );
+      });
+
       describe('load/unload', () => {
         beforeEach(() => {
-          eventAddSpy.mock.calls[0][1]({
+          processEvent('message', {
             data: { type: 'svc', event: 'READY' },
             source: (container.firstElementChild as HTMLIFrameElement)
               .contentWindow,
@@ -116,14 +233,17 @@ describe('widget', () => {
 
         it('unloads correctly', () => {
           widget.unload();
-          expect(eventRmSpy).toHaveBeenCalledWith('message', expect.anything());
+          expect(mockWindow.removeEventListener).toHaveBeenCalledWith(
+            'message',
+            expect.anything(),
+          );
           expect(widget.instance).toBeNull();
           expect(widget.isReady).toBeFalsy();
           expect(widget.emit).not.toHaveBeenCalledWith('widget.UNLOAD');
         });
 
         it('emits "widget.UNLOAD" event when the widget unloads', () => {
-          eventAddSpy.mock.calls[0][1]({
+          processEvent('message', {
             data: { type: 'svc', event: 'UNLOAD' },
             source: (container.firstElementChild as HTMLIFrameElement)
               .contentWindow,
