@@ -30,4 +30,4 @@ The Widgets are exposed globally under `window.Callbridge`.
 
 ## Usage
 
-See Wiki for usage.
+See Wiki for usage: https://github.com/iotum/callbridge-js/tree/main/wiki
