@@ -12,6 +12,8 @@ export enum Service {
   Drive = 'Drive',
   /** Contacts (Address Book) */
   Contacts = 'Contacts',
+  /** Meet (Meetings) */
+  Meet = 'Meet',
 }
 
 /**
@@ -103,6 +105,7 @@ export default class Dashboard extends Widget<{
       case Service.Team:
       case Service.Drive:
       case Service.Contacts:
+      case Service.Meet:
         this.once('dashboard.READY', () => this.load(service, serviceOptions));
         break;
     }
