@@ -30,17 +30,16 @@ const FramePermissionsPolicy = [
     'fullscreen',
     'display-capture',
 ].join(';');
-function createInstance(container, url, { target, features }) {
+function createInstance(container, url, { target, features, attached, }) {
     if (container instanceof Window) {
         return container.open(url, target, features);
     }
-    const attached = document.body.contains(container);
     if (!attached) {
         // nothing will happen if the iframe is not attached to the document
         document.body.appendChild(container);
     }
     const instance = document.createElement('iframe');
-    Object.assign(instance.style, Object.assign(Object.assign({}, getStyles(attached)), { border: 'none', width: '100%', height: '100%' }));
+    Object.assign(instance.style, Object.assign(Object.assign({}, getStyles(attached)), { title: `widget-${Date.now()}`, border: 'none', width: '100%', height: '100%' }));
     container.appendChild(Object.assign(instance, {
         allow: FramePermissionsPolicy,
         src: url,
@@ -66,6 +65,7 @@ function setParams(url, params) {
 class Widget {
     constructor({ container, domain, sso, target: { name, features, checkExisting } = {}, }, autoLoad = false) {
         this.emitter = new events_1.EventEmitter();
+        this._attached = true;
         /** @internal */
         this._container = null;
         /** @internal */
@@ -108,9 +108,14 @@ class Widget {
                     return;
                 }
             }
+            if (!this._container) {
+                // in case unload has been called during the above promise
+                return;
+            }
             this._instance = createInstance(this._container, this._url.href, {
                 target: this._target,
                 features: this._features,
+                attached: this._attached,
             });
             try {
                 this._instance.onerror = (ev) => {
@@ -174,6 +179,9 @@ class Widget {
             }
             else {
                 this._container = container;
+                if (container instanceof HTMLElement) {
+                    this._attached = document.body.contains(container);
+                }
             }
         }
         if (!this._container) {
@@ -205,11 +213,13 @@ class Widget {
      */
     unload() {
         var _a;
+        // prevent initialization if unload happens too quickly (e.g. React StrictMode in dev)
+        this._container = null;
         window.removeEventListener('message', this._processEvent);
         window.removeEventListener('beforeunload', this._beforeUnload);
         if (this._instance) {
             if (this._instance instanceof Element) {
-                if (this._instance.style.display === 'none') {
+                if (!this._attached && this._instance.style.display === 'none') {
                     // detach from DOM
                     (_a = this._instance.parentElement) === null || _a === void 0 ? void 0 : _a.remove();
                 }

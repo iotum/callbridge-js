@@ -1,8 +1,8 @@
 [@iotum/callbridge-js](../README.md) / [\_internal](../modules/internal.md) / WidgetEventEmitter
 
-# Interface: WidgetEventEmitter<T\>
+# Interface: WidgetEventEmitter\<T\>
 
-[_internal](../modules/internal.md).WidgetEventEmitter
+[\_internal](../modules/internal.md).WidgetEventEmitter
 
 ## Type parameters
 
@@ -28,7 +28,7 @@
 
 ### emit
 
-▸ **emit**<`K`\>(`eventName`, `data?`): `boolean`
+▸ **emit**\<`K`\>(`eventName`, `data?`): `boolean`
 
 #### Type parameters
 
@@ -49,13 +49,13 @@
 
 #### Defined in
 
-[widget.ts:127](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L127)
+[widget.ts:131](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L131)
 
 ___
 
 ### off
 
-▸ **off**<`K`\>(`eventName`, `listener`): [`WidgetEventEmitter`](internal.WidgetEventEmitter.md)<`T`\>
+▸ **off**\<`K`\>(`eventName`, `listener`): [`WidgetEventEmitter`](internal.WidgetEventEmitter.md)\<`T`\>
 
 #### Type parameters
 
@@ -68,21 +68,21 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<`T`[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<`T`[`K`]\> |
 
 #### Returns
 
-[`WidgetEventEmitter`](internal.WidgetEventEmitter.md)<`T`\>
+[`WidgetEventEmitter`](internal.WidgetEventEmitter.md)\<`T`\>
 
 #### Defined in
 
-[widget.ts:125](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L125)
+[widget.ts:129](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L129)
 
 ___
 
 ### on
 
-▸ **on**<`K`\>(`eventName`, `listener`): [`WidgetEventEmitter`](internal.WidgetEventEmitter.md)<`T`\>
+▸ **on**\<`K`\>(`eventName`, `listener`): [`WidgetEventEmitter`](internal.WidgetEventEmitter.md)\<`T`\>
 
 #### Type parameters
 
@@ -95,21 +95,21 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<`T`[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<`T`[`K`]\> |
 
 #### Returns
 
-[`WidgetEventEmitter`](internal.WidgetEventEmitter.md)<`T`\>
+[`WidgetEventEmitter`](internal.WidgetEventEmitter.md)\<`T`\>
 
 #### Defined in
 
-[widget.ts:124](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L124)
+[widget.ts:128](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L128)
 
 ___
 
 ### once
 
-▸ **once**<`K`\>(`eventName`, `listener`): [`WidgetEventEmitter`](internal.WidgetEventEmitter.md)<`T`\>
+▸ **once**\<`K`\>(`eventName`, `listener`): [`WidgetEventEmitter`](internal.WidgetEventEmitter.md)\<`T`\>
 
 #### Type parameters
 
@@ -122,21 +122,21 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<`T`[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<`T`[`K`]\> |
 
 #### Returns
 
-[`WidgetEventEmitter`](internal.WidgetEventEmitter.md)<`T`\>
+[`WidgetEventEmitter`](internal.WidgetEventEmitter.md)\<`T`\>
 
 #### Defined in
 
-[widget.ts:126](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L126)
+[widget.ts:130](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L130)
 
 ___
 
 ### removeAllListeners
 
-▸ **removeAllListeners**<`K`\>(`eventName`, `data`): [`WidgetEventEmitter`](internal.WidgetEventEmitter.md)<`T`\>
+▸ **removeAllListeners**\<`K`\>(`eventName`, `data`): [`WidgetEventEmitter`](internal.WidgetEventEmitter.md)\<`T`\>
 
 #### Type parameters
 
@@ -153,8 +153,8 @@ ___
 
 #### Returns
 
-[`WidgetEventEmitter`](internal.WidgetEventEmitter.md)<`T`\>
+[`WidgetEventEmitter`](internal.WidgetEventEmitter.md)\<`T`\>
 
 #### Defined in
 
-[widget.ts:128](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L128)
+[widget.ts:132](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L132)

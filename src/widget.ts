@@ -70,13 +70,16 @@ const FramePermissionsPolicy = [
 function createInstance(
   container: Window | HTMLElement,
   url: string,
-  { target, features }: { target?: string; features?: string },
+  {
+    target,
+    features,
+    attached,
+  }: { target?: string; features?: string; attached: boolean },
 ) {
   if (container instanceof Window) {
     return container.open(url, target, features);
   }
 
-  const attached = document.body.contains(container);
   if (!attached) {
     // nothing will happen if the iframe is not attached to the document
     document.body.appendChild(container);
@@ -85,6 +88,7 @@ function createInstance(
   const instance = document.createElement('iframe');
   Object.assign(instance.style, {
     ...getStyles(attached),
+    title: `widget-${Date.now()}`, // https://webhint.io/docs/user-guide/hints/hint-axe/text-alternatives/
     border: 'none',
     width: '100%',
     height: '100%',
@@ -143,6 +147,8 @@ export default class Widget<
 {
   private emitter = new EventEmitter();
 
+  private _attached = true;
+
   /** @internal */
   protected _container: Window | HTMLElement | null = null;
   /** @internal */
@@ -175,6 +181,9 @@ export default class Widget<
         this._container = document.querySelector(container) as HTMLElement;
       } else {
         this._container = container;
+        if (container instanceof HTMLElement) {
+          this._attached = document.body.contains(container);
+        }
       }
     }
 
@@ -212,11 +221,14 @@ export default class Widget<
    * Unloads the widget by removing the iframe or close the tab/window.
    */
   unload() {
+    // prevent initialization if unload happens too quickly (e.g. React StrictMode in dev)
+    this._container = null;
+
     window.removeEventListener('message', this._processEvent);
     window.removeEventListener('beforeunload', this._beforeUnload);
     if (this._instance) {
       if (this._instance instanceof Element) {
-        if (this._instance.style.display === 'none') {
+        if (!this._attached && this._instance.style.display === 'none') {
           // detach from DOM
           this._instance.parentElement?.remove();
         }
@@ -353,9 +365,15 @@ export default class Widget<
       }
     }
 
+    if (!this._container) {
+      // in case unload has been called during the above promise
+      return;
+    }
+
     this._instance = createInstance(this._container, this._url.href, {
       target: this._target,
       features: this._features,
+      attached: this._attached,
     });
 
     try {

@@ -18,7 +18,9 @@ var Service;
     Service["Drive"] = "Drive";
     /** Contacts (Address Book) */
     Service["Contacts"] = "Contacts";
-})(Service = exports.Service || (exports.Service = {}));
+    /** Meet (Meetings) */
+    Service["Meet"] = "Meet";
+})(Service || (exports.Service = Service = {}));
 /**
  * Dashboard service layout options.
  */
@@ -32,7 +34,7 @@ var LayoutOption;
     LayoutOption["main"] = "main";
     /** No UI */
     LayoutOption["none"] = "none";
-})(LayoutOption = exports.LayoutOption || (exports.LayoutOption = {}));
+})(LayoutOption || (exports.LayoutOption = LayoutOption = {}));
 /**
  * Callbridge Dashboard.
  */
@@ -55,6 +57,7 @@ class Dashboard extends widget_1.default {
             case Service.Team:
             case Service.Drive:
             case Service.Contacts:
+            case Service.Meet:
                 this.once('dashboard.READY', () => this.load(service, serviceOptions));
                 break;
         }

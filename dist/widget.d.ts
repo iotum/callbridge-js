@@ -67,6 +67,7 @@ export default class Widget<T extends EventMap | {
     'widget.ERROR': string;
 }> implements WidgetEventEmitter<T> {
     private emitter;
+    private _attached;
     constructor({ container, domain, sso, target: { name, features, checkExisting }, }: WidgetOptions, autoLoad?: boolean);
     /**
      * Unloads the widget by removing the iframe or close the tab/window.

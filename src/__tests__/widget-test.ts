@@ -6,6 +6,7 @@ describe('widget', () => {
   const domain = 'test.callbridge';
 
   let windowSpy: jest.SpyInstance;
+  let nodeSpy: jest.SpyInstance;
   let mockWindow: Window;
   let popupWindow: Window;
   let container: HTMLElement;
@@ -34,6 +35,8 @@ describe('widget', () => {
     windowSpy = jest
       .spyOn(window, 'window', 'get')
       .mockImplementation(() => mockWindow as any);
+
+    nodeSpy = jest.spyOn(document.body, 'appendChild');
   });
 
   afterEach(() => {
@@ -164,10 +167,39 @@ describe('widget', () => {
       });
     });
 
-    describe('detached HTMLElement', () => {
+    describe('attached HTMLElement container', () => {
       beforeEach(() => {
-        document.body.appendChild = jest.fn();
+        container = document.body.appendChild(document.createElement('div'));
+        container.remove = jest.fn();
+
+        nodeSpy.mockClear();
+        widget = new Widget({ container, domain }, true);
+        widget.emit = jest.fn();
+      });
+
+      describe('load/unload', () => {
+        beforeEach(() => {
+          processEvent('message', {
+            data: { type: 'svc', event: 'READY' },
+            source: (container.firstElementChild as HTMLIFrameElement)
+              .contentWindow,
+          });
+        });
+
+        it('does not remove the container from DOM when unloads, even if the widget is hidden', () => {
+          widget.toggle(false);
+          widget.unload();
+          expect(container.remove).not.toHaveBeenCalled();
+        });
+      });
+    });
+
+    describe('detached HTMLElement container', () => {
+      beforeEach(() => {
         container = document.createElement('div');
+        container.remove = jest.fn();
+
+        nodeSpy.mockClear();
         widget = new Widget({ container, domain }, true);
         widget.emit = jest.fn();
       });
@@ -194,7 +226,7 @@ describe('widget', () => {
       });
 
       it('attaches the container to DOM', () => {
-        expect(document.body.appendChild).toHaveBeenCalledWith(container);
+        expect(nodeSpy).toHaveBeenCalledWith(container);
       });
 
       it('toggles visibility', () => {
@@ -249,6 +281,17 @@ describe('widget', () => {
               .contentWindow,
           });
           expect(widget.emit).toHaveBeenCalledWith('widget.UNLOAD');
+        });
+
+        it('removes the container from DOM when unloads', () => {
+          widget.unload();
+          expect(container.remove).toHaveBeenCalled();
+        });
+
+        it('does not remove the container from DOM when unloads, if the widget has been made visible', () => {
+          widget.toggle(true);
+          widget.unload();
+          expect(container.remove).not.toHaveBeenCalled();
         });
       });
     });

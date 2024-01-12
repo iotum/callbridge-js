@@ -10,7 +10,9 @@ export declare enum Service {
     /** Drive (Content Library) */
     Drive = "Drive",
     /** Contacts (Address Book) */
-    Contacts = "Contacts"
+    Contacts = "Contacts",
+    /** Meet (Meetings) */
+    Meet = "Meet"
 }
 /**
  * Dashboard service layout options.
