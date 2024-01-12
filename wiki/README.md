@@ -45,7 +45,7 @@ Audio output settings.
 
 #### Defined in
 
-[room.ts:6](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/room.ts#L6)
+[room.ts:6](https://github.com/iotum/callbridge-js/blob/4f7c637/src/room.ts#L6)
 
 ___
 
@@ -57,13 +57,13 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `accounts` | { `id`: `number` ; `name`: `string` ; `picture_url`: `string`  }[] | Accounts added to the room. |
+| `accounts` | \{ `id`: `number` ; `name`: `string` ; `picture_url`: `string`  }[] | Accounts added to the room. |
 | `description?` | `string` | Room description. |
 | `path` | `string` | Room path, used for navigation. **`See`** `Dashboard.load` |
 
 #### Defined in
 
-[dashboard.ts:46](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/dashboard.ts#L46)
+[dashboard.ts:48](https://github.com/iotum/callbridge-js/blob/4f7c637/src/dashboard.ts#L48)
 
 ___
 
@@ -83,7 +83,7 @@ Livestream options.
 
 #### Defined in
 
-[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/livestream.ts#L6)
+[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/4f7c637/src/livestream.ts#L6)
 
 ___
 
@@ -101,7 +101,7 @@ Meeting options.
 | `audioLevel?` | `boolean` | If set, emits audio level events. |
 | `autoView?` | `boolean` | Mobile Only. If set, automatically switches speaker view to bottom vs. left based on the device orientation. |
 | `moderatorToken?` | `string` | If provided, the user will enter the meeting room as a moderator. |
-| `mute?` | { `camera?`: `boolean` ; `mic?`: `boolean`  } | If set, the user will enter the meeting room with the device turned off. |
+| `mute?` | \{ `camera?`: `boolean` ; `mic?`: `boolean`  } | If set, the user will enter the meeting room with the device turned off. |
 | `mute.camera?` | `boolean` | Camera. |
 | `mute.mic?` | `boolean` | Microphone. |
 | `name?` | `string` | If provided, the user will not be prompted for name when entering meeting room. |
@@ -114,7 +114,7 @@ Meeting options.
 
 #### Defined in
 
-[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/meeting.ts#L7)
+[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/4f7c637/src/meeting.ts#L7)
 
 ___
 
@@ -133,7 +133,7 @@ Dashboard service options.
 
 #### Defined in
 
-[dashboard.ts:34](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/dashboard.ts#L34)
+[dashboard.ts:36](https://github.com/iotum/callbridge-js/blob/4f7c637/src/dashboard.ts#L36)
 
 ___
 
@@ -149,10 +149,10 @@ Widget options.
 | :------ | :------ | :------ |
 | `container` | `Window` \| `HTMLElement` \| `string` | The container for the widget. Supports attached or detached DOM element, document selector, or `window` (new tab). If the element is detached, it will be set to invisible and attached to the main document. |
 | `domain` | `string` | The Callbridge domain of the user. |
-| `sso?` | { `hostId?`: `number` ; `token?`: `string`  } | Optional, Single Sign-On |
+| `sso?` | \{ `hostId?`: `number` ; `token?`: `string`  } | Optional, Single Sign-On |
 | `sso.hostId?` | `number` | Optional account number of the user. |
 | `sso.token?` | `string` | Optional host-specific authorization token. |
-| `target?` | { `autoClose?`: `boolean` ; `checkExisting?`: `boolean` ; `features?`: `string` ; `name?`: `string`  } | Optional, options for `window.open` when `container` is `window`. **`See`** [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open). |
+| `target?` | \{ `autoClose?`: `boolean` ; `checkExisting?`: `boolean` ; `features?`: `string` ; `name?`: `string`  } | Optional, options for `window.open` when `container` is `window`. **`See`** [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/open). |
 | `target.autoClose?` | `boolean` | Whether to close the popup when the meeting is over. |
 | `target.checkExisting?` | `boolean` | Whether to wait (up to 1.5 sec) for the existing widget. Requires a matching "window target name". |
 | `target.features?` | `string` | The window features. |
@@ -160,4 +160,4 @@ Widget options.
 
 #### Defined in
 
-[widget.ts:9](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L9)
+[widget.ts:9](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L9)

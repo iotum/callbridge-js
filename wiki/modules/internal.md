@@ -24,7 +24,7 @@
 
 ### EventKey
 
-Ƭ **EventKey**<`T`\>: `string` & keyof `T`
+Ƭ **EventKey**\<`T`\>: `string` & keyof `T`
 
 #### Type parameters
 
@@ -34,23 +34,23 @@
 
 #### Defined in
 
-[widget.ts:120](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L120)
+[widget.ts:124](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L124)
 
 ___
 
 ### EventMap
 
-Ƭ **EventMap**: `Record`<`string`, `any`\>
+Ƭ **EventMap**: `Record`\<`string`, `any`\>
 
 #### Defined in
 
-[widget.ts:119](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L119)
+[widget.ts:123](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L123)
 
 ___
 
 ### Listener
 
-Ƭ **Listener**<`T`\>: (`params`: `T`) => `void`
+Ƭ **Listener**\<`T`\>: (`params`: `T`) => `void`
 
 #### Type parameters
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[widget.ts:121](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L121)
+[widget.ts:125](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L125)
 
 ___
 
@@ -94,4 +94,4 @@ ___
 
 #### Defined in
 
-[widget.ts:57](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L57)
+[widget.ts:57](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L57)

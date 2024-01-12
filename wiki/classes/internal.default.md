@@ -1,8 +1,8 @@
 [@iotum/callbridge-js](../README.md) / [\_internal](../modules/internal.md) / default
 
-# Class: default<T\>
+# Class: default\<T\>
 
-[_internal](../modules/internal.md).default
+[\_internal](../modules/internal.md).default
 
 Callbridge Widget.
 
@@ -10,7 +10,7 @@ Callbridge Widget.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`EventMap`](../modules/internal.md#eventmap) \| { `widget.ERROR`: `string` ; `widget.LOAD`: `void` ; `widget.UNLOAD`: `void`  } |
+| `T` | extends [`EventMap`](../modules/internal.md#eventmap) \| \{ `widget.ERROR`: `string` ; `widget.LOAD`: `void` ; `widget.UNLOAD`: `void`  } |
 
 ## Hierarchy
 
@@ -24,7 +24,7 @@ Callbridge Widget.
 
 ## Implements
 
-- [`WidgetEventEmitter`](../interfaces/internal.WidgetEventEmitter.md)<`T`\>
+- [`WidgetEventEmitter`](../interfaces/internal.WidgetEventEmitter.md)\<`T`\>
 
 ## Table of contents
 
@@ -34,6 +34,7 @@ Callbridge Widget.
 
 ### Properties
 
+- [\_attached](internal.default.md#_attached)
 - [emitter](internal.default.md#emitter)
 
 ### Accessors
@@ -56,13 +57,13 @@ Callbridge Widget.
 
 ### constructor
 
-• **new default**<`T`\>(`«destructured»`, `autoLoad?`)
+• **new default**\<`T`\>(`«destructured»`, `autoLoad?`)
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`EventMap`](../modules/internal.md#eventmap) \| { `widget.ERROR`: `string` ; `widget.LOAD`: `void` ; `widget.UNLOAD`: `void`  } |
+| `T` | extends [`EventMap`](../modules/internal.md#eventmap) \| \{ `widget.ERROR`: `string` ; `widget.LOAD`: `void` ; `widget.UNLOAD`: `void`  } |
 
 #### Parameters
 
@@ -73,9 +74,19 @@ Callbridge Widget.
 
 #### Defined in
 
-[widget.ts:164](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L164)
+[widget.ts:170](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L170)
 
 ## Properties
+
+### \_attached
+
+• `Private` **\_attached**: `boolean` = `true`
+
+#### Defined in
+
+[widget.ts:150](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L150)
+
+___
 
 ### emitter
 
@@ -83,7 +94,7 @@ Callbridge Widget.
 
 #### Defined in
 
-[widget.ts:144](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L144)
+[widget.ts:148](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L148)
 
 ## Accessors
 
@@ -99,7 +110,7 @@ The widget instance.
 
 #### Defined in
 
-[widget.ts:255](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L255)
+[widget.ts:267](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L267)
 
 ___
 
@@ -115,7 +126,7 @@ Whether the widget is ready.
 
 #### Defined in
 
-[widget.ts:248](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L248)
+[widget.ts:260](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L260)
 
 ___
 
@@ -131,13 +142,13 @@ The Window or WindowProxy instance of the widget.
 
 #### Defined in
 
-[widget.ts:262](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L262)
+[widget.ts:274](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L274)
 
 ## Methods
 
 ### emit
 
-▸ **emit**<`K`\>(`eventName`, `data?`): `boolean`
+▸ **emit**\<`K`\>(`eventName`, `data?`): `boolean`
 
 Synchronously calls each of the listeners registered for the event namedeventName,
 in the order they were registered, passing the supplied arguments to each.
@@ -166,13 +177,13 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:301](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L301)
+[widget.ts:313](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L313)
 
 ___
 
 ### off
 
-▸ **off**<`K`\>(`eventName`, `listener`): [`default`](internal.default.md)<`T`\>
+▸ **off**\<`K`\>(`eventName`, `listener`): [`default`](internal.default.md)\<`T`\>
 
 Removes the specified `listener` from the listener array for the event named `eventName`.
 
@@ -187,11 +198,11 @@ Removes the specified `listener` from the listener array for the event named `ev
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<`T`[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<`T`[`K`]\> |
 
 #### Returns
 
-[`default`](internal.default.md)<`T`\>
+[`default`](internal.default.md)\<`T`\>
 
 #### Implementation of
 
@@ -199,13 +210,13 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:282](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L282)
+[widget.ts:294](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L294)
 
 ___
 
 ### on
 
-▸ **on**<`K`\>(`eventName`, `listener`): [`default`](internal.default.md)<`T`\>
+▸ **on**\<`K`\>(`eventName`, `listener`): [`default`](internal.default.md)\<`T`\>
 
 Adds the `listener` function to the end of the listeners array for the event named `eventName`.
 
@@ -220,11 +231,11 @@ Adds the `listener` function to the end of the listeners array for the event nam
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<`T`[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<`T`[`K`]\> |
 
 #### Returns
 
-[`default`](internal.default.md)<`T`\>
+[`default`](internal.default.md)\<`T`\>
 
 #### Implementation of
 
@@ -232,13 +243,13 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:274](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L274)
+[widget.ts:286](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L286)
 
 ___
 
 ### once
 
-▸ **once**<`K`\>(`eventName`, `listener`): [`default`](internal.default.md)<`T`\>
+▸ **once**\<`K`\>(`eventName`, `listener`): [`default`](internal.default.md)\<`T`\>
 
 Adds a one-timelistener function for the event named eventName.
 The next time eventName is triggered, this listener is removed and then invoked.
@@ -254,11 +265,11 @@ The next time eventName is triggered, this listener is removed and then invoked.
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)<`T`[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<`T`[`K`]\> |
 
 #### Returns
 
-[`default`](internal.default.md)<`T`\>
+[`default`](internal.default.md)\<`T`\>
 
 #### Implementation of
 
@@ -266,13 +277,13 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:291](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L291)
+[widget.ts:303](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L303)
 
 ___
 
 ### removeAllListeners
 
-▸ **removeAllListeners**(`event?`): [`default`](internal.default.md)<`T`\>
+▸ **removeAllListeners**(`event?`): [`default`](internal.default.md)\<`T`\>
 
 Removes all listeners, or those of the specified `eventName`.
 
@@ -287,7 +298,7 @@ particularly when the instance was created by some other component or module.
 
 #### Returns
 
-[`default`](internal.default.md)<`T`\>
+[`default`](internal.default.md)\<`T`\>
 
 #### Implementation of
 
@@ -295,7 +306,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:311](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L311)
+[widget.ts:323](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L323)
 
 ___
 
@@ -319,7 +330,7 @@ Not available for pop-up.
 
 #### Defined in
 
-[widget.ts:239](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L239)
+[widget.ts:251](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L251)
 
 ___
 
@@ -335,4 +346,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:214](https://github.com/iotum/callbridge-js/blob/f54e7c1/src/widget.ts#L214)
+[widget.ts:223](https://github.com/iotum/callbridge-js/blob/4f7c637/src/widget.ts#L223)
