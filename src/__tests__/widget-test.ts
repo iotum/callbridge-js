@@ -103,8 +103,16 @@ describe('widget', () => {
       });
 
       describe('re-attach popup widget', () => {
+        let broadcast: BroadcastChannel;
+
         beforeEach(() => {
           jest.useFakeTimers();
+
+          broadcast = {
+            postMessage: jest.fn(),
+            close: jest.fn(),
+          } as any;
+          self.BroadcastChannel = jest.fn().mockImplementation(() => broadcast);
 
           widget = new Widget(
             {
@@ -118,6 +126,11 @@ describe('widget', () => {
 
         it('waits for any existing widget', () => {
           expect(mockWindow.open).not.toHaveBeenCalled();
+        });
+
+        it('broadcasts a poke', () => {
+          expect(BroadcastChannel).toHaveBeenCalledWith('widget-channel');
+          expect(broadcast.postMessage).toHaveBeenCalledWith('_ping');
         });
 
         describe('found', () => {
