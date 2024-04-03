@@ -8,7 +8,7 @@ Callbridge Room.
 
 ## Hierarchy
 
-- [`default`](internal.default.md)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }\>
+- [`default`](internal.default.md)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\>
 
   ↳ **`default`**
 
@@ -63,7 +63,7 @@ Callbridge Room.
 
 #### Defined in
 
-[room.ts:73](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L73)
+[room.ts:76](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L76)
 
 ## Accessors
 
@@ -83,7 +83,7 @@ Widget.instance
 
 #### Defined in
 
-[widget.ts:267](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L267)
+[widget.ts:267](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L267)
 
 ___
 
@@ -103,7 +103,7 @@ Widget.isReady
 
 #### Defined in
 
-[widget.ts:260](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L260)
+[widget.ts:260](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L260)
 
 ___
 
@@ -123,7 +123,7 @@ Widget.wnd
 
 #### Defined in
 
-[widget.ts:274](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L274)
+[widget.ts:274](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L274)
 
 ## Methods
 
@@ -146,7 +146,7 @@ Adjusts the audio output volume and/or stereo position of a remote participant.
 
 #### Defined in
 
-[room.ts:158](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L158)
+[room.ts:161](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L161)
 
 ___
 
@@ -162,14 +162,14 @@ Returns true if the event had listeners, false otherwise.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `data?` | \{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }[`K`] |
+| `data?` | \{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`] |
 
 #### Returns
 
@@ -181,7 +181,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:313](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L313)
+[widget.ts:313](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L313)
 
 ___
 
@@ -203,7 +203,7 @@ Mutes a remote participant, requires Moderator.
 
 #### Defined in
 
-[room.ts:147](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L147)
+[room.ts:150](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L150)
 
 ___
 
@@ -217,14 +217,14 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
 
 #### Returns
 
@@ -236,7 +236,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:294](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L294)
+[widget.ts:294](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L294)
 
 ___
 
@@ -250,14 +250,14 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
 
 #### Returns
 
@@ -269,7 +269,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:286](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L286)
+[widget.ts:286](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L286)
 
 ___
 
@@ -284,14 +284,14 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void`  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `conference.CHANGE`: \{ `id`: `number` ; `incomingVideo`: `boolean` ; `isActive`: `boolean` ; `isLocked`: `boolean` ; `isRecording`: `boolean` ; `isSecured`: `boolean` ; `isStreaming`: `boolean` ; `mode`: `string` ; `name`: `string` ; `roomSize`: `number`  } ; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`  } ; `conference.SPEAKER`: \{ `id`: `number` ; `speakerId`: `number`  } ; `device.DEVICE_IN_USE`: \{ `deviceId`: ``"default"`` ; `kind`: ``"audioinput"`` \| ``"audiooutput"`` \| ``"videoinput"``  } ; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[] ; `audiooutput`: `MediaDeviceInfo`[] ; `videoinput`: `MediaDeviceInfo`[]  } ; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number` ; `id`: `number`  } ; `participant.CHANGE`: \{ `handRaised`: `boolean` ; `id`: `number` ; `isBlocked`: `boolean` ; `isCameraOn`: `boolean` ; `isCurrent`: `boolean` ; `isInternet`: `boolean` ; `isJoining`: `boolean` ; `isLeft`: `boolean` ; `isModerator`: `boolean` ; `isMuted`: `boolean` ; `isObserver`: `boolean` ; `isOnCall`: `boolean` ; `isOrganizer`: `boolean` ; `isPhone`: `boolean` ; `isStreaming`: `boolean` ; `isViewingOnly`: `boolean` ; `name`: `string`  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
 
 #### Returns
 
@@ -303,7 +303,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:303](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L303)
+[widget.ts:303](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L303)
 
 ___
 
@@ -332,7 +332,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:323](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L323)
+[widget.ts:323](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L323)
 
 ___
 
@@ -354,7 +354,7 @@ Manages the audio input device.
 
 #### Defined in
 
-[room.ts:89](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L89)
+[room.ts:92](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L92)
 
 ___
 
@@ -376,7 +376,7 @@ Manages the audio output device.
 
 #### Defined in
 
-[room.ts:97](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L97)
+[room.ts:100](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L100)
 
 ___
 
@@ -398,7 +398,7 @@ Manages my camera.
 
 #### Defined in
 
-[room.ts:105](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L105)
+[room.ts:108](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L108)
 
 ___
 
@@ -420,7 +420,7 @@ Manages incoming video.
 
 #### Defined in
 
-[room.ts:121](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L121)
+[room.ts:124](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L124)
 
 ___
 
@@ -442,7 +442,7 @@ Manages my microphone.
 
 #### Defined in
 
-[room.ts:113](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L113)
+[room.ts:116](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L116)
 
 ___
 
@@ -464,7 +464,7 @@ Manages the video input device.
 
 #### Defined in
 
-[room.ts:81](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L81)
+[room.ts:84](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L84)
 
 ___
 
@@ -486,7 +486,7 @@ Sets the global audio output volume.
 
 #### Defined in
 
-[room.ts:132](https://github.com/iotum/callbridge-js/blob/01c76ee/src/room.ts#L132)
+[room.ts:135](https://github.com/iotum/callbridge-js/blob/709e3ef/src/room.ts#L135)
 
 ___
 
@@ -514,7 +514,7 @@ Not available for pop-up.
 
 #### Defined in
 
-[widget.ts:251](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L251)
+[widget.ts:251](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L251)
 
 ___
 
@@ -534,4 +534,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:223](https://github.com/iotum/callbridge-js/blob/01c76ee/src/widget.ts#L223)
+[widget.ts:223](https://github.com/iotum/callbridge-js/blob/709e3ef/src/widget.ts#L223)
