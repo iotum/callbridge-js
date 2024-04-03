@@ -1,14 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayoutOption = exports.Service = void 0;
-const widget_1 = __importDefault(require("./widget"));
+import Widget from './widget';
 /**
  * Dashboard service.
  */
-var Service;
+export var Service;
 (function (Service) {
     /** None */
     Service["None"] = "";
@@ -20,11 +14,11 @@ var Service;
     Service["Contacts"] = "Contacts";
     /** Meet (Meetings) */
     Service["Meet"] = "Meet";
-})(Service || (exports.Service = Service = {}));
+})(Service || (Service = {}));
 /**
  * Dashboard service layout options.
  */
-var LayoutOption;
+export var LayoutOption;
 (function (LayoutOption) {
     /** Full UI (default) */
     LayoutOption["full"] = "full";
@@ -34,11 +28,11 @@ var LayoutOption;
     LayoutOption["main"] = "main";
     /** No UI */
     LayoutOption["none"] = "none";
-})(LayoutOption || (exports.LayoutOption = LayoutOption = {}));
+})(LayoutOption || (LayoutOption = {}));
 /**
  * Callbridge Dashboard.
  */
-class Dashboard extends widget_1.default {
+export default class Dashboard extends Widget {
     constructor(
     /**
      * Widget options
@@ -83,4 +77,3 @@ class Dashboard extends widget_1.default {
         this._send('dashboard', 'go', { delta });
     }
 }
-exports.default = Dashboard;
