@@ -99,6 +99,12 @@ export default class Widget {
                     this.once('widget.LOAD', resolve);
                     // existing widget pings every 1000ms
                     setTimeout(resolve, 1500);
+                    // broadcast a poke to all dangling widgets
+                    if ('BroadcastChannel' in self) {
+                        const channel = new BroadcastChannel('widget-channel');
+                        channel.postMessage(PING);
+                        channel.close();
+                    }
                 });
                 if (this._instance) {
                     // existing widget will emit READY event after the PONG
