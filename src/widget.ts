@@ -320,7 +320,7 @@ export default class Widget<
    * It is bad practice to remove listeners added elsewhere in the code,
    * particularly when the instance was created by some other component or module.
    */
-  removeAllListeners(event?: string | symbol | undefined): this {
+  removeAllListeners(event?: string): this {
     this.emitter.removeAllListeners(event);
     return this;
   }

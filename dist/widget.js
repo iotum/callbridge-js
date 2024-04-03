@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -19,8 +18,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const events_1 = require("events");
+import { EventEmitter } from 'events';
 const PING = '_ping';
 const PONG = '_pong';
 const FramePermissionsPolicy = [
@@ -62,9 +60,9 @@ function setParams(url, params) {
 /**
  * Callbridge Widget.
  */
-class Widget {
+export default class Widget {
     constructor({ container, domain, sso, target: { name, features, checkExisting } = {}, }, autoLoad = false) {
-        this.emitter = new events_1.EventEmitter();
+        this.emitter = new EventEmitter();
         this._attached = true;
         /** @internal */
         this._container = null;
@@ -308,4 +306,3 @@ class Widget {
         return this;
     }
 }
-exports.default = Widget;

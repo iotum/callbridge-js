@@ -1,13 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const room_1 = __importDefault(require("./room"));
+import Room from './room';
 /**
  * Callbridge Meeting Room.
  */
-class Meeting extends room_1.default {
+export default class Meeting extends Room {
     constructor(
     /**
      * Widget options
@@ -43,4 +38,3 @@ class Meeting extends room_1.default {
         });
     }
 }
-exports.default = Meeting;
