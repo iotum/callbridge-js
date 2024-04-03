@@ -80,6 +80,12 @@ export default class Dashboard extends Widget<{
             [/** Room Id */ id: string]: number;
         };
     };
+    /** Meeting widget is ready */
+    'room.READY': void;
+    /** Meeting widget is unloading */
+    'room.UNLOAD': {
+        reason: string;
+    };
 }> {
     constructor(
     /**

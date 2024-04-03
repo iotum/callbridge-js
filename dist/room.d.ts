@@ -20,7 +20,12 @@ export type AudioSettings = {
  * Callbridge Room.
  */
 export default class Room extends Widget<{
+    /** Meeting widget is ready */
     'room.READY': void;
+    /** Meeting widget is unloading */
+    'room.UNLOAD': {
+        reason: string;
+    };
     'device.DEVICE_LIST_CHANGED': {
         videoinput: Array<MediaDeviceInfo>;
         audioinput: Array<MediaDeviceInfo>;
