@@ -1,3 +1,4 @@
+import { MeetingOptions } from './meeting';
 import Widget, { WidgetOptions } from './widget';
 /**
  * Dashboard service.
@@ -28,6 +29,17 @@ export declare enum LayoutOption {
     none = "none"
 }
 /**
+ * Dashboard service meeting action.
+ */
+export declare enum MeetingAction {
+    /** Load the meeting room inline (when widget container is an iframe). */
+    auto = "auto",
+    /** Load the meeting room in a new tab or window. */
+    popup = "popup",
+    /** Emit `NAVIGATE_TO_CALL` instead of loading the meeting room. */
+    intercept = "intercept"
+}
+/**
  * Dashboard service options.
  */
 export type ServiceOptions = {
@@ -39,6 +51,10 @@ export type ServiceOptions = {
      * The service layout.
      */
     layout?: LayoutOption;
+    /**
+     * The meeting action.
+     */
+    meetingAction?: MeetingAction;
 };
 export type ChatRoom = {
     /** Room path, used for navigation. @see `Dashboard.load` */
@@ -79,6 +95,10 @@ export default class Dashboard extends Widget<{
         rooms: {
             [/** Room Id */ id: string]: number;
         };
+    };
+    'dashboard.NAVIGATE_TO_CALL ': {
+        accessCode: string;
+        options: MeetingOptions;
     };
     /** Meeting widget is ready */
     'room.READY': void;

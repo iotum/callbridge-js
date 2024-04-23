@@ -30,6 +30,18 @@ export var LayoutOption;
     LayoutOption["none"] = "none";
 })(LayoutOption || (LayoutOption = {}));
 /**
+ * Dashboard service meeting action.
+ */
+export var MeetingAction;
+(function (MeetingAction) {
+    /** Load the meeting room inline (when widget container is an iframe). */
+    MeetingAction["auto"] = "auto";
+    /** Load the meeting room in a new tab or window. */
+    MeetingAction["popup"] = "popup";
+    /** Emit `NAVIGATE_TO_CALL` instead of loading the meeting room. */
+    MeetingAction["intercept"] = "intercept";
+})(MeetingAction || (MeetingAction = {}));
+/**
  * Callbridge Dashboard.
  */
 export default class Dashboard extends Widget {
