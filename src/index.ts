@@ -1,11 +1,12 @@
-export { WidgetOptions } from './widget';
+export { type WidgetOptions } from './widget';
 export {
   default as Dashboard,
   Service,
   LayoutOption,
-  ServiceOptions,
-  ChatRoom,
+  MeetingAction,
+  type ServiceOptions,
+  type ChatRoom,
 } from './dashboard';
-export { AudioSettings } from './room';
-export { default as Meeting, MeetingOptions } from './meeting';
-export { default as Livestream, LivestreamOptions } from './livestream';
+export { type AudioSettings } from './room';
+export { default as Meeting, type MeetingOptions } from './meeting';
+export { default as Livestream, type LivestreamOptions } from './livestream';

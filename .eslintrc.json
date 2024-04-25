@@ -24,6 +24,9 @@
   "ignorePatterns": [
     "dist/*"
   ],
+  "globals": {
+    "require": "readonly"
+  },
   "env": {
     "browser": true,
     "jest/globals": true
