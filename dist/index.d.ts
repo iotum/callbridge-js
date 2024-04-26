@@ -533,6 +533,6 @@ declare module '@iotum/callbridge-js/widget' {
 
 }
 declare module '@iotum/callbridge-js' {
-  import main = require('@iotum/callbridge-js/src/index');
+  import main = require('@iotum/callbridge-js/index');
   export = main;
 }

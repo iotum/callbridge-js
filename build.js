@@ -3,7 +3,6 @@ const { dependencies, peerDependencies } = require('./package.json');
 const { Generator: dtsGenerator } = require('npm-dts');
 
 new dtsGenerator({
-  entry: 'src/index.ts',
   output: 'dist/index.d.ts',
 }).generate();
 
