@@ -61,6 +61,10 @@ export type ServiceOptions = {
    * The meeting action.
    */
   meetingAction?: MeetingAction;
+  /**
+   * the UI elements to be hidden.
+   */
+  hiddenElements?: number[];
 };
 
 export type ChatRoom = {
