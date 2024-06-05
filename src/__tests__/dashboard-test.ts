@@ -74,7 +74,11 @@ describe('dashboard', () => {
   it('loads a specific path with options', () => {
     dashboard = new Dashboard({ container, domain }, service);
 
-    dashboard.load(service, { pathname: '/path', layout: LayoutOption.main });
+    dashboard.load(service, {
+      pathname: '/path',
+      layout: LayoutOption.main,
+      hiddenElements: [1, 2, 3, 4],
+    });
 
     expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
       {
@@ -83,6 +87,7 @@ describe('dashboard', () => {
         service,
         pathname: '/path',
         layout: 'main',
+        hiddenElements: [1, 2, 3, 4],
       },
       '*',
     );

@@ -24,7 +24,7 @@ Contacts (Address Book)
 
 #### Defined in
 
-[dashboard.ts:15](https://github.com/iotum/callbridge-js/blob/b881159/src/dashboard.ts#L15)
+[dashboard.ts:15](https://github.com/iotum/callbridge-js/blob/42fdce2/src/dashboard.ts#L15)
 
 ___
 
@@ -36,7 +36,7 @@ Drive (Content Library)
 
 #### Defined in
 
-[dashboard.ts:13](https://github.com/iotum/callbridge-js/blob/b881159/src/dashboard.ts#L13)
+[dashboard.ts:13](https://github.com/iotum/callbridge-js/blob/42fdce2/src/dashboard.ts#L13)
 
 ___
 
@@ -48,7 +48,7 @@ Meet (Meetings)
 
 #### Defined in
 
-[dashboard.ts:17](https://github.com/iotum/callbridge-js/blob/b881159/src/dashboard.ts#L17)
+[dashboard.ts:17](https://github.com/iotum/callbridge-js/blob/42fdce2/src/dashboard.ts#L17)
 
 ___
 
@@ -60,7 +60,7 @@ None
 
 #### Defined in
 
-[dashboard.ts:9](https://github.com/iotum/callbridge-js/blob/b881159/src/dashboard.ts#L9)
+[dashboard.ts:9](https://github.com/iotum/callbridge-js/blob/42fdce2/src/dashboard.ts#L9)
 
 ___
 
@@ -72,4 +72,4 @@ Team (Chat)
 
 #### Defined in
 
-[dashboard.ts:11](https://github.com/iotum/callbridge-js/blob/b881159/src/dashboard.ts#L11)
+[dashboard.ts:11](https://github.com/iotum/callbridge-js/blob/42fdce2/src/dashboard.ts#L11)
