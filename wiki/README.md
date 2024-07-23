@@ -12,6 +12,7 @@
 
 - [LayoutOption](enums/LayoutOption.md)
 - [MeetingAction](enums/MeetingAction.md)
+- [ScheduleAction](enums/ScheduleAction.md)
 - [Service](enums/Service.md)
 
 ### Classes
@@ -46,7 +47,7 @@ Audio output settings.
 
 #### Defined in
 
-[room.ts:6](https://github.com/iotum/callbridge-js/blob/42fdce2/src/room.ts#L6)
+[room.ts:6](https://github.com/iotum/callbridge-js/blob/688b664/src/room.ts#L6)
 
 ___
 
@@ -64,7 +65,7 @@ ___
 
 #### Defined in
 
-[dashboard.ts:70](https://github.com/iotum/callbridge-js/blob/42fdce2/src/dashboard.ts#L70)
+[dashboard.ts:86](https://github.com/iotum/callbridge-js/blob/688b664/src/dashboard.ts#L86)
 
 ___
 
@@ -84,7 +85,7 @@ Livestream options.
 
 #### Defined in
 
-[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/42fdce2/src/livestream.ts#L6)
+[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/688b664/src/livestream.ts#L6)
 
 ___
 
@@ -115,7 +116,7 @@ Meeting options.
 
 #### Defined in
 
-[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/42fdce2/src/meeting.ts#L7)
+[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/688b664/src/meeting.ts#L7)
 
 ___
 
@@ -133,10 +134,11 @@ Dashboard service options.
 | `layout?` | [`LayoutOption`](enums/LayoutOption.md) | The service layout. |
 | `meetingAction?` | [`MeetingAction`](enums/MeetingAction.md) | The meeting action. |
 | `pathname?` | `string` | The initial path to load. |
+| `scheduleAction?` | [`ScheduleAction`](enums/ScheduleAction.md) | The schedule action. |
 
 #### Defined in
 
-[dashboard.ts:49](https://github.com/iotum/callbridge-js/blob/42fdce2/src/dashboard.ts#L49)
+[dashboard.ts:59](https://github.com/iotum/callbridge-js/blob/688b664/src/dashboard.ts#L59)
 
 ___
 
@@ -163,4 +165,4 @@ Widget options.
 
 #### Defined in
 
-[widget.ts:9](https://github.com/iotum/callbridge-js/blob/42fdce2/src/widget.ts#L9)
+[widget.ts:9](https://github.com/iotum/callbridge-js/blob/688b664/src/widget.ts#L9)
