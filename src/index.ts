@@ -4,6 +4,7 @@ export {
   Service,
   LayoutOption,
   MeetingAction,
+  ScheduleAction,
   type ServiceOptions,
   type ChatRoom,
 } from './dashboard';

@@ -64,6 +64,12 @@ export type MeetingOptions = {
   afterCallUrl?: string;
 };
 
+/** Schedule options. */
+export type ScheduleOptions = {
+  /** If `true`, create new meeting by copying settings from an existing meeting. */
+  copyMeeting?: boolean;
+};
+
 /**
  * Callbridge Meeting Room.
  */

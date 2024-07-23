@@ -25,6 +25,7 @@ __export(src_exports, {
   Livestream: () => Livestream,
   Meeting: () => Meeting,
   MeetingAction: () => MeetingAction,
+  ScheduleAction: () => ScheduleAction,
   Service: () => Service
 });
 module.exports = __toCommonJS(src_exports);
@@ -352,6 +353,11 @@ var MeetingAction = /* @__PURE__ */ ((MeetingAction2) => {
   MeetingAction2["intercept"] = "intercept";
   return MeetingAction2;
 })(MeetingAction || {});
+var ScheduleAction = /* @__PURE__ */ ((ScheduleAction2) => {
+  ScheduleAction2["auto"] = "auto";
+  ScheduleAction2["intercept"] = "intercept";
+  return ScheduleAction2;
+})(ScheduleAction || {});
 var Dashboard = class extends Widget {
   constructor(options, service = "" /* None */, serviceOptions = {}) {
     super(options);
@@ -547,5 +553,6 @@ var Livestream = class extends Widget {
   Livestream,
   Meeting,
   MeetingAction,
+  ScheduleAction,
   Service
 });

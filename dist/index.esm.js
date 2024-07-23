@@ -321,6 +321,11 @@ var MeetingAction = /* @__PURE__ */ ((MeetingAction2) => {
   MeetingAction2["intercept"] = "intercept";
   return MeetingAction2;
 })(MeetingAction || {});
+var ScheduleAction = /* @__PURE__ */ ((ScheduleAction2) => {
+  ScheduleAction2["auto"] = "auto";
+  ScheduleAction2["intercept"] = "intercept";
+  return ScheduleAction2;
+})(ScheduleAction || {});
 var Dashboard = class extends Widget {
   constructor(options, service = "" /* None */, serviceOptions = {}) {
     super(options);
@@ -515,5 +520,6 @@ export {
   Livestream,
   Meeting,
   MeetingAction,
+  ScheduleAction,
   Service
 };
