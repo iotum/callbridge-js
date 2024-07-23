@@ -1,5 +1,5 @@
 declare module '@iotum/callbridge-js/dashboard' {
-  import { MeetingOptions } from '@iotum/callbridge-js/meeting';
+  import { MeetingOptions, ScheduleOptions } from '@iotum/callbridge-js/meeting';
   import Widget, { WidgetOptions } from '@iotum/callbridge-js/widget';
   /**
    * Dashboard service.
@@ -41,6 +41,15 @@ declare module '@iotum/callbridge-js/dashboard' {
       intercept = "intercept"
   }
   /**
+   * Dashboard service schedule action.
+   */
+  export enum ScheduleAction {
+      /** Load the schedule page normally. */
+      auto = "auto",
+      /** Emit `NAVIGATE_TO_SCHEDULE` instead of loading the schedule page. */
+      intercept = "intercept"
+  }
+  /**
    * Dashboard service options.
    */
   export type ServiceOptions = {
@@ -56,6 +65,10 @@ declare module '@iotum/callbridge-js/dashboard' {
        * The meeting action.
        */
       meetingAction?: MeetingAction;
+      /**
+       * The schedule action.
+       */
+      scheduleAction?: ScheduleAction;
       /**
        * the UI elements to be hidden.
        */
@@ -105,6 +118,11 @@ declare module '@iotum/callbridge-js/dashboard' {
           accessCode: string;
           options: MeetingOptions;
       };
+      'dashboard.NAVIGATE_TO_SCHEDULE ': {
+          /** The meeting id to edit or copy. */
+          id?: number;
+          options: ScheduleOptions;
+      };
       /** Meeting widget is ready */
       'room.READY': void;
       /** Meeting widget is unloading */
@@ -143,7 +161,7 @@ declare module '@iotum/callbridge-js/dashboard' {
 }
 declare module '@iotum/callbridge-js/index' {
   export { type WidgetOptions } from '@iotum/callbridge-js/widget';
-  export { default as Dashboard, Service, LayoutOption, MeetingAction, type ServiceOptions, type ChatRoom, } from '@iotum/callbridge-js/dashboard';
+  export { default as Dashboard, Service, LayoutOption, MeetingAction, ScheduleAction, type ServiceOptions, type ChatRoom, } from '@iotum/callbridge-js/dashboard';
   export { type AudioSettings } from '@iotum/callbridge-js/room';
   export { default as Meeting, type MeetingOptions } from '@iotum/callbridge-js/meeting';
   export { default as Livestream, type LivestreamOptions } from '@iotum/callbridge-js/livestream';
@@ -255,6 +273,11 @@ declare module '@iotum/callbridge-js/meeting' {
        * SSO Only. If provided, the user will be redirected to the provided URL after exiting a call.
        */
       afterCallUrl?: string;
+  };
+  /** Schedule options. */
+  export type ScheduleOptions = {
+      /** If `true`, create new meeting by copying settings from an existing meeting. */
+      copyMeeting?: boolean;
   };
   /**
    * Callbridge Meeting Room.

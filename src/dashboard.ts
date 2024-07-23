@@ -1,4 +1,4 @@
-import { MeetingOptions } from './meeting';
+import { MeetingOptions, ScheduleOptions } from './meeting';
 import Widget, { WidgetOptions } from './widget';
 
 /**
@@ -44,6 +44,16 @@ export enum MeetingAction {
 }
 
 /**
+ * Dashboard service schedule action.
+ */
+export enum ScheduleAction {
+  /** Load the schedule page normally. */
+  auto = 'auto',
+  /** Emit `NAVIGATE_TO_SCHEDULE` instead of loading the schedule page. */
+  intercept = 'intercept',
+}
+
+/**
  * Dashboard service options.
  */
 export type ServiceOptions = {
@@ -61,6 +71,12 @@ export type ServiceOptions = {
    * The meeting action.
    */
   meetingAction?: MeetingAction;
+
+  /**
+   * The schedule action.
+   */
+  scheduleAction?: ScheduleAction;
+
   /**
    * the UI elements to be hidden.
    */
@@ -109,6 +125,11 @@ export default class Dashboard extends Widget<{
   'dashboard.NAVIGATE_TO_CALL ': {
     accessCode: string;
     options: MeetingOptions;
+  };
+  'dashboard.NAVIGATE_TO_SCHEDULE ': {
+    /** The meeting id to edit or copy. */
+    id?: number;
+    options: ScheduleOptions;
   };
   /** Meeting widget is ready */
   'room.READY': void;
