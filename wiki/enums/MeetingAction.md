@@ -22,7 +22,7 @@ Load the meeting room inline (when widget container is an iframe).
 
 #### Defined in
 
-[dashboard.ts:39](https://github.com/iotum/callbridge-js/blob/688b664/src/dashboard.ts#L39)
+[dashboard.ts:39](https://github.com/iotum/callbridge-js/blob/c1b8887/src/dashboard.ts#L39)
 
 ___
 
@@ -34,7 +34,7 @@ Emit `NAVIGATE_TO_CALL` instead of loading the meeting room.
 
 #### Defined in
 
-[dashboard.ts:43](https://github.com/iotum/callbridge-js/blob/688b664/src/dashboard.ts#L43)
+[dashboard.ts:43](https://github.com/iotum/callbridge-js/blob/c1b8887/src/dashboard.ts#L43)
 
 ___
 
@@ -46,4 +46,4 @@ Load the meeting room in a new tab or window.
 
 #### Defined in
 
-[dashboard.ts:41](https://github.com/iotum/callbridge-js/blob/688b664/src/dashboard.ts#L41)
+[dashboard.ts:41](https://github.com/iotum/callbridge-js/blob/c1b8887/src/dashboard.ts#L41)
