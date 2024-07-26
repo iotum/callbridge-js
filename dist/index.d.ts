@@ -114,11 +114,11 @@ declare module '@iotum/callbridge-js/dashboard' {
               [/** Room Id */ id: string]: number;
           };
       };
-      'dashboard.NAVIGATE_TO_CALL ': {
+      'dashboard.NAVIGATE_TO_CALL': {
           accessCode: string;
           options: MeetingOptions;
       };
-      'dashboard.NAVIGATE_TO_SCHEDULE ': {
+      'dashboard.NAVIGATE_TO_SCHEDULE': {
           /** The meeting id to edit or copy. */
           id?: number;
           options: ScheduleOptions;
