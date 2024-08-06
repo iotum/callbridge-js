@@ -390,6 +390,13 @@ var Dashboard = class extends Widget {
   go(delta) {
     this._send("dashboard", "go", { delta });
   }
+  /**
+   * Hides elements on the dashboard.
+   * @param ids An array of element IDs to hide.
+   */
+  setHiddenElements(ids) {
+    this._send("dashboard", "setHiddenElements", { ids });
+  }
 };
 
 // src/room.ts

@@ -125,4 +125,19 @@ describe('dashboard', () => {
       '*',
     );
   });
+
+  it('can set hidden elements', () => {
+    dashboard = new Dashboard({ container, domain }, service);
+
+    dashboard.setHiddenElements([1, 2, 3, 4]);
+
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+      {
+        type: 'dashboard',
+        action: 'setHiddenElements',
+        ids: [1, 2, 3, 4],
+      },
+      '*',
+    );
+  });
 });
