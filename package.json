@@ -1,7 +1,7 @@
 {
   "name": "@iotum/callbridge-js",
   "description": "Loading wrapper for Callbridge",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "author": "Iotum (https://www.iotum.com)",
   "license": "MIT",
   "homepage": "https://www.callbridge.com/",
