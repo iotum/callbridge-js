@@ -163,4 +163,12 @@ export default class Dashboard extends Widget<{
   go(delta: number) {
     this._send('dashboard', 'go', { delta });
   }
+
+  /**
+   * Hides elements on the dashboard.
+   * @param ids An array of element IDs to hide.
+   */
+  setHiddenElements(ids: number[]) {
+    this._send('dashboard', 'setHiddenElements', { ids });
+  }
 }

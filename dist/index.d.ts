@@ -138,6 +138,11 @@ declare module '@iotum/callbridge-js/dashboard' {
        * a positive value moves forwards.
        */
       go(delta: number): void;
+      /**
+       * Hides elements on the dashboard.
+       * @param ids An array of element IDs to hide.
+       */
+      setHiddenElements(ids: number[]): void;
   }
 
 }
