@@ -35,7 +35,7 @@
 
 #### Defined in
 
-[widget.ts:124](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L124)
+[widget.ts:124](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L124)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-[widget.ts:123](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L123)
+[widget.ts:123](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L123)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[widget.ts:125](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L125)
+[widget.ts:125](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L125)
 
 ___
 
@@ -93,7 +93,7 @@ Schedule options.
 
 #### Defined in
 
-[meeting.ts:68](https://github.com/iotum/callbridge-js/blob/ff4634b/src/meeting.ts#L68)
+[meeting.ts:68](https://github.com/iotum/callbridge-js/blob/8719b43/src/meeting.ts#L68)
 
 ___
 
@@ -113,4 +113,4 @@ ___
 
 #### Defined in
 
-[widget.ts:57](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L57)
+[widget.ts:57](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L57)

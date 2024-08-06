@@ -55,7 +55,7 @@ Callbridge Dashboard.
 
 #### Defined in
 
-[dashboard.ts:139](https://github.com/iotum/callbridge-js/blob/ff4634b/src/dashboard.ts#L139)
+[dashboard.ts:139](https://github.com/iotum/callbridge-js/blob/8719b43/src/dashboard.ts#L139)
 
 ## Accessors
 
@@ -75,7 +75,7 @@ Widget.instance
 
 #### Defined in
 
-[widget.ts:267](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L267)
+[widget.ts:267](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L267)
 
 ___
 
@@ -95,7 +95,7 @@ Widget.isReady
 
 #### Defined in
 
-[widget.ts:260](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L260)
+[widget.ts:260](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L260)
 
 ___
 
@@ -115,7 +115,7 @@ Widget.wnd
 
 #### Defined in
 
-[widget.ts:274](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L274)
+[widget.ts:274](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L274)
 
 ## Methods
 
@@ -150,7 +150,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:313](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L313)
+[widget.ts:313](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L313)
 
 ___
 
@@ -172,7 +172,7 @@ Loads a specific page from the session history.
 
 #### Defined in
 
-[dashboard.ts:184](https://github.com/iotum/callbridge-js/blob/ff4634b/src/dashboard.ts#L184)
+[dashboard.ts:184](https://github.com/iotum/callbridge-js/blob/8719b43/src/dashboard.ts#L184)
 
 ___
 
@@ -195,7 +195,7 @@ Loads the service.
 
 #### Defined in
 
-[dashboard.ts:174](https://github.com/iotum/callbridge-js/blob/ff4634b/src/dashboard.ts#L174)
+[dashboard.ts:174](https://github.com/iotum/callbridge-js/blob/8719b43/src/dashboard.ts#L174)
 
 ___
 
@@ -228,7 +228,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:294](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L294)
+[widget.ts:294](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L294)
 
 ___
 
@@ -261,7 +261,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:286](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L286)
+[widget.ts:286](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L286)
 
 ___
 
@@ -295,7 +295,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:303](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L303)
+[widget.ts:303](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L303)
 
 ___
 
@@ -324,7 +324,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:323](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L323)
+[widget.ts:323](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L323)
 
 ___
 
@@ -346,7 +346,7 @@ Hides elements on the dashboard.
 
 #### Defined in
 
-[dashboard.ts:192](https://github.com/iotum/callbridge-js/blob/ff4634b/src/dashboard.ts#L192)
+[dashboard.ts:192](https://github.com/iotum/callbridge-js/blob/8719b43/src/dashboard.ts#L192)
 
 ___
 
@@ -374,7 +374,7 @@ Not available for pop-up.
 
 #### Defined in
 
-[widget.ts:251](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L251)
+[widget.ts:251](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L251)
 
 ___
 
@@ -394,4 +394,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:223](https://github.com/iotum/callbridge-js/blob/ff4634b/src/widget.ts#L223)
+[widget.ts:223](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L223)
