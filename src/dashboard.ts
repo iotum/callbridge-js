@@ -100,9 +100,14 @@ export type ChatRoom = {
  * Callbridge Dashboard.
  */
 export default class Dashboard extends Widget<{
+  /** Dashboard widget is ready */
   'dashboard.READY': {
     existing?: boolean;
   };
+  /** Dashboard widget is unloading */
+  'dashboard.UNLOAD': void;
+  /** Dashboard widget is signed out */
+  'dashboard.SESSION_EXPIRED': void;
   'dashboard.NAVIGATE': {
     service: Service;
     pathname: string;
