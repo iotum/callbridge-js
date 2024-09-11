@@ -333,7 +333,7 @@ describe('widget', () => {
       expect(host).toBe(domain);
       expect(pathname).toBe('/auth');
 
-      expect(searchParams.get('events')).toBe(String(true));
+      expect(searchParams.get('events')).toBeNull();
       expect(searchParams.get('host_id')).toBe(String(42));
       expect(searchParams.get('login_token_public_key')).toBe('token');
       expect(searchParams.get('redirect_url')).toBe('/page_to_see?events=true');

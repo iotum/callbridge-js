@@ -3,6 +3,8 @@ import { EventEmitter } from 'events';
 const PING = '_ping';
 const PONG = '_pong';
 
+const AUTH_PATH = '/auth';
+
 /**
  * Widget options.
  */
@@ -116,8 +118,10 @@ function setParams(url: URL, params: SearchParams) {
     }
   }
 
-  // Always enable events
-  url.searchParams.set('events', 'true');
+  if (url.pathname !== AUTH_PATH) {
+    // Always enable events
+    url.searchParams.set('events', 'true');
+  }
 }
 
 type EventMap = Record<string, any>;
@@ -198,7 +202,7 @@ export default class Widget<
         throw new Error('Missing SSO parameters');
       }
 
-      this._url.pathname = '/auth';
+      this._url.pathname = AUTH_PATH;
       this._url.searchParams.set('host_id', String(hostId));
       this._url.searchParams.set('login_token_public_key', token);
     }
@@ -339,9 +343,11 @@ export default class Widget<
         redirect_url: null,
       });
 
-      const isSSO = this._url.pathname === '/auth';
+      const isSSO = this._url.pathname === AUTH_PATH;
       if (isSSO) {
         setParams(this._url, {
+          // Do not persist the session under iframe
+          remember_me: this._container === window ? '1' : '0',
           redirect_url: `${redirectUrl.pathname}${redirectUrl.search}${redirectUrl.hash}`,
         });
       } else {
