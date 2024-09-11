@@ -2,6 +2,7 @@
 import { EventEmitter } from "events";
 var PING = "_ping";
 var PONG = "_pong";
+var AUTH_PATH = "/auth";
 var FramePermissionsPolicy = [
   "camera",
   "microphone",
@@ -47,7 +48,9 @@ function setParams(url, params) {
       url.searchParams.set(opt, String(val));
     }
   }
-  url.searchParams.set("events", "true");
+  if (url.pathname !== AUTH_PATH) {
+    url.searchParams.set("events", "true");
+  }
 }
 var Widget = class {
   constructor({
@@ -77,9 +80,11 @@ var Widget = class {
           ...params,
           redirect_url: null
         });
-        const isSSO = this._url.pathname === "/auth";
+        const isSSO = this._url.pathname === AUTH_PATH;
         if (isSSO) {
           setParams(this._url, {
+            // Do not persist the session under iframe
+            remember_me: this._container === window ? "1" : "0",
             redirect_url: `${redirectUrl.pathname}${redirectUrl.search}${redirectUrl.hash}`
           });
         } else {
@@ -189,7 +194,7 @@ var Widget = class {
       if (!hostId || !token) {
         throw new Error("Missing SSO parameters");
       }
-      this._url.pathname = "/auth";
+      this._url.pathname = AUTH_PATH;
       this._url.searchParams.set("host_id", String(hostId));
       this._url.searchParams.set("login_token_public_key", token);
     }
