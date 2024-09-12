@@ -6,7 +6,7 @@ Callbridge Dashboard.
 
 ## Hierarchy
 
-- [`default`](internal.default.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\>
+- [`default`](internal.default.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\>
 
   ↳ **`Dashboard`**
 
@@ -55,7 +55,7 @@ Callbridge Dashboard.
 
 #### Defined in
 
-[dashboard.ts:139](https://github.com/iotum/callbridge-js/blob/8719b43/src/dashboard.ts#L139)
+[dashboard.ts:144](https://github.com/iotum/callbridge-js/blob/1c541f0/src/dashboard.ts#L144)
 
 ## Accessors
 
@@ -75,7 +75,7 @@ Widget.instance
 
 #### Defined in
 
-[widget.ts:267](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L267)
+[widget.ts:271](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L271)
 
 ___
 
@@ -95,7 +95,7 @@ Widget.isReady
 
 #### Defined in
 
-[widget.ts:260](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L260)
+[widget.ts:264](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L264)
 
 ___
 
@@ -115,7 +115,7 @@ Widget.wnd
 
 #### Defined in
 
-[widget.ts:274](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L274)
+[widget.ts:278](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L278)
 
 ## Methods
 
@@ -131,14 +131,14 @@ Returns true if the event had listeners, false otherwise.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `data?` | \{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`] |
+| `data?` | \{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`] |
 
 #### Returns
 
@@ -150,7 +150,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:313](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L313)
+[widget.ts:317](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L317)
 
 ___
 
@@ -172,7 +172,7 @@ Loads a specific page from the session history.
 
 #### Defined in
 
-[dashboard.ts:184](https://github.com/iotum/callbridge-js/blob/8719b43/src/dashboard.ts#L184)
+[dashboard.ts:189](https://github.com/iotum/callbridge-js/blob/1c541f0/src/dashboard.ts#L189)
 
 ___
 
@@ -195,7 +195,7 @@ Loads the service.
 
 #### Defined in
 
-[dashboard.ts:174](https://github.com/iotum/callbridge-js/blob/8719b43/src/dashboard.ts#L174)
+[dashboard.ts:179](https://github.com/iotum/callbridge-js/blob/1c541f0/src/dashboard.ts#L179)
 
 ___
 
@@ -209,14 +209,14 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
 
 #### Returns
 
@@ -228,7 +228,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:294](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L294)
+[widget.ts:298](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L298)
 
 ___
 
@@ -242,14 +242,14 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
 
 #### Returns
 
@@ -261,7 +261,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:286](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L286)
+[widget.ts:290](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L290)
 
 ___
 
@@ -276,14 +276,14 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 | Name | Type |
 | :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
+| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
+| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
 
 #### Returns
 
@@ -295,7 +295,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:303](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L303)
+[widget.ts:307](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L307)
 
 ___
 
@@ -324,7 +324,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:323](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L323)
+[widget.ts:327](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L327)
 
 ___
 
@@ -346,7 +346,7 @@ Hides elements on the dashboard.
 
 #### Defined in
 
-[dashboard.ts:192](https://github.com/iotum/callbridge-js/blob/8719b43/src/dashboard.ts#L192)
+[dashboard.ts:197](https://github.com/iotum/callbridge-js/blob/1c541f0/src/dashboard.ts#L197)
 
 ___
 
@@ -374,7 +374,7 @@ Not available for pop-up.
 
 #### Defined in
 
-[widget.ts:251](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L251)
+[widget.ts:255](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L255)
 
 ___
 
@@ -394,4 +394,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:223](https://github.com/iotum/callbridge-js/blob/8719b43/src/widget.ts#L223)
+[widget.ts:227](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L227)

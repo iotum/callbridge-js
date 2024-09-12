@@ -81,7 +81,7 @@ describe('meeting', () => {
 
     expect(host).toBe(domain);
     expect(pathname).toBe('/auth');
-    expect(searchParams.get('events')).toBe('true');
+    expect(searchParams.get('events')).toBeNull();
 
     const redirectUrl = searchParams.get('redirect_url');
     expect(redirectUrl).toBe(`/conf/call/${roomId}?name=my-name&events=true`);
