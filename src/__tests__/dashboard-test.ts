@@ -78,6 +78,8 @@ describe('dashboard', () => {
       pathname: '/path',
       layout: LayoutOption.main,
       hiddenElements: [1, 2, 3, 4],
+      invitedContacts: [11, 22],
+      invitedHosts: [33, 44],
     });
 
     expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
@@ -88,6 +90,8 @@ describe('dashboard', () => {
         pathname: '/path',
         layout: 'main',
         hiddenElements: [1, 2, 3, 4],
+        invitedContacts: [11, 22],
+        invitedHosts: [33, 44],
       },
       '*',
     );

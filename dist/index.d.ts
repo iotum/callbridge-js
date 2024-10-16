@@ -70,9 +70,17 @@ declare module '@iotum/callbridge-js/dashboard' {
        */
       scheduleAction?: ScheduleAction;
       /**
-       * the UI elements to be hidden.
+       * The UI elements to be hidden.
        */
       hiddenElements?: number[];
+      /**
+       * The invited contact IDs. ("meeting schedule" only)
+       */
+      invitedContacts?: number[];
+      /**
+       * The invited host IDs. ("meeting schedule" only)
+       */
+      invitedHosts?: number[];
   };
   export type ChatRoom = {
       /** Room path, used for navigation. @see `Dashboard.load` */
