@@ -47,7 +47,7 @@ Audio output settings.
 
 #### Defined in
 
-[room.ts:6](https://github.com/iotum/callbridge-js/blob/1c541f0/src/room.ts#L6)
+[room.ts:6](https://github.com/iotum/callbridge-js/blob/cbd9966/src/room.ts#L6)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[dashboard.ts:86](https://github.com/iotum/callbridge-js/blob/1c541f0/src/dashboard.ts#L86)
+[dashboard.ts:96](https://github.com/iotum/callbridge-js/blob/cbd9966/src/dashboard.ts#L96)
 
 ___
 
@@ -85,7 +85,7 @@ Livestream options.
 
 #### Defined in
 
-[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/1c541f0/src/livestream.ts#L6)
+[livestream.ts:6](https://github.com/iotum/callbridge-js/blob/cbd9966/src/livestream.ts#L6)
 
 ___
 
@@ -116,7 +116,7 @@ Meeting options.
 
 #### Defined in
 
-[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/1c541f0/src/meeting.ts#L7)
+[meeting.ts:7](https://github.com/iotum/callbridge-js/blob/cbd9966/src/meeting.ts#L7)
 
 ___
 
@@ -130,7 +130,9 @@ Dashboard service options.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `hiddenElements?` | `number`[] | the UI elements to be hidden. |
+| `hiddenElements?` | `number`[] | The UI elements to be hidden. |
+| `invitedContacts?` | `number`[] | The invited contact IDs. ("meeting schedule" only) |
+| `invitedHosts?` | `number`[] | The invited host IDs. ("meeting schedule" only) |
 | `layout?` | [`LayoutOption`](enums/LayoutOption.md) | The service layout. |
 | `meetingAction?` | [`MeetingAction`](enums/MeetingAction.md) | The meeting action. |
 | `pathname?` | `string` | The initial path to load. |
@@ -138,7 +140,7 @@ Dashboard service options.
 
 #### Defined in
 
-[dashboard.ts:59](https://github.com/iotum/callbridge-js/blob/1c541f0/src/dashboard.ts#L59)
+[dashboard.ts:59](https://github.com/iotum/callbridge-js/blob/cbd9966/src/dashboard.ts#L59)
 
 ___
 
@@ -165,4 +167,4 @@ Widget options.
 
 #### Defined in
 
-[widget.ts:11](https://github.com/iotum/callbridge-js/blob/1c541f0/src/widget.ts#L11)
+[widget.ts:11](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L11)
