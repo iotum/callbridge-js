@@ -7,6 +7,8 @@ import Widget, { WidgetOptions } from './widget';
 export enum Service {
   /** None */
   None = '',
+  /** Search */
+  Search = 'Search',
   /** Team (Chat) */
   Team = 'Team',
   /** Drive (Content Library) */
@@ -93,6 +95,9 @@ export type ServiceOptions = {
   invitedHosts?: number[];
 };
 
+/**
+ * Chat room.
+ */
 export type ChatRoom = {
   /** Room path, used for navigation. @see `Dashboard.load` */
   path: string;
@@ -105,6 +110,26 @@ export type ChatRoom = {
     picture_url: string;
   }>;
 };
+
+/**
+ * Search options.
+ */
+export type SearchOptions = {
+  /** The search content type. Default `SearchContentType.Event` */
+  contentType?: SearchContentType;
+  /** The page number of the search result. Optional, default 1 */
+  page?: number;
+  /** The sorting order of the search result. Optional, default 'date' */
+  order?: 'date' | 'relevance';
+};
+
+/**
+ * Search content type.
+ */
+export enum SearchContentType {
+  /** E.g. meeting and call event. */
+  event = 'event',
+}
 
 /**
  * Callbridge Dashboard.
@@ -146,6 +171,29 @@ export default class Dashboard extends Widget<{
     id?: number;
     options: ScheduleOptions;
   };
+  'dashboard.SEARCH_START': {
+    /** The search query. */
+    query: string;
+    /** The page of the result. */
+    page: number;
+    /** The order of the result. */
+    order: 'date' | 'relevance';
+  };
+  'dashboard.SEARCH_RESULT': {
+    /** The search query. */
+    query: string;
+    /** The search error. */
+    error?: string;
+    /** The search result. */
+    result?: Array<{
+      /** The type of the item. */
+      contentType: SearchContentType;
+      /** The id of the item */
+      id: number;
+      /** The result text with <mark> */
+      highlight: Record<string, Array<string>>;
+    }>;
+  };
   /** Meeting widget is ready */
   'room.READY': void;
   /** Meeting widget is unloading */
@@ -172,13 +220,49 @@ export default class Dashboard extends Widget<{
       case Service.Drive:
       case Service.Contacts:
       case Service.Meet:
+      case Service.Search:
         this.once('dashboard.READY', () => this.load(service, serviceOptions));
+        break;
+    }
+
+    switch (service) {
+      case Service.Search:
+        this.search = (
+          query: string,
+          {
+            contentType = SearchContentType.event,
+            ...opts
+          }: SearchOptions = {},
+        ) => {
+          if (!query) {
+            throw new Error('Nothing to search');
+          }
+          this._send('dashboard', 'search', {
+            query,
+            contentType,
+            ...opts,
+          });
+        };
         break;
     }
 
     this._load({
       redirect_url: `/conf/loading`,
     });
+  }
+
+  /**
+   * Search for thing.
+   * @param query The search query.
+   * @param options Optional, search options.
+   * @throws {Error}
+   *   - "Not implemented" when the service is not "Search".
+   *   - "Nothing to search" when the query is empty.
+   */
+  search(query: string, options?: SearchOptions) {
+    query;
+    options;
+    throw new Error('Not implemented');
   }
 
   /**

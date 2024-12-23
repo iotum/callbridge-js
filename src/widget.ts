@@ -394,6 +394,7 @@ export default class Widget<
         this.emit('widget.ERROR', ev instanceof Error ? ev.message : ev);
       };
     } catch (ex) {
+      console.warn(ex);
       this.emit('widget.ERROR', 'Unable to open');
     }
   };

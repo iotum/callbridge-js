@@ -7,6 +7,8 @@ declare module '@iotum/callbridge-js/dashboard' {
   export enum Service {
       /** None */
       None = "",
+      /** Search */
+      Search = "Search",
       /** Team (Chat) */
       Team = "Team",
       /** Drive (Content Library) */
@@ -82,6 +84,9 @@ declare module '@iotum/callbridge-js/dashboard' {
        */
       invitedHosts?: number[];
   };
+  /**
+   * Chat room.
+   */
   export type ChatRoom = {
       /** Room path, used for navigation. @see `Dashboard.load` */
       path: string;
@@ -94,6 +99,24 @@ declare module '@iotum/callbridge-js/dashboard' {
           picture_url: string;
       }>;
   };
+  /**
+   * Search options.
+   */
+  export type SearchOptions = {
+      /** The search content type. Default `SearchContentType.Event` */
+      contentType?: SearchContentType;
+      /** The page number of the search result. Optional, default 1 */
+      page?: number;
+      /** The sorting order of the search result. Optional, default 'date' */
+      order?: 'date' | 'relevance';
+  };
+  /**
+   * Search content type.
+   */
+  export enum SearchContentType {
+      /** E.g. meeting and call event. */
+      event = "event"
+  }
   /**
    * Callbridge Dashboard.
    */
@@ -136,6 +159,29 @@ declare module '@iotum/callbridge-js/dashboard' {
           id?: number;
           options: ScheduleOptions;
       };
+      'dashboard.SEARCH_START': {
+          /** The search query. */
+          query: string;
+          /** The page of the result. */
+          page: number;
+          /** The order of the result. */
+          order: 'date' | 'relevance';
+      };
+      'dashboard.SEARCH_RESULT': {
+          /** The search query. */
+          query: string;
+          /** The search error. */
+          error?: string;
+          /** The search result. */
+          result?: Array<{
+              /** The type of the item. */
+              contentType: SearchContentType;
+              /** The id of the item */
+              id: number;
+              /** The result text with <mark> */
+              highlight: Record<string, Array<string>>;
+          }>;
+      };
       /** Meeting widget is ready */
       'room.READY': void;
       /** Meeting widget is unloading */
@@ -156,6 +202,15 @@ declare module '@iotum/callbridge-js/dashboard' {
        * Optional, service options.
        */
       serviceOptions?: ServiceOptions);
+      /**
+       * Search for thing.
+       * @param query The search query.
+       * @param options Optional, search options.
+       * @throws {Error}
+       *   - "Not implemented" when the service is not "Search".
+       *   - "Nothing to search" when the query is empty.
+       */
+      search(query: string, options?: SearchOptions): void;
       /**
        * Loads the service.
        * @param service the service to load.
@@ -179,7 +234,7 @@ declare module '@iotum/callbridge-js/dashboard' {
 }
 declare module '@iotum/callbridge-js/index' {
   export { type WidgetOptions } from '@iotum/callbridge-js/widget';
-  export { default as Dashboard, Service, LayoutOption, MeetingAction, ScheduleAction, type ServiceOptions, type ChatRoom, } from '@iotum/callbridge-js/dashboard';
+  export { default as Dashboard, Service, LayoutOption, MeetingAction, ScheduleAction, SearchContentType, type ServiceOptions, type ChatRoom, type SearchOptions, } from '@iotum/callbridge-js/dashboard';
   export { type AudioSettings } from '@iotum/callbridge-js/room';
   export { default as Meeting, type MeetingOptions } from '@iotum/callbridge-js/meeting';
   export { default as Livestream, type LivestreamOptions } from '@iotum/callbridge-js/livestream';
