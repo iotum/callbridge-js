@@ -144,4 +144,34 @@ describe('dashboard', () => {
       '*',
     );
   });
+
+  describe('search', () => {
+    it('throws "not implemented" unless search service', () => {
+      dashboard = new Dashboard({ container, domain }, service);
+      expect(() => dashboard.search('query')).toThrow('Not implemented');
+      expect(dashboard.wnd?.postMessage).not.toHaveBeenCalled();
+    });
+
+    it('throws if empty query', () => {
+      dashboard = new Dashboard({ container, domain }, Service.Search);
+      expect(() => dashboard.search('')).toThrow('Nothing to search');
+      expect(dashboard.wnd?.postMessage).not.toHaveBeenCalled();
+    });
+
+    it('can use options', () => {
+      dashboard = new Dashboard({ container, domain }, Service.Search);
+      dashboard.search('query', { page: 42, order: 'relevance' });
+      expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+        {
+          type: 'dashboard',
+          action: 'search',
+          contentType: 'event',
+          query: 'query',
+          page: 42,
+          order: 'relevance',
+        },
+        '*',
+      );
+    });
+  });
 });

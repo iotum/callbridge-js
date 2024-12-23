@@ -5,8 +5,10 @@ export {
   LayoutOption,
   MeetingAction,
   ScheduleAction,
+  SearchContentType,
   type ServiceOptions,
   type ChatRoom,
+  type SearchOptions,
 } from './dashboard';
 export { type AudioSettings } from './room';
 export { default as Meeting, type MeetingOptions } from './meeting';
