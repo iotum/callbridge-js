@@ -18,17 +18,18 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   Dashboard: () => Dashboard,
   LayoutOption: () => LayoutOption,
   Livestream: () => Livestream,
   Meeting: () => Meeting,
   MeetingAction: () => MeetingAction,
   ScheduleAction: () => ScheduleAction,
+  SearchContentType: () => SearchContentType,
   Service: () => Service
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/widget.ts
 var import_events = require("events");
@@ -154,6 +155,7 @@ var Widget = class {
           this.emit("widget.ERROR", ev instanceof Error ? ev.message : ev);
         };
       } catch (ex) {
+        console.warn(ex);
         this.emit("widget.ERROR", "Unable to open");
       }
     };
@@ -339,6 +341,7 @@ var Widget = class {
 // src/dashboard.ts
 var Service = /* @__PURE__ */ ((Service2) => {
   Service2["None"] = "";
+  Service2["Search"] = "Search";
   Service2["Team"] = "Team";
   Service2["Drive"] = "Drive";
   Service2["Contacts"] = "Contacts";
@@ -363,6 +366,10 @@ var ScheduleAction = /* @__PURE__ */ ((ScheduleAction2) => {
   ScheduleAction2["intercept"] = "intercept";
   return ScheduleAction2;
 })(ScheduleAction || {});
+var SearchContentType = /* @__PURE__ */ ((SearchContentType2) => {
+  SearchContentType2["event"] = "event";
+  return SearchContentType2;
+})(SearchContentType || {});
 var Dashboard = class extends Widget {
   constructor(options, service = "" /* None */, serviceOptions = {}) {
     super(options);
@@ -371,12 +378,43 @@ var Dashboard = class extends Widget {
       case "Drive" /* Drive */:
       case "Contacts" /* Contacts */:
       case "Meet" /* Meet */:
+      case "Search" /* Search */:
         this.once("dashboard.READY", () => this.load(service, serviceOptions));
+        break;
+    }
+    switch (service) {
+      case "Search" /* Search */:
+        this.search = (query, {
+          contentType = "event" /* event */,
+          ...opts
+        } = {}) => {
+          if (!query) {
+            throw new Error("Nothing to search");
+          }
+          this._send("dashboard", "search", {
+            query,
+            contentType,
+            ...opts
+          });
+        };
         break;
     }
     this._load({
       redirect_url: `/conf/loading`
     });
+  }
+  /**
+   * Search for thing.
+   * @param query The search query.
+   * @param options Optional, search options.
+   * @throws {Error}
+   *   - "Not implemented" when the service is not "Search".
+   *   - "Nothing to search" when the query is empty.
+   */
+  search(query, options) {
+    query;
+    options;
+    throw new Error("Not implemented");
   }
   /**
    * Loads the service.
@@ -566,5 +604,6 @@ var Livestream = class extends Widget {
   Meeting,
   MeetingAction,
   ScheduleAction,
+  SearchContentType,
   Service
 });
