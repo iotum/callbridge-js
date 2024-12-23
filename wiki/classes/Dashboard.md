@@ -1,144 +1,144 @@
+[**@iotum/callbridge-js**](../README.md)
+
+***
+
 [@iotum/callbridge-js](../README.md) / Dashboard
 
 # Class: Dashboard
 
 Callbridge Dashboard.
 
-## Hierarchy
+## Extends
 
-- [`default`](internal.default.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\>
-
-  ↳ **`Dashboard`**
-
-## Table of contents
-
-### Constructors
-
-- [constructor](Dashboard.md#constructor)
-
-### Accessors
-
-- [instance](Dashboard.md#instance)
-- [isReady](Dashboard.md#isready)
-- [wnd](Dashboard.md#wnd)
-
-### Methods
-
-- [emit](Dashboard.md#emit)
-- [go](Dashboard.md#go)
-- [load](Dashboard.md#load)
-- [off](Dashboard.md#off)
-- [on](Dashboard.md#on)
-- [once](Dashboard.md#once)
-- [removeAllListeners](Dashboard.md#removealllisteners)
-- [setHiddenElements](Dashboard.md#sethiddenelements)
-- [toggle](Dashboard.md#toggle)
-- [unload](Dashboard.md#unload)
+- [`default`](../internal/classes/default.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
 
 ## Constructors
 
-### constructor
+### new Dashboard()
 
-• **new Dashboard**(`options`, `service?`, `serviceOptions?`)
+> **new Dashboard**(`options`, `service`, `serviceOptions`): [`Dashboard`](Dashboard.md)
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `options` | [`WidgetOptions`](../README.md#widgetoptions) | `undefined` | Widget options |
-| `service` | [`Service`](../enums/Service.md) | `Service.None` | Optional, the page to load after logging in |
-| `serviceOptions` | [`ServiceOptions`](../README.md#serviceoptions) | `{}` | Optional, service options. |
+##### options
+
+[`WidgetOptions`](../type-aliases/WidgetOptions.md)
+
+Widget options
+
+##### service
+
+[`Service`](../enumerations/Service.md) = `Service.None`
+
+Optional, the page to load after logging in
+
+##### serviceOptions
+
+[`ServiceOptions`](../type-aliases/ServiceOptions.md) = `{}`
+
+Optional, service options.
+
+#### Returns
+
+[`Dashboard`](Dashboard.md)
 
 #### Overrides
 
-[default](internal.default.md).[constructor](internal.default.md#constructor)
+[`default`](../internal/classes/default.md).[`constructor`](../internal/classes/default.md#constructors)
 
 #### Defined in
 
-[dashboard.ts:154](https://github.com/iotum/callbridge-js/blob/cbd9966/src/dashboard.ts#L154)
+[dashboard.ts:202](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L202)
 
 ## Accessors
 
 ### instance
 
-• `get` **instance**(): ``null`` \| `Window` \| `HTMLIFrameElement`
+#### Get Signature
+
+> **get** **instance**(): `null` \| `Window` \| `HTMLIFrameElement`
 
 The widget instance.
 
-#### Returns
+##### Returns
 
-``null`` \| `Window` \| `HTMLIFrameElement`
+`null` \| `Window` \| `HTMLIFrameElement`
 
 #### Inherited from
 
-Widget.instance
+[`default`](../internal/classes/default.md).[`instance`](../internal/classes/default.md#instance)
 
 #### Defined in
 
-[widget.ts:271](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L271)
+[widget.ts:271](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L271)
 
-___
+***
 
 ### isReady
 
-• `get` **isReady**(): `boolean`
+#### Get Signature
+
+> **get** **isReady**(): `boolean`
 
 Whether the widget is ready.
 
-#### Returns
+##### Returns
 
 `boolean`
 
 #### Inherited from
 
-Widget.isReady
+[`default`](../internal/classes/default.md).[`isReady`](../internal/classes/default.md#isready)
 
 #### Defined in
 
-[widget.ts:264](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L264)
+[widget.ts:264](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L264)
 
-___
+***
 
 ### wnd
 
-• `get` **wnd**(): ``null`` \| `Window`
+#### Get Signature
+
+> **get** **wnd**(): `null` \| `Window`
 
 The Window or WindowProxy instance of the widget.
 
-#### Returns
+##### Returns
 
-``null`` \| `Window`
+`null` \| `Window`
 
 #### Inherited from
 
-Widget.wnd
+[`default`](../internal/classes/default.md).[`wnd`](../internal/classes/default.md#wnd)
 
 #### Defined in
 
-[widget.ts:278](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L278)
+[widget.ts:278](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L278)
 
 ## Methods
 
-### emit
+### emit()
 
-▸ **emit**\<`K`\>(`eventName`, `data?`): `boolean`
+> **emit**\<`K`\>(`eventName`, `data`?): `boolean`
 
 Synchronously calls each of the listeners registered for the event namedeventName,
 in the order they were registered, passing the supplied arguments to each.
 Returns true if the event had listeners, false otherwise.
 
-#### Type parameters
+#### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | `K` |
-| `data?` | \{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`] |
+##### eventName
+
+`K`
+
+##### data?
+
+`object`\[`K`\]
 
 #### Returns
 
@@ -146,25 +146,29 @@ Returns true if the event had listeners, false otherwise.
 
 #### Inherited from
 
-[default](internal.default.md).[emit](internal.default.md#emit)
+[`default`](../internal/classes/default.md).[`emit`](../internal/classes/default.md#emit)
 
 #### Defined in
 
-[widget.ts:317](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L317)
+[widget.ts:317](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L317)
 
-___
+***
 
-### go
+### go()
 
-▸ **go**(`delta`): `void`
+> **go**(`delta`): `void`
 
 Loads a specific page from the session history.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `delta` | `number` | The position in the history to which you want to move, relative to the current page. A negative value moves backwards, a positive value moves forwards. |
+##### delta
+
+`number`
+
+The position in the history to which you want to move,
+relative to the current page. A negative value moves backwards,
+a positive value moves forwards.
 
 #### Returns
 
@@ -172,22 +176,29 @@ Loads a specific page from the session history.
 
 #### Defined in
 
-[dashboard.ts:199](https://github.com/iotum/callbridge-js/blob/cbd9966/src/dashboard.ts#L199)
+[dashboard.ts:283](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L283)
 
-___
+***
 
-### load
+### load()
 
-▸ **load**(`service`, `options?`): `void`
+> **load**(`service`, `options`): `void`
 
 Loads the service.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `service` | [`Service`](../enums/Service.md) | the service to load. |
-| `options` | [`ServiceOptions`](../README.md#serviceoptions) | Optional, service options. |
+##### service
+
+[`Service`](../enumerations/Service.md)
+
+the service to load.
+
+##### options
+
+[`ServiceOptions`](../type-aliases/ServiceOptions.md) = `{}`
+
+Optional, service options.
 
 #### Returns
 
@@ -195,113 +206,116 @@ Loads the service.
 
 #### Defined in
 
-[dashboard.ts:189](https://github.com/iotum/callbridge-js/blob/cbd9966/src/dashboard.ts#L189)
+[dashboard.ts:273](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L273)
 
-___
+***
 
-### off
+### off()
 
-▸ **off**\<`K`\>(`eventName`, `listener`): [`Dashboard`](Dashboard.md)
+> **off**\<`K`\>(`eventName`, `listener`): `this`
 
 Removes the specified `listener` from the listener array for the event named `eventName`.
 
-#### Type parameters
+#### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
+##### eventName
+
+`K`
+
+##### listener
+
+[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
 
 #### Returns
 
-[`Dashboard`](Dashboard.md)
+`this`
 
 #### Inherited from
 
-[default](internal.default.md).[off](internal.default.md#off)
+[`default`](../internal/classes/default.md).[`off`](../internal/classes/default.md#off)
 
 #### Defined in
 
-[widget.ts:298](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L298)
+[widget.ts:298](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L298)
 
-___
+***
 
-### on
+### on()
 
-▸ **on**\<`K`\>(`eventName`, `listener`): [`Dashboard`](Dashboard.md)
+> **on**\<`K`\>(`eventName`, `listener`): `this`
 
 Adds the `listener` function to the end of the listeners array for the event named `eventName`.
 
-#### Type parameters
+#### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
+##### eventName
+
+`K`
+
+##### listener
+
+[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
 
 #### Returns
 
-[`Dashboard`](Dashboard.md)
+`this`
 
 #### Inherited from
 
-[default](internal.default.md).[on](internal.default.md#on)
+[`default`](../internal/classes/default.md).[`on`](../internal/classes/default.md#on)
 
 #### Defined in
 
-[widget.ts:290](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L290)
+[widget.ts:290](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L290)
 
-___
+***
 
-### once
+### once()
 
-▸ **once**\<`K`\>(`eventName`, `listener`): [`Dashboard`](Dashboard.md)
+> **once**\<`K`\>(`eventName`, `listener`): `this`
 
 Adds a one-timelistener function for the event named eventName.
 The next time eventName is triggered, this listener is removed and then invoked.
 
-#### Type parameters
+#### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | extends [`EventKey`](../modules/internal.md#eventkey)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }\> |
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | `K` |
-| `listener` | [`Listener`](../modules/internal.md#listener)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string` ; `pathname`: `string` ; `search`: `string` ; `service`: [`Service`](../enums/Service.md)  } ; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string` ; `options`: [`MeetingOptions`](../README.md#meetingoptions)  } ; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id?`: `number` ; `options`: [`ScheduleOptions`](../modules/internal.md#scheduleoptions)  } ; `dashboard.READY`: \{ `existing?`: `boolean`  } ; `dashboard.ROOM_LIST`: \{ `channels`: \{ `[channelId: string]`: [`ChatRoom`](../README.md#chatroom);  } ; `rooms`: \{ `[roomId: string]`: [`ChatRoom`](../README.md#chatroom);  }  } ; `dashboard.SESSION_EXPIRED`: `void` ; `dashboard.UNLOAD`: `void` ; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{ `[id: string]`: `number`;  }  } ; `room.READY`: `void` ; `room.UNLOAD`: \{ `reason`: `string`  }  }[`K`]\> |
+##### eventName
+
+`K`
+
+##### listener
+
+[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
 
 #### Returns
 
-[`Dashboard`](Dashboard.md)
+`this`
 
 #### Inherited from
 
-[default](internal.default.md).[once](internal.default.md#once)
+[`default`](../internal/classes/default.md).[`once`](../internal/classes/default.md#once)
 
 #### Defined in
 
-[widget.ts:307](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L307)
+[widget.ts:307](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L307)
 
-___
+***
 
-### removeAllListeners
+### removeAllListeners()
 
-▸ **removeAllListeners**(`event?`): [`Dashboard`](Dashboard.md)
+> **removeAllListeners**(`event`?): `this`
 
 Removes all listeners, or those of the specified `eventName`.
 
@@ -310,35 +324,72 @@ particularly when the instance was created by some other component or module.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event?` | `string` |
+##### event?
+
+`string`
 
 #### Returns
 
-[`Dashboard`](Dashboard.md)
+`this`
 
 #### Inherited from
 
-[default](internal.default.md).[removeAllListeners](internal.default.md#removealllisteners)
+[`default`](../internal/classes/default.md).[`removeAllListeners`](../internal/classes/default.md#removealllisteners)
 
 #### Defined in
 
-[widget.ts:327](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L327)
+[widget.ts:327](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L327)
 
-___
+***
 
-### setHiddenElements
+### search()
 
-▸ **setHiddenElements**(`ids`): `void`
+> **search**(`query`, `options`?): `void`
+
+Search for thing.
+
+#### Parameters
+
+##### query
+
+`string`
+
+The search query.
+
+##### options?
+
+[`SearchOptions`](../type-aliases/SearchOptions.md)
+
+Optional, search options.
+
+#### Returns
+
+`void`
+
+#### Throws
+
+- "Not implemented" when the service is not "Search".
+  - "Nothing to search" when the query is empty.
+
+#### Defined in
+
+[dashboard.ts:262](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L262)
+
+***
+
+### setHiddenElements()
+
+> **setHiddenElements**(`ids`): `void`
 
 Hides elements on the dashboard.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `ids` | `number`[] | An array of element IDs to hide. |
+##### ids
+
+`number`[]
+
+An array of element IDs to hide.
 
 #### Returns
 
@@ -346,13 +397,13 @@ Hides elements on the dashboard.
 
 #### Defined in
 
-[dashboard.ts:207](https://github.com/iotum/callbridge-js/blob/cbd9966/src/dashboard.ts#L207)
+[dashboard.ts:291](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L291)
 
-___
+***
 
-### toggle
+### toggle()
 
-▸ **toggle**(`visible`): `void`
+> **toggle**(`visible`): `void`
 
 Toggles the visibility of the widget on the page.
 
@@ -360,9 +411,11 @@ Not available for pop-up.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `visible` | `boolean` | whether the widget should be visible |
+##### visible
+
+`boolean`
+
+whether the widget should be visible
 
 #### Returns
 
@@ -370,17 +423,17 @@ Not available for pop-up.
 
 #### Inherited from
 
-[default](internal.default.md).[toggle](internal.default.md#toggle)
+[`default`](../internal/classes/default.md).[`toggle`](../internal/classes/default.md#toggle)
 
 #### Defined in
 
-[widget.ts:255](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L255)
+[widget.ts:255](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L255)
 
-___
+***
 
-### unload
+### unload()
 
-▸ **unload**(): `void`
+> **unload**(): `void`
 
 Unloads the widget by removing the iframe or close the tab/window.
 
@@ -390,8 +443,8 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Inherited from
 
-[default](internal.default.md).[unload](internal.default.md#unload)
+[`default`](../internal/classes/default.md).[`unload`](../internal/classes/default.md#unload)
 
 #### Defined in
 
-[widget.ts:227](https://github.com/iotum/callbridge-js/blob/cbd9966/src/widget.ts#L227)
+[widget.ts:227](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L227)
