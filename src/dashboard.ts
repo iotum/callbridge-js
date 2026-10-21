@@ -1,8 +1,10 @@
 import { MeetingOptions, ScheduleOptions } from './meeting';
-import Widget, { WidgetOptions } from './widget';
+import { RoomEvents } from './room';
+import Widget, { WidgetEvents, WidgetOptions } from './widget';
 
 /**
  * Dashboard service.
+ * @category Options
  */
 export enum Service {
   /** None */
@@ -21,6 +23,7 @@ export enum Service {
 
 /**
  * Dashboard service layout options.
+ * @category Options
  */
 export enum LayoutOption {
   /** Full UI (default) */
@@ -35,6 +38,7 @@ export enum LayoutOption {
 
 /**
  * Dashboard service meeting action.
+ * @category Options
  */
 export enum MeetingAction {
   /** Load the meeting room inline (when widget container is an iframe). */
@@ -47,6 +51,7 @@ export enum MeetingAction {
 
 /**
  * Dashboard service schedule action.
+ * @category Options
  */
 export enum ScheduleAction {
   /** Load the schedule page normally. */
@@ -57,25 +62,29 @@ export enum ScheduleAction {
 
 /**
  * Dashboard service options.
+ * @category Options
  */
 export type ServiceOptions = {
   /**
-   * The initial path to load.
+   * The initial path to load, relative to the service, e.g. a {@link ChatRoom.path}.
    */
   pathname?: string;
 
   /**
    * The service layout.
+   * @defaultValue {@link LayoutOption.full}
    */
   layout?: LayoutOption;
 
   /**
-   * The meeting action.
+   * What happens when the user starts or joins a meeting.
+   * @defaultValue {@link MeetingAction.auto}
    */
   meetingAction?: MeetingAction;
 
   /**
-   * The schedule action.
+   * What happens when the user schedules or edits a meeting.
+   * @defaultValue {@link ScheduleAction.auto}
    */
   scheduleAction?: ScheduleAction;
 
@@ -93,26 +102,43 @@ export type ServiceOptions = {
    * The invited host IDs. ("meeting schedule" only)
    */
   invitedHosts?: number[];
+
+  /**
+   * Enables the chat bot: Team chat messages starting with `/` (e.g. `/weather`) are not sent;
+   * {@link DashboardEvents."dashboard.BOT_MESSAGE"} is emitted instead,
+   * and you can answer with {@link Dashboard.replyToBotMessage}.
+   *
+   * Once enabled, it stays enabled until the browser tab is closed.
+   *
+   * See [Chat bot](../docs/guides/dashboard.md#chat-bot).
+   */
+  bot?: boolean;
 };
 
 /**
  * Chat room.
+ * @see {@link DashboardEvents."dashboard.ROOM_LIST"}
+ * @category Events
  */
 export type ChatRoom = {
-  /** Room path, used for navigation. @see `Dashboard.load` */
+  /** Room path, used for navigation. @see {@link Dashboard.load} */
   path: string;
   /** Room description. */
   description?: string;
   /** Accounts added to the room. */
   accounts: Array<{
+    /** The account id. */
     id: number;
+    /** The account name. */
     name: string;
+    /** The account picture URL. */
     picture_url: string;
   }>;
 };
 
 /**
  * Search options.
+ * @category Options
  */
 export type SearchOptions = {
   /** The search content type. Default `SearchContentType.Event` */
@@ -125,6 +151,7 @@ export type SearchOptions = {
 
 /**
  * Search content type.
+ * @category Options
  */
 export enum SearchContentType {
   /** E.g. meeting and call event. */
@@ -132,56 +159,131 @@ export enum SearchContentType {
 }
 
 /**
- * Callbridge Dashboard.
+ * Events emitted by the dashboard, in addition to {@link WidgetEvents}.
+ *
+ * @example
+ * ```ts
+ * dashboard.on('dashboard.UNREAD_MESSAGES', ({ rooms }) => {
+ *   const total = Object.values(rooms).reduce((sum, count) => sum + count, 0);
+ *   badge.textContent = String(total);
+ * });
+ * ```
+ * @category Events
  */
-export default class Dashboard extends Widget<{
-  /** Dashboard widget is ready */
+export type DashboardEvents = {
+  /**
+   * The dashboard is ready, {@link Dashboard.load} and the other methods can be used.
+   */
   'dashboard.READY': {
+    /** Whether an existing widget (see {@link WidgetOptions.target}`.checkExisting`) is reused. */
     existing?: boolean;
   };
-  /** Dashboard widget is unloading */
+  /** The dashboard is unloading. */
   'dashboard.UNLOAD': void;
-  /** Dashboard widget is signed out */
+  /** The user's session has expired; sign in again by creating a new widget. */
   'dashboard.SESSION_EXPIRED': void;
+  /** The user navigated within the dashboard. */
   'dashboard.NAVIGATE': {
+    /** The current service, if any. */
     service: Service;
+    /** The path, relative to the service. */
     pathname: string;
+    /** The query string. */
     search: string;
+    /** The URL fragment. */
     hash: string;
   };
+  /** The chat rooms are loaded or changed. ({@link Service.Team} only) */
   'dashboard.ROOM_LIST': {
-    /** Rooms */
+    /** Rooms (direct messages and group chats), by room id. */
     rooms: {
       [roomId: string]: ChatRoom;
     };
-    /** Channels */
+    /** Channels, by channel id. */
     channels: {
       [channelId: string]: ChatRoom;
     };
   };
+  /** The unread message counts are changed. ({@link Service.Team} only) */
   'dashboard.UNREAD_MESSAGES': {
+    /** The number of unread messages, by room id. */
     rooms: { [/** Room Id */ id: string]: number };
   };
+  /**
+   * The user started or joined a meeting.
+   * Requires {@link ServiceOptions.meetingAction} to be {@link MeetingAction.intercept}.
+   *
+   * @example
+   * ```ts
+   * dashboard.on('dashboard.NAVIGATE_TO_CALL', ({ accessCode, options }) => {
+   *   new Meeting(widgetOptions, accessCode, options);
+   * });
+   * ```
+   */
   'dashboard.NAVIGATE_TO_CALL': {
+    /** The meeting access code. */
     accessCode: string;
+    /** The meeting options. */
     options: MeetingOptions;
   };
+  /**
+   * The user wants to schedule or edit a meeting.
+   * Requires {@link ServiceOptions.scheduleAction} to be {@link ScheduleAction.intercept}.
+   */
   'dashboard.NAVIGATE_TO_SCHEDULE': {
     /** The meeting id to edit or copy. */
     id?: number;
+    /** The schedule options. */
     options: ScheduleOptions;
   };
+  /** A search is started. ({@link Service.Search} only) */
   'dashboard.SEARCH_START': {
-    /** The search query. */
+    /** The free-text part of the search query, in lower case. */
     query: string;
+    /**
+     * The `field:value` terms of the search query, e.g. `participant:alice` or `after:2026-01-01`.
+     * Every value is an array, because a field can be repeated or have comma-separated values.
+     */
+    filters: {
+      /** `subject:` terms. */
+      subject?: string[];
+      /** `description:` terms. */
+      description?: string[];
+      /** `participant:` terms. */
+      participant?: string[];
+      /** `transcript:` terms. */
+      transcript?: string[];
+      /** `filename:` terms (uploaded files). */
+      filename?: string[];
+      /** `before:` dates, as ISO 8601 strings. */
+      before?: string[];
+      /** `after:` dates, as ISO 8601 strings. */
+      after?: string[];
+      /** `sentiment:` terms. */
+      sentiment?: Array<'positive' | 'negative'>;
+      /** `day:` terms, e.g. `monday`. */
+      day?: string[];
+      /** `month:` terms, e.g. `january`. */
+      month?: string[];
+      /** `year:` terms. */
+      year?: string[];
+      /** `video:` terms (`true` or `false`). */
+      video?: string[];
+      /** `audio:` terms (`true` or `false`). */
+      audio?: string[];
+    };
     /** The page of the result. */
     page: number;
     /** The order of the result. */
     order: 'date' | 'relevance';
   };
+  /** A search is completed or failed. ({@link Service.Search} only) */
   'dashboard.SEARCH_RESULT': {
-    /** The search query. */
-    query: string;
+    /**
+     * The query of the search, as in {@link DashboardEvents."dashboard.SEARCH_START"}.
+     * Not sent by older Callbridge versions.
+     */
+    query?: string;
     /** The search error. */
     error?: string;
     /** The search result. */
@@ -190,15 +292,75 @@ export default class Dashboard extends Widget<{
       contentType: SearchContentType;
       /** The id of the item */
       id: number;
-      /** The result text with <mark> */
+      /** The result text with `<mark>` */
       highlight: Record<string, Array<string>>;
     }>;
   };
-  /** Meeting widget is ready */
-  'room.READY': void;
-  /** Meeting widget is unloading */
-  'room.UNLOAD': { reason: string };
-}> {
+  /**
+   * The user sent a chat bot command. ({@link Service.Team} with {@link ServiceOptions.bot} only)
+   *
+   * The message is not posted to the room.
+   * Answer within 30 seconds with {@link Dashboard.replyToBotMessage}.
+   */
+  'dashboard.BOT_MESSAGE': {
+    /** The message id; pass it to {@link Dashboard.replyToBotMessage}. */
+    id: string;
+    /** The message text (Markdown), starting with `/`. */
+    message: string;
+    /** The chat room id, as in {@link DashboardEvents."dashboard.ROOM_LIST"}. */
+    room_id: number;
+  };
+  /** A reply sent with {@link Dashboard.replyToBotMessage} was not posted. */
+  'dashboard.BOT_MESSAGE_REJECTED': {
+    /** The message id. */
+    id: string;
+    /**
+     * Why the reply was not posted:
+     * - `INVALID ID`: no message has this id, or it was already answered.
+     * - `INVALID SENDER`: a different user is now signed in.
+     * - `OLD MESSAGE`: more than 30 seconds have passed since the message was sent.
+     */
+    reason: 'INVALID ID' | 'INVALID SENDER' | 'OLD MESSAGE';
+  };
+  /** A meeting room is loaded inline. See {@link MeetingAction.auto}. */
+  'room.READY': RoomEvents['room.READY'];
+  /**
+   * The inline meeting room is unloading. See {@link MeetingAction.auto}.
+   * The dashboard widget is unloaded as well; create a new {@link Dashboard} to show it again.
+   */
+  'room.UNLOAD': RoomEvents['room.UNLOAD'];
+};
+
+/**
+ * Callbridge Dashboard: Team (chat), Drive, Contacts, Meet and Search.
+ *
+ * Emits {@link WidgetEvents} and {@link DashboardEvents}.
+ *
+ * @example
+ * ```ts
+ * import { Dashboard, Service, LayoutOption } from '@iotum/callbridge-js';
+ *
+ * const dashboard = new Dashboard(
+ *   {
+ *     domain: 'your-company.callbridge.com',
+ *     sso: { token: 'sso-token', hostId: 12345 },
+ *     container: '#dashboard',
+ *   },
+ *   Service.Team,
+ *   { layout: LayoutOption.full },
+ * );
+ *
+ * dashboard.on('dashboard.SESSION_EXPIRED', () => dashboard.unload());
+ *
+ * // switch to another service later
+ * dashboard.load(Service.Drive);
+ * ```
+ * @category Widgets
+ */
+export default class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
+  /**
+   * Creates the dashboard, signs in, and loads the `service` when the dashboard is ready.
+   */
   constructor(
     /**
      * Widget options
@@ -252,7 +414,17 @@ export default class Dashboard extends Widget<{
   }
 
   /**
-   * Search for thing.
+   * Search for meetings and calls.
+   *
+   * Only available when the dashboard is created with {@link Service.Search}.
+   * Listen to {@link DashboardEvents."dashboard.SEARCH_RESULT"} for the result.
+   *
+   * @example
+   * ```ts
+   * const dashboard = new Dashboard(options, Service.Search);
+   * dashboard.on('dashboard.SEARCH_RESULT', ({ result, error }) => render(result, error));
+   * dashboard.once('dashboard.READY', () => dashboard.search('quarterly review'));
+   * ```
    * @param query The search query.
    * @param options Optional, search options.
    * @throws {Error}
@@ -267,6 +439,14 @@ export default class Dashboard extends Widget<{
 
   /**
    * Loads the service.
+   *
+   * Wait for {@link DashboardEvents."dashboard.READY"} before calling this.
+   *
+   * @example
+   * ```ts
+   * // open a chat room in the main area only
+   * dashboard.load(Service.Team, { pathname: room.path, layout: LayoutOption.main });
+   * ```
    * @param service the service to load.
    * @param options Optional, service options.
    */
@@ -285,8 +465,31 @@ export default class Dashboard extends Widget<{
   }
 
   /**
+   * Answers a chat bot command: posts `content` to the chat room of the
+   * {@link DashboardEvents."dashboard.BOT_MESSAGE"} as the signed-in user.
+   *
+   * Requires {@link Service.Team} with {@link ServiceOptions.bot}.
+   * Each message can be answered once, within 30 seconds;
+   * otherwise {@link DashboardEvents."dashboard.BOT_MESSAGE_REJECTED"} is emitted.
+   *
+   * @example
+   * ```ts
+   * dashboard.on('dashboard.BOT_MESSAGE', async ({ id, message }) => {
+   *   if (message.startsWith('/time')) {
+   *     dashboard.replyToBotMessage(id, `It is ${new Date().toLocaleTimeString()}`);
+   *   }
+   * });
+   * ```
+   * @param id The {@link DashboardEvents."dashboard.BOT_MESSAGE"} id.
+   * @param content The reply (Markdown).
+   */
+  replyToBotMessage(id: string, content: string) {
+    this._send('dashboard', 'botMessage', { id, content });
+  }
+
+  /**
    * Hides elements on the dashboard.
-   * @param ids An array of element IDs to hide.
+   * @param ids An array of Callbridge UI element IDs to hide, as used by the "hidden elements" account settings.
    */
   setHiddenElements(ids: number[]) {
     this._send('dashboard', 'setHiddenElements', { ids });

@@ -6,7 +6,17 @@ const PONG = '_pong';
 const AUTH_PATH = '/auth';
 
 /**
- * Widget options.
+ * Widget options, common to every widget.
+ *
+ * @example
+ * ```ts
+ * const options: WidgetOptions = {
+ *   domain: 'your-company.callbridge.com',
+ *   sso: { token: 'sso-token', hostId: 12345 },
+ *   container: '#widget',
+ * };
+ * ```
+ * @category Options
  */
 export type WidgetOptions = {
   /**
@@ -124,9 +134,60 @@ function setParams(url: URL, params: SearchParams) {
   }
 }
 
-type EventMap = Record<string, any>;
-type EventKey<T extends EventMap> = string & keyof T;
-type Listener<T> = (params: T) => void;
+/**
+ * Events emitted by every widget.
+ *
+ * @example
+ * ```ts
+ * widget.on('widget.ERROR', (error) => console.error(error));
+ * widget.on('widget.STORAGE_ACCESS_REQUIRED', ({ step }) => widget.toggle(true));
+ * ```
+ * @category Events
+ */
+export type WidgetEvents = {
+  /** The widget is loaded and ready for messaging. May be emitted again after a storage access reload. */
+  'widget.LOAD': void;
+  /** The widget is unloading. */
+  'widget.UNLOAD': void;
+  /** The widget failed to load. */
+  'widget.ERROR': string;
+  /**
+   * Third-party cookies are blocked (e.g. Safari) and the user must grant storage access.
+   * Make the widget visible (see `toggle`) and remove any loading overlay so the user can interact with it.
+   * Not an error: `widget.STORAGE_ACCESS_GRANTED` or `widget.STORAGE_ACCESS_DENIED` follows.
+   */
+  'widget.STORAGE_ACCESS_REQUIRED': {
+    /**
+     * `request`: the user must click the widget button.
+     * `interaction`: the user must click through the pop up window (or allow pop ups).
+     * `retry`: the pop up completed, the user must click the widget button again.
+     */
+    step: 'request' | 'interaction' | 'retry';
+  };
+  /**
+   * Storage access is granted. Authentication continues; wait for `widget.LOAD` before using the widget.
+   * It is safe to hide the widget again.
+   */
+  'widget.STORAGE_ACCESS_GRANTED': void;
+  /** The user (or the browser) denied storage access. The widget cannot sign in. */
+  'widget.STORAGE_ACCESS_DENIED': void;
+};
+
+/**
+ * A map of event names to event payloads.
+ * @category Events
+ */
+export type EventMap = Record<string, any>;
+/**
+ * An event name of the event map `T`.
+ * @category Events
+ */
+export type EventKey<T extends EventMap> = string & keyof T;
+/**
+ * An event listener, called with the event payload.
+ * @category Events
+ */
+export type Listener<T> = (params: T) => void;
 
 interface WidgetEventEmitter<T extends EventMap> {
   on<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this;
@@ -137,18 +198,23 @@ interface WidgetEventEmitter<T extends EventMap> {
 }
 
 /**
- * Callbridge Widget.
+ * Base class of every Callbridge widget.
+ *
+ * Create a {@link Dashboard}, {@link Meeting} or {@link Livestream} instead of using this class directly.
+ * The methods and {@link WidgetEvents} documented here are available on every widget.
+ *
+ * @example
+ * ```ts
+ * widget.on('widget.LOAD', () => console.log('loaded'));
+ * widget.toggle(false); // hide the iframe
+ * widget.unload(); // remove the iframe, or close the tab
+ * ```
+ * @typeParam T The events emitted by the widget.
+ * @category Widgets
  */
 export default class Widget<
-  T extends
-    | EventMap
-    | {
-        'widget.LOAD': void;
-        'widget.UNLOAD': void;
-        'widget.ERROR': string;
-      },
-> implements WidgetEventEmitter<T>
-{
+  T extends EventMap | WidgetEvents,
+> implements WidgetEventEmitter<T> {
   private emitter = new EventEmitter();
 
   private _attached = true;
@@ -171,6 +237,13 @@ export default class Widget<
   /** @internal */
   protected _error: Event | string | undefined;
 
+  /**
+   * @param options Widget options.
+   * @param autoLoad Whether to load the widget immediately. Used by subclasses.
+   * @throws {Error}
+   *   - "Unable to locate the container element" when `container` cannot be found.
+   *   - "Missing SSO parameters" when `sso` is set without both `token` and `hostId`.
+   */
   constructor(
     {
       container,
@@ -223,6 +296,9 @@ export default class Widget<
 
   /**
    * Unloads the widget by removing the iframe or close the tab/window.
+   *
+   * Call this when the host page or component is torn down (e.g. in a React effect cleanup).
+   * The widget instance cannot be reused afterwards; create a new one instead.
    */
   unload() {
     // prevent initialization if unload happens too quickly (e.g. React StrictMode in dev)
@@ -286,6 +362,11 @@ export default class Widget<
 
   /**
    * Adds the `listener` function to the end of the listeners array for the event named `eventName`.
+   *
+   * @example
+   * ```ts
+   * widget.on('widget.ERROR', (error) => console.error(error));
+   * ```
    */
   on<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this {
     this.emitter.on(eventName, listener);
@@ -301,8 +382,8 @@ export default class Widget<
   }
 
   /**
-   * Adds a one-timelistener function for the event named eventName.
-   * The next time eventName is triggered, this listener is removed and then invoked.
+   * Adds a one-time `listener` function for the event named `eventName`.
+   * The next time `eventName` is triggered, this listener is removed and then invoked.
    */
   once<K extends EventKey<T>>(eventName: K, listener: Listener<T[K]>): this {
     this.emitter.once(eventName, listener);
@@ -310,7 +391,7 @@ export default class Widget<
   }
 
   /**
-   * Synchronously calls each of the listeners registered for the event namedeventName,
+   * Synchronously calls each of the listeners registered for the event named `eventName`,
    * in the order they were registered, passing the supplied arguments to each.
    * Returns true if the event had listeners, false otherwise.
    */

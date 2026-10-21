@@ -1,0 +1,80 @@
+# Publishes the API documentation to GitHub Pages (gh-pages branch):
+#   /v<version>/  documentation of the release
+#   /latest/      documentation of the latest release
+#   /             redirects to /latest/
+#
+# Run manually (workflow_dispatch) to republish the docs of the selected branch or tag.
+name: Publish Docs
+
+on:
+  release:
+    types: [released]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: docs-deploy
+  cancel-in-progress: false
+
+jobs:
+  publish-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+
+      - name: Resolve version
+        id: version
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          if [ -n "$TAG" ]; then
+            echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+            echo "revision=$TAG" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+            echo "revision=$GITHUB_SHA" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build docs
+        run: npx typedoc --gitRevision "${{ steps.version.outputs.revision }}"
+
+      - name: Build site root
+        run: |
+          mkdir pages-root
+          touch pages-root/.nojekyll
+          cat > pages-root/index.html <<'EOF'
+          <!doctype html>
+          <meta charset="utf-8">
+          <title>Callbridge JS SDK</title>
+          <meta http-equiv="refresh" content="0; url=latest/">
+          <link rel="canonical" href="latest/">
+          <a href="latest/">Callbridge JS SDK documentation</a>
+          EOF
+
+      - name: Deploy versioned docs
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs-site
+          target-folder: v${{ steps.version.outputs.version }}
+
+      - name: Deploy latest docs
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs-site
+          target-folder: latest
+
+      - name: Deploy site root
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: pages-root
+          clean: false

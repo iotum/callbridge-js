@@ -1,7 +1,8 @@
-import Widget, { WidgetOptions } from './widget';
+import Widget, { WidgetEvents, WidgetOptions } from './widget';
 
 /**
  * Livestream options.
+ * @category Options
  */
 export type LivestreamOptions = {
   /**
@@ -19,19 +20,49 @@ export type LivestreamOptions = {
 };
 
 /**
- * Callbridge Livesteam Viewer.
+ * Events emitted by the livestream viewer, in addition to {@link WidgetEvents}.
+ * @category Events
  */
-export default class Livestream extends Widget<{
+export type LivestreamEvents = {
+  /** The livestream viewer is ready. */
   'livestream.READY': void;
+  /**
+   * The viewer tried to chat while {@link LivestreamOptions.chat} is `'intercept'`.
+   * Show your own chat UI instead.
+   */
   'livestream.LIVE_STREAM_INTERCEPT_CHAT': void;
-}> {
+};
+
+/**
+ * Callbridge Livestream Viewer.
+ *
+ * Emits {@link WidgetEvents} and {@link LivestreamEvents}.
+ *
+ * @example
+ * ```ts
+ * import { Livestream } from '@iotum/callbridge-js';
+ *
+ * const livestream = new Livestream(
+ *   { domain: 'your-company.callbridge.com', container: '#livestream' },
+ *   '1234567', // access code
+ *   { name: 'Viewer', chat: true },
+ * );
+ * ```
+ * @category Widgets
+ */
+export default class Livestream extends Widget<
+  WidgetEvents & LivestreamEvents
+> {
+  /**
+   * Creates the livestream viewer and plays the livestream.
+   */
   constructor(
     /**
      * Widget options
      */
     options: WidgetOptions,
     /**
-     * The room to stream
+     * The room to stream, i.e. the meeting access code.
      */
     roomId: string,
     /**

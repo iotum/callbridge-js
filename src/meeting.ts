@@ -3,6 +3,7 @@ import { WidgetOptions } from './widget';
 
 /**
  * Meeting options.
+ * @category Options
  */
 export type MeetingOptions = {
   /**
@@ -64,7 +65,11 @@ export type MeetingOptions = {
   afterCallUrl?: string;
 };
 
-/** Schedule options. */
+/**
+ * Schedule options.
+ * @see {@link DashboardEvents."dashboard.NAVIGATE_TO_SCHEDULE"}
+ * @category Options
+ */
 export type ScheduleOptions = {
   /** If `true`, create new meeting by copying settings from an existing meeting. */
   copyMeeting?: boolean;
@@ -72,15 +77,40 @@ export type ScheduleOptions = {
 
 /**
  * Callbridge Meeting Room.
+ *
+ * Joins a meeting room inside the container, or in a new tab.
+ * Emits {@link WidgetEvents} and {@link RoomEvents}.
+ *
+ * @example
+ * ```ts
+ * import { Meeting } from '@iotum/callbridge-js';
+ *
+ * const meeting = new Meeting(
+ *   {
+ *     domain: 'your-company.callbridge.com',
+ *     sso: { token: 'sso-token', hostId: 12345 },
+ *     container: '#meeting',
+ *   },
+ *   '1234567', // access code
+ *   { name: 'Jane Doe', skipJoin: true },
+ * );
+ *
+ * meeting.on('room.READY', () => meeting.setMute(true));
+ * meeting.on('room.UNLOAD', () => meeting.unload());
+ * ```
+ * @category Widgets
  */
 export default class Meeting extends Room {
+  /**
+   * Creates the meeting widget, signs in, and joins the meeting room.
+   */
   constructor(
     /**
      * Widget options
      */
     options: WidgetOptions,
     /**
-     * The room to join
+     * The room to join, i.e. the meeting access code.
      */
     roomId: string,
     /**
