@@ -1,4 +1,4 @@
-export { type WidgetOptions } from './widget';
+export { type WidgetOptions, type WidgetEvents } from './widget';
 export {
   default as Dashboard,
   Service,

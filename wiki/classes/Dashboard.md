@@ -10,7 +10,7 @@ Callbridge Dashboard.
 
 ## Extends
 
-- [`default`](../internal/classes/default.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
+- [`default`](../internal/classes/default.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 ## Constructors
 
@@ -48,7 +48,7 @@ Optional, service options.
 
 #### Defined in
 
-[dashboard.ts:202](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L202)
+[dashboard.ts:204](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/dashboard.ts#L204)
 
 ## Accessors
 
@@ -70,7 +70,7 @@ The widget instance.
 
 #### Defined in
 
-[widget.ts:271](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L271)
+[widget.ts:296](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L296)
 
 ***
 
@@ -92,7 +92,7 @@ Whether the widget is ready.
 
 #### Defined in
 
-[widget.ts:264](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L264)
+[widget.ts:289](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L289)
 
 ***
 
@@ -114,7 +114,7 @@ The Window or WindowProxy instance of the widget.
 
 #### Defined in
 
-[widget.ts:278](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L278)
+[widget.ts:303](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L303)
 
 ## Methods
 
@@ -128,7 +128,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -138,7 +138,7 @@ Returns true if the event had listeners, false otherwise.
 
 ##### data?
 
-`object`\[`K`\]
+[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]
 
 #### Returns
 
@@ -150,7 +150,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:317](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L317)
+[widget.ts:342](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L342)
 
 ***
 
@@ -176,7 +176,7 @@ a positive value moves forwards.
 
 #### Defined in
 
-[dashboard.ts:283](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L283)
+[dashboard.ts:285](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/dashboard.ts#L285)
 
 ***
 
@@ -206,7 +206,7 @@ Optional, service options.
 
 #### Defined in
 
-[dashboard.ts:273](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L273)
+[dashboard.ts:275](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/dashboard.ts#L275)
 
 ***
 
@@ -218,7 +218,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -228,7 +228,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 ##### listener
 
-[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
+[`Listener`](../internal/type-aliases/Listener.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]\>
 
 #### Returns
 
@@ -240,7 +240,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:298](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L298)
+[widget.ts:323](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L323)
 
 ***
 
@@ -252,7 +252,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -262,7 +262,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 ##### listener
 
-[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
+[`Listener`](../internal/type-aliases/Listener.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]\>
 
 #### Returns
 
@@ -274,7 +274,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:290](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L290)
+[widget.ts:315](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L315)
 
 ***
 
@@ -287,7 +287,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `dashboard.NAVIGATE`: \{ `hash`: `string`; `pathname`: `string`; `search`: `string`; `service`: [`Service`](../enumerations/Service.md); \}; `dashboard.NAVIGATE_TO_CALL`: \{ `accessCode`: `string`; `options`: [`MeetingOptions`](../type-aliases/MeetingOptions.md); \}; `dashboard.NAVIGATE_TO_SCHEDULE`: \{ `id`: `number`; `options`: [`ScheduleOptions`](../internal/type-aliases/ScheduleOptions.md); \}; `dashboard.READY`: \{ `existing`: `boolean`; \}; `dashboard.ROOM_LIST`: \{ `channels`: \{\}; `rooms`: \{\}; \}; `dashboard.SEARCH_RESULT`: \{ `error`: `string`; `query`: `string`; `result`: `object`[]; \}; `dashboard.SEARCH_START`: \{ `order`: `"date"` \| `"relevance"`; `page`: `number`; `query`: `string`; \}; `dashboard.SESSION_EXPIRED`: `void`; `dashboard.UNLOAD`: `void`; `dashboard.UNREAD_MESSAGES`: \{ `rooms`: \{\}; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -297,7 +297,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 ##### listener
 
-[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
+[`Listener`](../internal/type-aliases/Listener.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]\>
 
 #### Returns
 
@@ -309,7 +309,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:307](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L307)
+[widget.ts:332](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L332)
 
 ***
 
@@ -338,7 +338,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:327](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L327)
+[widget.ts:352](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L352)
 
 ***
 
@@ -373,7 +373,7 @@ Optional, search options.
 
 #### Defined in
 
-[dashboard.ts:262](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L262)
+[dashboard.ts:264](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/dashboard.ts#L264)
 
 ***
 
@@ -397,7 +397,7 @@ An array of element IDs to hide.
 
 #### Defined in
 
-[dashboard.ts:291](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L291)
+[dashboard.ts:293](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/dashboard.ts#L293)
 
 ***
 
@@ -427,7 +427,7 @@ whether the widget should be visible
 
 #### Defined in
 
-[widget.ts:255](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L255)
+[widget.ts:280](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L280)
 
 ***
 
@@ -447,4 +447,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:227](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L227)
+[widget.ts:252](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L252)

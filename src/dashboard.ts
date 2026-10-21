@@ -1,5 +1,5 @@
 import { MeetingOptions, ScheduleOptions } from './meeting';
-import Widget, { WidgetOptions } from './widget';
+import Widget, { WidgetEvents, WidgetOptions } from './widget';
 
 /**
  * Dashboard service.
@@ -134,71 +134,73 @@ export enum SearchContentType {
 /**
  * Callbridge Dashboard.
  */
-export default class Dashboard extends Widget<{
-  /** Dashboard widget is ready */
-  'dashboard.READY': {
-    existing?: boolean;
-  };
-  /** Dashboard widget is unloading */
-  'dashboard.UNLOAD': void;
-  /** Dashboard widget is signed out */
-  'dashboard.SESSION_EXPIRED': void;
-  'dashboard.NAVIGATE': {
-    service: Service;
-    pathname: string;
-    search: string;
-    hash: string;
-  };
-  'dashboard.ROOM_LIST': {
-    /** Rooms */
-    rooms: {
-      [roomId: string]: ChatRoom;
+export default class Dashboard extends Widget<
+  WidgetEvents & {
+    /** Dashboard widget is ready */
+    'dashboard.READY': {
+      existing?: boolean;
     };
-    /** Channels */
-    channels: {
-      [channelId: string]: ChatRoom;
+    /** Dashboard widget is unloading */
+    'dashboard.UNLOAD': void;
+    /** Dashboard widget is signed out */
+    'dashboard.SESSION_EXPIRED': void;
+    'dashboard.NAVIGATE': {
+      service: Service;
+      pathname: string;
+      search: string;
+      hash: string;
     };
-  };
-  'dashboard.UNREAD_MESSAGES': {
-    rooms: { [/** Room Id */ id: string]: number };
-  };
-  'dashboard.NAVIGATE_TO_CALL': {
-    accessCode: string;
-    options: MeetingOptions;
-  };
-  'dashboard.NAVIGATE_TO_SCHEDULE': {
-    /** The meeting id to edit or copy. */
-    id?: number;
-    options: ScheduleOptions;
-  };
-  'dashboard.SEARCH_START': {
-    /** The search query. */
-    query: string;
-    /** The page of the result. */
-    page: number;
-    /** The order of the result. */
-    order: 'date' | 'relevance';
-  };
-  'dashboard.SEARCH_RESULT': {
-    /** The search query. */
-    query: string;
-    /** The search error. */
-    error?: string;
-    /** The search result. */
-    result?: Array<{
-      /** The type of the item. */
-      contentType: SearchContentType;
-      /** The id of the item */
-      id: number;
-      /** The result text with <mark> */
-      highlight: Record<string, Array<string>>;
-    }>;
-  };
-  /** Meeting widget is ready */
-  'room.READY': void;
-  /** Meeting widget is unloading */
-  'room.UNLOAD': { reason: string };
-}> {
+    'dashboard.ROOM_LIST': {
+      /** Rooms */
+      rooms: {
+        [roomId: string]: ChatRoom;
+      };
+      /** Channels */
+      channels: {
+        [channelId: string]: ChatRoom;
+      };
+    };
+    'dashboard.UNREAD_MESSAGES': {
+      rooms: { [/** Room Id */ id: string]: number };
+    };
+    'dashboard.NAVIGATE_TO_CALL': {
+      accessCode: string;
+      options: MeetingOptions;
+    };
+    'dashboard.NAVIGATE_TO_SCHEDULE': {
+      /** The meeting id to edit or copy. */
+      id?: number;
+      options: ScheduleOptions;
+    };
+    'dashboard.SEARCH_START': {
+      /** The search query. */
+      query: string;
+      /** The page of the result. */
+      page: number;
+      /** The order of the result. */
+      order: 'date' | 'relevance';
+    };
+    'dashboard.SEARCH_RESULT': {
+      /** The search query. */
+      query: string;
+      /** The search error. */
+      error?: string;
+      /** The search result. */
+      result?: Array<{
+        /** The type of the item. */
+        contentType: SearchContentType;
+        /** The id of the item */
+        id: number;
+        /** The result text with <mark> */
+        highlight: Record<string, Array<string>>;
+      }>;
+    };
+    /** Meeting widget is ready */
+    'room.READY': void;
+    /** Meeting widget is unloading */
+    'room.UNLOAD': { reason: string };
+  }
+> {
   constructor(
     /**
      * Widget options

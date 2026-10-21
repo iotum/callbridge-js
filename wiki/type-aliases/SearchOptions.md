@@ -32,4 +32,4 @@ The page number of the search result. Optional, default 1
 
 ## Defined in
 
-[dashboard.ts:117](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L117)
+[dashboard.ts:117](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/dashboard.ts#L117)

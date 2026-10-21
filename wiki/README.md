@@ -30,4 +30,5 @@
 - [MeetingOptions](type-aliases/MeetingOptions.md)
 - [SearchOptions](type-aliases/SearchOptions.md)
 - [ServiceOptions](type-aliases/ServiceOptions.md)
+- [WidgetEvents](type-aliases/WidgetEvents.md)
 - [WidgetOptions](type-aliases/WidgetOptions.md)

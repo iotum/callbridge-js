@@ -18,7 +18,7 @@ Load the schedule page normally.
 
 #### Defined in
 
-[dashboard.ts:53](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L53)
+[dashboard.ts:53](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/dashboard.ts#L53)
 
 ***
 
@@ -30,4 +30,4 @@ Emit `NAVIGATE_TO_SCHEDULE` instead of loading the schedule page.
 
 #### Defined in
 
-[dashboard.ts:55](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/dashboard.ts#L55)
+[dashboard.ts:55](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/dashboard.ts#L55)

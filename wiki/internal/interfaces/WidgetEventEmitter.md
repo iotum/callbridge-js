@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[widget.ts:135](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L135)
+[widget.ts:167](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L167)
 
 ***
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[widget.ts:133](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L133)
+[widget.ts:165](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L165)
 
 ***
 
@@ -92,7 +92,7 @@
 
 #### Defined in
 
-[widget.ts:132](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L132)
+[widget.ts:164](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L164)
 
 ***
 
@@ -120,7 +120,7 @@
 
 #### Defined in
 
-[widget.ts:134](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L134)
+[widget.ts:166](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L166)
 
 ***
 
@@ -148,4 +148,4 @@
 
 #### Defined in
 
-[widget.ts:136](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L136)
+[widget.ts:168](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L168)

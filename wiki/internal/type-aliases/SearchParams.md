@@ -20,4 +20,4 @@
 
 ## Defined in
 
-[widget.ts:59](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L59)
+[widget.ts:59](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L59)

@@ -1,4 +1,4 @@
-import Widget, { WidgetOptions } from './widget';
+import Widget, { WidgetEvents, WidgetOptions } from './widget';
 
 /**
  * Livestream options.
@@ -21,10 +21,12 @@ export type LivestreamOptions = {
 /**
  * Callbridge Livesteam Viewer.
  */
-export default class Livestream extends Widget<{
-  'livestream.READY': void;
-  'livestream.LIVE_STREAM_INTERCEPT_CHAT': void;
-}> {
+export default class Livestream extends Widget<
+  WidgetEvents & {
+    'livestream.READY': void;
+    'livestream.LIVE_STREAM_INTERCEPT_CHAT': void;
+  }
+> {
   constructor(
     /**
      * Widget options

@@ -48,7 +48,7 @@ Meeting options
 
 #### Defined in
 
-[meeting.ts:77](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/meeting.ts#L77)
+[meeting.ts:77](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/meeting.ts#L77)
 
 ## Accessors
 
@@ -70,7 +70,7 @@ The widget instance.
 
 #### Defined in
 
-[widget.ts:271](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L271)
+[widget.ts:296](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L296)
 
 ***
 
@@ -92,7 +92,7 @@ Whether the widget is ready.
 
 #### Defined in
 
-[widget.ts:264](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L264)
+[widget.ts:289](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L289)
 
 ***
 
@@ -114,7 +114,7 @@ The Window or WindowProxy instance of the widget.
 
 #### Defined in
 
-[widget.ts:278](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L278)
+[widget.ts:303](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L303)
 
 ## Methods
 
@@ -148,7 +148,7 @@ audio settings.
 
 #### Defined in
 
-[room.ts:161](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/room.ts#L161)
+[room.ts:163](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/room.ts#L163)
 
 ***
 
@@ -162,7 +162,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `conference.CHANGE`: \{ `id`: `number`; `incomingVideo`: `boolean`; `isActive`: `boolean`; `isLocked`: `boolean`; `isRecording`: `boolean`; `isSecured`: `boolean`; `isStreaming`: `boolean`; `mode`: `string`; `name`: `string`; `roomSize`: `number`; \}; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`; \}; `conference.SPEAKER`: \{ `id`: `number`; `speakerId`: `number`; \}; `device.DEVICE_IN_USE`: \{ `deviceId`: `"default"`; `kind`: `"audioinput"` \| `"audiooutput"` \| `"videoinput"`; \}; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[]; `audiooutput`: `MediaDeviceInfo`[]; `videoinput`: `MediaDeviceInfo`[]; \}; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number`; `id`: `number`; \}; `participant.CHANGE`: \{ `handRaised`: `boolean`; `id`: `number`; `isBlocked`: `boolean`; `isCameraOn`: `boolean`; `isCurrent`: `boolean`; `isInternet`: `boolean`; `isJoining`: `boolean`; `isLeft`: `boolean`; `isModerator`: `boolean`; `isMuted`: `boolean`; `isObserver`: `boolean`; `isOnCall`: `boolean`; `isOrganizer`: `boolean`; `isPhone`: `boolean`; `isStreaming`: `boolean`; `isViewingOnly`: `boolean`; `name`: `string`; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -172,7 +172,7 @@ Returns true if the event had listeners, false otherwise.
 
 ##### data?
 
-`object`\[`K`\]
+[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]
 
 #### Returns
 
@@ -184,7 +184,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:317](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L317)
+[widget.ts:342](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L342)
 
 ***
 
@@ -212,7 +212,7 @@ participant id.
 
 #### Defined in
 
-[room.ts:150](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/room.ts#L150)
+[room.ts:152](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/room.ts#L152)
 
 ***
 
@@ -224,7 +224,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `conference.CHANGE`: \{ `id`: `number`; `incomingVideo`: `boolean`; `isActive`: `boolean`; `isLocked`: `boolean`; `isRecording`: `boolean`; `isSecured`: `boolean`; `isStreaming`: `boolean`; `mode`: `string`; `name`: `string`; `roomSize`: `number`; \}; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`; \}; `conference.SPEAKER`: \{ `id`: `number`; `speakerId`: `number`; \}; `device.DEVICE_IN_USE`: \{ `deviceId`: `"default"`; `kind`: `"audioinput"` \| `"audiooutput"` \| `"videoinput"`; \}; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[]; `audiooutput`: `MediaDeviceInfo`[]; `videoinput`: `MediaDeviceInfo`[]; \}; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number`; `id`: `number`; \}; `participant.CHANGE`: \{ `handRaised`: `boolean`; `id`: `number`; `isBlocked`: `boolean`; `isCameraOn`: `boolean`; `isCurrent`: `boolean`; `isInternet`: `boolean`; `isJoining`: `boolean`; `isLeft`: `boolean`; `isModerator`: `boolean`; `isMuted`: `boolean`; `isObserver`: `boolean`; `isOnCall`: `boolean`; `isOrganizer`: `boolean`; `isPhone`: `boolean`; `isStreaming`: `boolean`; `isViewingOnly`: `boolean`; `name`: `string`; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -234,7 +234,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 ##### listener
 
-[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
+[`Listener`](../internal/type-aliases/Listener.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]\>
 
 #### Returns
 
@@ -246,7 +246,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:298](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L298)
+[widget.ts:323](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L323)
 
 ***
 
@@ -258,7 +258,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `conference.CHANGE`: \{ `id`: `number`; `incomingVideo`: `boolean`; `isActive`: `boolean`; `isLocked`: `boolean`; `isRecording`: `boolean`; `isSecured`: `boolean`; `isStreaming`: `boolean`; `mode`: `string`; `name`: `string`; `roomSize`: `number`; \}; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`; \}; `conference.SPEAKER`: \{ `id`: `number`; `speakerId`: `number`; \}; `device.DEVICE_IN_USE`: \{ `deviceId`: `"default"`; `kind`: `"audioinput"` \| `"audiooutput"` \| `"videoinput"`; \}; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[]; `audiooutput`: `MediaDeviceInfo`[]; `videoinput`: `MediaDeviceInfo`[]; \}; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number`; `id`: `number`; \}; `participant.CHANGE`: \{ `handRaised`: `boolean`; `id`: `number`; `isBlocked`: `boolean`; `isCameraOn`: `boolean`; `isCurrent`: `boolean`; `isInternet`: `boolean`; `isJoining`: `boolean`; `isLeft`: `boolean`; `isModerator`: `boolean`; `isMuted`: `boolean`; `isObserver`: `boolean`; `isOnCall`: `boolean`; `isOrganizer`: `boolean`; `isPhone`: `boolean`; `isStreaming`: `boolean`; `isViewingOnly`: `boolean`; `name`: `string`; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -268,7 +268,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 ##### listener
 
-[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
+[`Listener`](../internal/type-aliases/Listener.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]\>
 
 #### Returns
 
@@ -280,7 +280,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:290](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L290)
+[widget.ts:315](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L315)
 
 ***
 
@@ -293,7 +293,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `conference.CHANGE`: \{ `id`: `number`; `incomingVideo`: `boolean`; `isActive`: `boolean`; `isLocked`: `boolean`; `isRecording`: `boolean`; `isSecured`: `boolean`; `isStreaming`: `boolean`; `mode`: `string`; `name`: `string`; `roomSize`: `number`; \}; `conference.CONFERENCE_CALL_EXIT`: \{ `reason`: `string`; \}; `conference.SPEAKER`: \{ `id`: `number`; `speakerId`: `number`; \}; `device.DEVICE_IN_USE`: \{ `deviceId`: `"default"`; `kind`: `"audioinput"` \| `"audiooutput"` \| `"videoinput"`; \}; `device.DEVICE_LIST_CHANGED`: \{ `audioinput`: `MediaDeviceInfo`[]; `audiooutput`: `MediaDeviceInfo`[]; `videoinput`: `MediaDeviceInfo`[]; \}; `participant.AUDIO_LEVEL`: \{ `audioLevel`: `number`; `id`: `number`; \}; `participant.CHANGE`: \{ `handRaised`: `boolean`; `id`: `number`; `isBlocked`: `boolean`; `isCameraOn`: `boolean`; `isCurrent`: `boolean`; `isInternet`: `boolean`; `isJoining`: `boolean`; `isLeft`: `boolean`; `isModerator`: `boolean`; `isMuted`: `boolean`; `isObserver`: `boolean`; `isOnCall`: `boolean`; `isOrganizer`: `boolean`; `isPhone`: `boolean`; `isStreaming`: `boolean`; `isViewingOnly`: `boolean`; `name`: `string`; \}; `room.READY`: `void`; `room.UNLOAD`: \{ `reason`: `string`; \}; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -303,7 +303,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 ##### listener
 
-[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
+[`Listener`](../internal/type-aliases/Listener.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]\>
 
 #### Returns
 
@@ -315,7 +315,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:307](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L307)
+[widget.ts:332](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L332)
 
 ***
 
@@ -344,7 +344,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:327](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L327)
+[widget.ts:352](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L352)
 
 ***
 
@@ -372,7 +372,7 @@ device id.
 
 #### Defined in
 
-[room.ts:92](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/room.ts#L92)
+[room.ts:94](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/room.ts#L94)
 
 ***
 
@@ -400,7 +400,7 @@ device id.
 
 #### Defined in
 
-[room.ts:100](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/room.ts#L100)
+[room.ts:102](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/room.ts#L102)
 
 ***
 
@@ -428,7 +428,7 @@ whether to turn on my camera.
 
 #### Defined in
 
-[room.ts:108](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/room.ts#L108)
+[room.ts:110](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/room.ts#L110)
 
 ***
 
@@ -456,7 +456,7 @@ whether to receive remote video streams.
 
 #### Defined in
 
-[room.ts:124](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/room.ts#L124)
+[room.ts:126](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/room.ts#L126)
 
 ***
 
@@ -484,7 +484,7 @@ whether to mute my microphone.
 
 #### Defined in
 
-[room.ts:116](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/room.ts#L116)
+[room.ts:118](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/room.ts#L118)
 
 ***
 
@@ -512,7 +512,7 @@ device id.
 
 #### Defined in
 
-[room.ts:84](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/room.ts#L84)
+[room.ts:86](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/room.ts#L86)
 
 ***
 
@@ -540,7 +540,7 @@ valid range: 0 - 1. (default: 1).
 
 #### Defined in
 
-[room.ts:135](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/room.ts#L135)
+[room.ts:137](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/room.ts#L137)
 
 ***
 
@@ -570,7 +570,7 @@ whether the widget should be visible
 
 #### Defined in
 
-[widget.ts:255](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L255)
+[widget.ts:280](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L280)
 
 ***
 
@@ -590,4 +590,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:227](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L227)
+[widget.ts:252](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L252)

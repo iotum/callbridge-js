@@ -10,7 +10,7 @@ Callbridge Livesteam Viewer.
 
 ## Extends
 
-- [`default`](../internal/classes/default.md)\<\{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void`; `livestream.READY`: `void`; \}\>
+- [`default`](../internal/classes/default.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 ## Constructors
 
@@ -48,7 +48,7 @@ Livestream options
 
 #### Defined in
 
-[livestream.ts:28](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/livestream.ts#L28)
+[livestream.ts:30](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/livestream.ts#L30)
 
 ## Accessors
 
@@ -70,7 +70,7 @@ The widget instance.
 
 #### Defined in
 
-[widget.ts:271](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L271)
+[widget.ts:296](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L296)
 
 ***
 
@@ -92,7 +92,7 @@ Whether the widget is ready.
 
 #### Defined in
 
-[widget.ts:264](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L264)
+[widget.ts:289](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L289)
 
 ***
 
@@ -114,7 +114,7 @@ The Window or WindowProxy instance of the widget.
 
 #### Defined in
 
-[widget.ts:278](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L278)
+[widget.ts:303](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L303)
 
 ## Methods
 
@@ -128,7 +128,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void`; `livestream.READY`: `void`; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -138,7 +138,7 @@ Returns true if the event had listeners, false otherwise.
 
 ##### data?
 
-`object`\[`K`\]
+[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]
 
 #### Returns
 
@@ -150,7 +150,7 @@ Returns true if the event had listeners, false otherwise.
 
 #### Defined in
 
-[widget.ts:317](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L317)
+[widget.ts:342](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L342)
 
 ***
 
@@ -162,7 +162,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void`; `livestream.READY`: `void`; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -172,7 +172,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 ##### listener
 
-[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
+[`Listener`](../internal/type-aliases/Listener.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]\>
 
 #### Returns
 
@@ -184,7 +184,7 @@ Removes the specified `listener` from the listener array for the event named `ev
 
 #### Defined in
 
-[widget.ts:298](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L298)
+[widget.ts:323](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L323)
 
 ***
 
@@ -196,7 +196,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void`; `livestream.READY`: `void`; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -206,7 +206,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 ##### listener
 
-[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
+[`Listener`](../internal/type-aliases/Listener.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]\>
 
 #### Returns
 
@@ -218,7 +218,7 @@ Adds the `listener` function to the end of the listeners array for the event nam
 
 #### Defined in
 
-[widget.ts:290](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L290)
+[widget.ts:315](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L315)
 
 ***
 
@@ -231,7 +231,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Type Parameters
 
-• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<\{ `livestream.LIVE_STREAM_INTERCEPT_CHAT`: `void`; `livestream.READY`: `void`; \}\>
+• **K** *extends* [`EventKey`](../internal/type-aliases/EventKey.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\>
 
 #### Parameters
 
@@ -241,7 +241,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 ##### listener
 
-[`Listener`](../internal/type-aliases/Listener.md)\<`object`\[`K`\]\>
+[`Listener`](../internal/type-aliases/Listener.md)\<[`WidgetEvents`](../type-aliases/WidgetEvents.md) & `object`\[`K`\]\>
 
 #### Returns
 
@@ -253,7 +253,7 @@ The next time eventName is triggered, this listener is removed and then invoked.
 
 #### Defined in
 
-[widget.ts:307](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L307)
+[widget.ts:332](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L332)
 
 ***
 
@@ -282,7 +282,7 @@ particularly when the instance was created by some other component or module.
 
 #### Defined in
 
-[widget.ts:327](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L327)
+[widget.ts:352](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L352)
 
 ***
 
@@ -312,7 +312,7 @@ whether the widget should be visible
 
 #### Defined in
 
-[widget.ts:255](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L255)
+[widget.ts:280](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L280)
 
 ***
 
@@ -332,4 +332,4 @@ Unloads the widget by removing the iframe or close the tab/window.
 
 #### Defined in
 
-[widget.ts:227](https://github.com/iotum/callbridge-js/blob/d0dfc94e8f5dfc8239b4ec067f283823bb09beee/src/widget.ts#L227)
+[widget.ts:252](https://github.com/iotum/callbridge-js/blob/36bf4be5ee45757dce6a573d6cea5ad1eb049f4a/src/widget.ts#L252)
