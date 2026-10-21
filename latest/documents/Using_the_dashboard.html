@@ -1,0 +1,192 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Using the dashboard | Callbridge JS SDK - v1.0.16</title><meta name="description" content="Documentation for Callbridge JS SDK"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">Callbridge JS SDK - v1.0.16</a>
+<div id="tsd-toolbar-links"><a href="https://github.com/iotum/callbridge-js">GitHub</a><a href="https://www.npmjs.com/package/@iotum/callbridge-js">npm</a><a href="https://iotum.github.io/iotum-samples/">Samples</a></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="" aria-current="page">Using the dashboard</a></li></ul></div>
+<div class="tsd-panel tsd-typography"><h1 id="using-the-dashboard" class="tsd-anchor-link">Using the dashboard<a href="#using-the-dashboard" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>The <a href="../classes/Dashboard.html" class="tsd-kind-class"> Dashboard</a> embeds the Callbridge services:</p>
+<table>
+<thead>
+<tr>
+<th><a href="../enums/Service.html" class="tsd-kind-enum"> Service</a></th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Team</code></td>
+<td>Team chat: rooms, channels and direct messages.</td>
+</tr>
+<tr>
+<td><code>Drive</code></td>
+<td>Content library.</td>
+</tr>
+<tr>
+<td><code>Contacts</code></td>
+<td>Address book.</td>
+</tr>
+<tr>
+<td><code>Meet</code></td>
+<td>Meetings: list, schedule, start and join.</td>
+</tr>
+<tr>
+<td><code>Search</code></td>
+<td>Search meetings and calls. See <a href="#search">Search</a>.</td>
+</tr>
+<tr>
+<td><code>None</code></td>
+<td>Only sign in; load a service later.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="ts"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-6">Dashboard</span><span class="hl-1">, </span><span class="hl-6">Service</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@iotum/callbridge-js&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">dashboard</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Dashboard</span><span class="hl-1">(</span><br/><span class="hl-1">  {</span><br/><span class="hl-1">    </span><span class="hl-6">domain:</span><span class="hl-1"> </span><span class="hl-2">&#39;your-company.callbridge.com&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">sso:</span><span class="hl-1"> { </span><span class="hl-6">token:</span><span class="hl-1"> </span><span class="hl-2">&#39;sso-token&#39;</span><span class="hl-1">, </span><span class="hl-6">hostId:</span><span class="hl-1"> </span><span class="hl-13">12345</span><span class="hl-1"> },</span><br/><span class="hl-1">    </span><span class="hl-6">container:</span><span class="hl-1"> </span><span class="hl-2">&#39;#dashboard&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Team</span><span class="hl-1">,</span><br/><span class="hl-1">);</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="switching-services" class="tsd-anchor-link">Switching services<a href="#switching-services" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Use one dashboard for several services, e.g. as tabs of your app, and switch with <a href="../classes/Dashboard.html#load" class="tsd-kind-method"> Dashboard.load</a>
+once the dashboard is ready:</p>
+<pre><code class="ts"><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">load</span><span class="hl-1">(</span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Drive</span><span class="hl-1">);</span><br/><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">load</span><span class="hl-1">(</span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Meet</span><span class="hl-1">, { </span><span class="hl-6">pathname:</span><span class="hl-1"> </span><span class="hl-2">&#39;/schedule&#39;</span><span class="hl-1"> }); </span><span class="hl-3">// open the scheduler</span>
+</code><button type="button">Copy</button></pre>
+
+<p><a href="../classes/Dashboard.html#go" class="tsd-kind-method"> Dashboard.go</a> navigates the dashboard's history, like the browser back and forward buttons.
+<code>dashboard.NAVIGATE</code> is emitted whenever the user navigates within the dashboard.</p>
+<h2 id="layouts" class="tsd-anchor-link">Layouts<a href="#layouts" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>For <code>Team</code> and <code>Drive</code>, <a href="../types/ServiceOptions.html#layout" class="tsd-kind-property"> ServiceOptions.layout</a> shows only part of the UI:</p>
+<table>
+<thead>
+<tr>
+<th><a href="../enums/LayoutOption.html" class="tsd-kind-enum"> LayoutOption</a></th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>full</code></td>
+<td>Sidebar and content (default).</td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>Only the sidebar, e.g. the list of chat rooms.</td>
+</tr>
+<tr>
+<td><code>main</code></td>
+<td>Only the content, e.g. a single chat room.</td>
+</tr>
+<tr>
+<td><code>none</code></td>
+<td>Nothing; use the dashboard for its events only.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="team-chat" class="tsd-anchor-link">Team chat<a href="#team-chat" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="chat-room-list-and-unread-counts" class="tsd-anchor-link">Chat room list and unread counts<a href="#chat-room-list-and-unread-counts" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>With <a href="../enums/Service.html#team" class="tsd-kind-enum-member"> Service.Team</a>, the dashboard emits the chat rooms and unread message counts.
+Use them to build your own room list or an unread badge:</p>
+<pre><code class="ts"><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;dashboard.ROOM_LIST&#39;</span><span class="hl-1">, ({ </span><span class="hl-6">rooms</span><span class="hl-1">, </span><span class="hl-6">channels</span><span class="hl-1"> }) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">renderRooms</span><span class="hl-1">(</span><span class="hl-6">Object</span><span class="hl-1">.</span><span class="hl-0">values</span><span class="hl-1">(</span><span class="hl-6">rooms</span><span class="hl-1">), </span><span class="hl-6">Object</span><span class="hl-1">.</span><span class="hl-0">values</span><span class="hl-1">(</span><span class="hl-6">channels</span><span class="hl-1">));</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;dashboard.UNREAD_MESSAGES&#39;</span><span class="hl-1">, ({ </span><span class="hl-6">rooms</span><span class="hl-1"> }) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">total</span><span class="hl-1"> = </span><span class="hl-6">Object</span><span class="hl-1">.</span><span class="hl-0">values</span><span class="hl-1">(</span><span class="hl-6">rooms</span><span class="hl-1">).</span><span class="hl-0">reduce</span><span class="hl-1">((</span><span class="hl-6">sum</span><span class="hl-1">, </span><span class="hl-6">count</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-6">sum</span><span class="hl-1"> + </span><span class="hl-6">count</span><span class="hl-1">, </span><span class="hl-13">0</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-6">badge</span><span class="hl-1">.</span><span class="hl-6">textContent</span><span class="hl-1"> = </span><span class="hl-0">String</span><span class="hl-1">(</span><span class="hl-6">total</span><span class="hl-1">);</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+<p>A hidden dashboard (see <a href="../classes/Widget.html#toggle" class="tsd-kind-method"> Widget.toggle</a>) keeps emitting these events.</p>
+<h3 id="opening-a-chat-room" class="tsd-anchor-link">Opening a chat room<a href="#opening-a-chat-room" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Open a single room from your own UI with its <a href="../types/ChatRoom.html#path" class="tsd-kind-property"> ChatRoom.path</a> and the <code>main</code> layout:</p>
+<pre><code class="ts"><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">chat</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Dashboard</span><span class="hl-1">(</span><span class="hl-6">options</span><span class="hl-1">, </span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Team</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-6">layout:</span><span class="hl-1"> </span><span class="hl-6">LayoutOption</span><span class="hl-1">.</span><span class="hl-6">main</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-6">pathname:</span><span class="hl-1"> </span><span class="hl-6">room</span><span class="hl-1">.</span><span class="hl-6">path</span><span class="hl-1">,</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Or, in an existing dashboard: <code>dashboard.load(Service.Team, { pathname: room.path })</code>.</p>
+<h3 id="chat-bot" class="tsd-anchor-link">Chat bot<a href="#chat-bot" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>With <a href="../types/ServiceOptions.html#bot" class="tsd-kind-property"> ServiceOptions.bot</a>, your app can answer slash commands typed in Team chat, e.g. <code>/weather Toronto</code>:</p>
+<ol>
+<li>The user sends a message starting with <code>/</code> in a chat room. It is not posted;
+<code>dashboard.BOT_MESSAGE</code> is emitted with the message <code>id</code>, its text and the <code>room_id</code>.</li>
+<li>Your app replies with <a href="../classes/Dashboard.html#replytobotmessage" class="tsd-kind-method"> Dashboard.replyToBotMessage</a>. The reply is posted to that room as the user.</li>
+</ol>
+<pre><code class="ts"><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">dashboard</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Dashboard</span><span class="hl-1">(</span><span class="hl-6">options</span><span class="hl-1">, </span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Team</span><span class="hl-1">, { </span><span class="hl-6">bot:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1"> });</span><br/><br/><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;dashboard.BOT_MESSAGE&#39;</span><span class="hl-1">, </span><span class="hl-5">async</span><span class="hl-1"> ({ </span><span class="hl-6">id</span><span class="hl-1">, </span><span class="hl-6">message</span><span class="hl-1">, </span><span class="hl-6">room_id</span><span class="hl-1"> }) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> [</span><span class="hl-12">command</span><span class="hl-1">, ...</span><span class="hl-12">args</span><span class="hl-1">] = </span><span class="hl-6">message</span><span class="hl-1">.</span><span class="hl-0">split</span><span class="hl-1">(</span><span class="hl-2">&#39; &#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-4">if</span><span class="hl-1"> (</span><span class="hl-6">command</span><span class="hl-1"> === </span><span class="hl-2">&#39;/weather&#39;</span><span class="hl-1">) {</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">forecast</span><span class="hl-1"> = </span><span class="hl-4">await</span><span class="hl-1"> </span><span class="hl-0">getForecast</span><span class="hl-1">(</span><span class="hl-6">args</span><span class="hl-1">.</span><span class="hl-0">join</span><span class="hl-1">(</span><span class="hl-2">&#39; &#39;</span><span class="hl-1">));</span><br/><span class="hl-1">    </span><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">replyToBotMessage</span><span class="hl-1">(</span><br/><span class="hl-1">      </span><span class="hl-6">id</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-2">`**</span><span class="hl-5">${</span><span class="hl-6">forecast</span><span class="hl-9">.</span><span class="hl-6">city</span><span class="hl-5">}</span><span class="hl-2">**: </span><span class="hl-5">${</span><span class="hl-6">forecast</span><span class="hl-9">.</span><span class="hl-6">summary</span><span class="hl-5">}</span><span class="hl-2">`</span><span class="hl-1">,</span><br/><span class="hl-1">    );</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;dashboard.BOT_MESSAGE_REJECTED&#39;</span><span class="hl-1">, ({ </span><span class="hl-6">id</span><span class="hl-1">, </span><span class="hl-6">reason</span><span class="hl-1"> }) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-0">warn</span><span class="hl-1">(</span><span class="hl-2">&#39;bot reply rejected&#39;</span><span class="hl-1">, </span><span class="hl-6">id</span><span class="hl-1">, </span><span class="hl-6">reason</span><span class="hl-1">);</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+<ul>
+<li>Reply within <strong>30 seconds</strong>, once per message, while the same user is signed in.
+Otherwise the reply is not posted and <code>dashboard.BOT_MESSAGE_REJECTED</code> is emitted with the <code>reason</code>.</li>
+<li>Commands you don't answer are dropped; nothing is posted.</li>
+<li><code>room_id</code> is a key of <code>rooms</code> or <code>channels</code> in <code>dashboard.ROOM_LIST</code>.</li>
+<li>Once enabled, the bot stays enabled until the browser tab is closed.</li>
+</ul>
+<h2 id="meetings" class="tsd-anchor-link">Meetings<a href="#meetings" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>By default (<a href="../enums/MeetingAction.html#auto" class="tsd-kind-enum-member"> MeetingAction.auto</a>), starting or joining a meeting from the dashboard loads the meeting room
+inside the dashboard. When that meeting ends, <code>room.UNLOAD</code> is emitted and the dashboard is unloaded;
+create a new dashboard to show it again:</p>
+<pre><code class="ts"><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">createDashboard</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">dashboard</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Dashboard</span><span class="hl-1">(</span><span class="hl-6">options</span><span class="hl-1">, </span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Meet</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;room.UNLOAD&#39;</span><span class="hl-1">, () </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-6">current</span><span class="hl-1"> = </span><span class="hl-0">createDashboard</span><span class="hl-1">();</span><br/><span class="hl-1">  });</span><br/><span class="hl-1">  </span><span class="hl-4">return</span><span class="hl-1"> </span><span class="hl-6">dashboard</span><span class="hl-1">;</span><br/><span class="hl-1">}</span><br/><span class="hl-5">let</span><span class="hl-1"> </span><span class="hl-6">current</span><span class="hl-1"> = </span><span class="hl-0">createDashboard</span><span class="hl-1">();</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Set <a href="../types/ServiceOptions.html#meetingaction" class="tsd-kind-property"> ServiceOptions.meetingAction</a> to change this:</p>
+<ul>
+<li><a href="../enums/MeetingAction.html#popup" class="tsd-kind-enum-member"> MeetingAction.popup</a>: open the meeting in a new tab or window.</li>
+<li><a href="../enums/MeetingAction.html#intercept" class="tsd-kind-enum-member"> MeetingAction.intercept</a>: emit <code>dashboard.NAVIGATE_TO_CALL</code> instead, and join the meeting yourself,
+e.g. with a <a href="../classes/Meeting.html" class="tsd-kind-class"> Meeting</a> elsewhere in your app:</li>
+</ul>
+<pre><code class="ts"><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">dashboard</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Dashboard</span><span class="hl-1">(</span><span class="hl-6">options</span><span class="hl-1">, </span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Meet</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-6">meetingAction:</span><span class="hl-1"> </span><span class="hl-6">MeetingAction</span><span class="hl-1">.</span><span class="hl-6">intercept</span><span class="hl-1">,</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><br/><span class="hl-1">  </span><span class="hl-2">&#39;dashboard.NAVIGATE_TO_CALL&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  ({ </span><span class="hl-6">accessCode</span><span class="hl-1">, </span><span class="hl-6">options</span><span class="hl-1">: </span><span class="hl-6">meetingOptions</span><span class="hl-1"> }) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Meeting</span><span class="hl-1">(</span><br/><span class="hl-1">      { ...</span><span class="hl-6">options</span><span class="hl-1">, </span><span class="hl-6">container:</span><span class="hl-1"> </span><span class="hl-2">&#39;#meeting&#39;</span><span class="hl-1"> },</span><br/><span class="hl-1">      </span><span class="hl-6">accessCode</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">meetingOptions</span><span class="hl-1">,</span><br/><span class="hl-1">    );</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">);</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Similarly, <a href="../enums/ScheduleAction.html#intercept" class="tsd-kind-enum-member"> ScheduleAction.intercept</a> emits <code>dashboard.NAVIGATE_TO_SCHEDULE</code> instead of opening the scheduler.</p>
+<p>When scheduling, <a href="../types/ServiceOptions.html#invitedcontacts" class="tsd-kind-property"> ServiceOptions.invitedContacts</a> and <a href="../types/ServiceOptions.html#invitedhosts" class="tsd-kind-property"> ServiceOptions.invitedHosts</a> pre-fill the invitees:</p>
+<pre><code class="ts"><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">load</span><span class="hl-1">(</span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Meet</span><span class="hl-1">, { </span><span class="hl-6">pathname:</span><span class="hl-1"> </span><span class="hl-2">&#39;/schedule&#39;</span><span class="hl-1">, </span><span class="hl-6">invitedContacts:</span><span class="hl-1"> [</span><span class="hl-13">42</span><span class="hl-1">] });</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="search" class="tsd-anchor-link">Search<a href="#search" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Create the dashboard with <a href="../enums/Service.html#search" class="tsd-kind-enum-member"> Service.Search</a> to search meetings and calls with <a href="../classes/Dashboard.html#search" class="tsd-kind-method"> Dashboard.search</a>:</p>
+<pre><code class="ts"><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">search</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Dashboard</span><span class="hl-1">(</span><span class="hl-6">options</span><span class="hl-1">, </span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Search</span><span class="hl-1">);</span><br/><br/><span class="hl-6">search</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;dashboard.SEARCH_RESULT&#39;</span><span class="hl-1">, ({ </span><span class="hl-6">result</span><span class="hl-1">, </span><span class="hl-6">error</span><span class="hl-1"> }) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">if</span><span class="hl-1"> (</span><span class="hl-6">error</span><span class="hl-1">) </span><span class="hl-4">return</span><span class="hl-1"> </span><span class="hl-0">showError</span><span class="hl-1">(</span><span class="hl-6">error</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-0">render</span><span class="hl-1">(</span><span class="hl-6">result</span><span class="hl-1">); </span><span class="hl-3">// [{ contentType, id, highlight }]</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-6">search</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;dashboard.SEARCH_START&#39;</span><span class="hl-1">, ({ </span><span class="hl-6">query</span><span class="hl-1">, </span><span class="hl-6">filters</span><span class="hl-1"> }) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">showSearching</span><span class="hl-1">(</span><span class="hl-6">query</span><span class="hl-1">, </span><span class="hl-6">filters</span><span class="hl-1">); </span><span class="hl-3">// e.g. &#39;review&#39;, { participant: [&#39;alice&#39;] }</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-6">search</span><span class="hl-1">.</span><span class="hl-0">once</span><span class="hl-1">(</span><span class="hl-2">&#39;dashboard.READY&#39;</span><span class="hl-1">, () </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-6">search</span><span class="hl-1">.</span><span class="hl-0">search</span><span class="hl-1">(</span><span class="hl-2">&#39;quarterly review&#39;</span><span class="hl-1">, { </span><span class="hl-6">order:</span><span class="hl-1"> </span><span class="hl-2">&#39;relevance&#39;</span><span class="hl-1"> });</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The query supports the same <code>field:value</code> terms as the Callbridge search box, e.g.
+<code>review participant:alice after:2026-01-01</code>. <code>dashboard.SEARCH_START</code> reports the free-text part as <code>query</code>
+and the terms as <code>filters</code>. <code>dashboard.SEARCH_RESULT</code> includes the same <code>query</code>, to match results to searches.</p>
+<h2 id="hiding-ui-elements" class="tsd-anchor-link">Hiding UI elements<a href="#hiding-ui-elements" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><a href="../types/ServiceOptions.html#hiddenelements" class="tsd-kind-property"> ServiceOptions.hiddenElements</a> and <a href="../classes/Dashboard.html#sethiddenelements" class="tsd-kind-method"> Dashboard.setHiddenElements</a> hide parts of the dashboard UI.</p>
+<h2 id="session-expiry" class="tsd-anchor-link">Session expiry<a href="#session-expiry" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><code>dashboard.SESSION_EXPIRED</code> is emitted when the user's session has expired. Create a new dashboard to sign in again.</p>
+<h2 id="samples" class="tsd-anchor-link">Samples<a href="#samples" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ul>
+<li><a href="https://github.com/iotum/iotum-samples/tree/main/src/pages/tabbed-dashboard">Tabbed dashboard</a></li>
+<li><a href="https://github.com/iotum/iotum-samples/tree/main/src/pages/chat-room-list">Chat room list</a></li>
+<li><a href="https://github.com/iotum/iotum-samples/tree/main/src/pages/list-widget-ui">List widget</a></li>
+<li><a href="https://github.com/iotum/iotum-samples/tree/main/src/pages/popout-chat">Popout chat</a></li>
+</ul>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#using-the-dashboard"><span>Using the dashboard</span></a>
+<ul>
+<li><a href="#switching-services"><span>Switching services</span></a></li>
+<li><a href="#layouts"><span>Layouts</span></a></li>
+<li><a href="#team-chat"><span>Team chat</span></a></li>
+<li>
+<ul>
+<li><a href="#chat-room-list-and-unread-counts"><span>Chat room list and unread counts</span></a></li>
+<li><a href="#opening-a-chat-room"><span>Opening a chat room</span></a></li>
+<li><a href="#chat-bot"><span>Chat bot</span></a></li></ul></li>
+<li><a href="#meetings"><span>Meetings</span></a></li>
+<li><a href="#search"><span>Search</span></a></li>
+<li><a href="#hiding-ui-elements"><span>Hiding <wbr/>UI elements</span></a></li>
+<li><a href="#session-expiry"><span>Session expiry</span></a></li>
+<li><a href="#samples"><span>Samples</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://github.com/iotum/callbridge-js" class="tsd-nav-link">GitHub</a><a href="https://www.npmjs.com/package/@iotum/callbridge-js" class="tsd-nav-link">npm</a><a href="https://iotum.github.io/iotum-samples/" class="tsd-nav-link">Samples</a></nav>
+<nav class="tsd-navigation"><a href="../modules.html">Callbridge JS SDK - v1.0.16</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

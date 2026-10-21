@@ -1,0 +1,215 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>All events | Callbridge JS SDK - v1.0.16</title><meta name="description" content="Documentation for Callbridge JS SDK"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">Callbridge JS SDK - v1.0.16</a>
+<div id="tsd-toolbar-links"><a href="https://github.com/iotum/callbridge-js">GitHub</a><a href="https://www.npmjs.com/package/@iotum/callbridge-js">npm</a><a href="https://iotum.github.io/iotum-samples/">Samples</a></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="" aria-current="page">All events</a></li></ul></div>
+<div class="tsd-panel tsd-typography"><h1 id="all-events" class="tsd-anchor-link">All events<a href="#all-events" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>Subscribe with <a href="../classes/Widget.html#on" class="tsd-kind-method"> Widget.on</a>, <a href="../classes/Widget.html#once" class="tsd-kind-method"> Widget.once</a> and <a href="../classes/Widget.html#off" class="tsd-kind-method"> Widget.off</a>.
+Event names and payloads are typed: your editor completes them for each widget.</p>
+<pre><code class="ts"><span class="hl-6">widget</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;dashboard.UNREAD_MESSAGES&#39;</span><span class="hl-1">, ({ </span><span class="hl-6">rooms</span><span class="hl-1"> }) </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-0">updateBadge</span><span class="hl-1">(</span><span class="hl-6">rooms</span><span class="hl-1">));</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="every-widget" class="tsd-anchor-link">Every widget<a href="#every-widget" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>See <a href="../types/WidgetEvents.html" class="tsd-kind-type-alias"> WidgetEvents</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>widget.LOAD</code></td>
+<td>The widget page is loaded and can receive messages.</td>
+</tr>
+<tr>
+<td><code>widget.UNLOAD</code></td>
+<td>The widget is unloading.</td>
+</tr>
+<tr>
+<td><code>widget.ERROR</code></td>
+<td>The widget failed to load.</td>
+</tr>
+<tr>
+<td><code>widget.STORAGE_ACCESS_REQUIRED</code></td>
+<td>The user must grant storage access. See <a href="Third-party_cookies_and_Safari.html">Third-party cookies and Safari</a>.</td>
+</tr>
+<tr>
+<td><code>widget.STORAGE_ACCESS_GRANTED</code></td>
+<td>Storage access is granted.</td>
+</tr>
+<tr>
+<td><code>widget.STORAGE_ACCESS_DENIED</code></td>
+<td>Storage access is denied.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dashboard" class="tsd-anchor-link">Dashboard<a href="#dashboard" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>See <a href="../types/DashboardEvents.html" class="tsd-kind-type-alias"> DashboardEvents</a> and the <a href="Using_the_dashboard.html">Dashboard guide</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dashboard.READY</code></td>
+<td>The dashboard is ready.</td>
+</tr>
+<tr>
+<td><code>dashboard.UNLOAD</code></td>
+<td>The dashboard is unloading.</td>
+</tr>
+<tr>
+<td><code>dashboard.SESSION_EXPIRED</code></td>
+<td>The user's session has expired.</td>
+</tr>
+<tr>
+<td><code>dashboard.NAVIGATE</code></td>
+<td>The user navigated within the dashboard.</td>
+</tr>
+<tr>
+<td><code>dashboard.ROOM_LIST</code></td>
+<td>The chat rooms are loaded or changed (Team).</td>
+</tr>
+<tr>
+<td><code>dashboard.UNREAD_MESSAGES</code></td>
+<td>The unread message counts are changed (Team).</td>
+</tr>
+<tr>
+<td><code>dashboard.NAVIGATE_TO_CALL</code></td>
+<td>The user started or joined a meeting (<code>meetingAction: intercept</code>).</td>
+</tr>
+<tr>
+<td><code>dashboard.NAVIGATE_TO_SCHEDULE</code></td>
+<td>The user wants to schedule a meeting (<code>scheduleAction: intercept</code>).</td>
+</tr>
+<tr>
+<td><code>dashboard.SEARCH_START</code></td>
+<td>A search is started (Search).</td>
+</tr>
+<tr>
+<td><code>dashboard.SEARCH_RESULT</code></td>
+<td>A search is completed or failed (Search).</td>
+</tr>
+<tr>
+<td><code>dashboard.BOT_MESSAGE</code></td>
+<td>The user sent a chat bot command (Team, <code>bot: true</code>).</td>
+</tr>
+<tr>
+<td><code>dashboard.BOT_MESSAGE_REJECTED</code></td>
+<td>A chat bot reply was not posted.</td>
+</tr>
+<tr>
+<td><code>room.READY</code></td>
+<td>A meeting is loaded inline.</td>
+</tr>
+<tr>
+<td><code>room.UNLOAD</code></td>
+<td>The inline meeting is unloading; the dashboard is unloaded too.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="meeting" class="tsd-anchor-link">Meeting<a href="#meeting" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>See <a href="../types/RoomEvents.html" class="tsd-kind-type-alias"> RoomEvents</a> and the <a href="Joining_a_meeting.html">Meeting guide</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>room.READY</code></td>
+<td>The meeting room is ready.</td>
+</tr>
+<tr>
+<td><code>room.UNLOAD</code></td>
+<td>The meeting room is unloading; the widget is unloaded too.</td>
+</tr>
+<tr>
+<td><code>device.DEVICE_LIST_CHANGED</code></td>
+<td>The available media devices are changed.</td>
+</tr>
+<tr>
+<td><code>device.DEVICE_IN_USE</code></td>
+<td>A media device is selected.</td>
+</tr>
+<tr>
+<td><code>conference.CHANGE</code></td>
+<td>The meeting state is changed.</td>
+</tr>
+<tr>
+<td><code>conference.SPEAKER</code></td>
+<td>The active speaker is changed.</td>
+</tr>
+<tr>
+<td><code>conference.CONFERENCE_CALL_EXIT</code></td>
+<td>The user left the meeting.</td>
+</tr>
+<tr>
+<td><code>participant.CHANGE</code></td>
+<td>A participant joined, left or changed.</td>
+</tr>
+<tr>
+<td><code>participant.AUDIO_LEVEL</code></td>
+<td>The audio level of a participant is changed (<code>audioLevel</code> option).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="livestream" class="tsd-anchor-link">Livestream<a href="#livestream" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>See <a href="../types/LivestreamEvents.html" class="tsd-kind-type-alias"> LivestreamEvents</a> and the <a href="Watching_a_livestream.html">Livestream guide</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>livestream.READY</code></td>
+<td>The livestream viewer is ready.</td>
+</tr>
+<tr>
+<td><code>livestream.LIVE_STREAM_INTERCEPT_CHAT</code></td>
+<td>The viewer tried to chat (<code>chat: 'intercept'</code>).</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#all-events"><span>All events</span></a>
+<ul>
+<li><a href="#every-widget"><span>Every widget</span></a></li>
+<li><a href="#dashboard"><span>Dashboard</span></a></li>
+<li><a href="#meeting"><span>Meeting</span></a></li>
+<li><a href="#livestream"><span>Livestream</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://github.com/iotum/callbridge-js" class="tsd-nav-link">GitHub</a><a href="https://www.npmjs.com/package/@iotum/callbridge-js" class="tsd-nav-link">npm</a><a href="https://iotum.github.io/iotum-samples/" class="tsd-nav-link">Samples</a></nav>
+<nav class="tsd-navigation"><a href="../modules.html">Callbridge JS SDK - v1.0.16</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>
