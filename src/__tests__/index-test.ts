@@ -1,3 +1,4 @@
+import { expect, test } from 'vitest';
 import * as Callbridge from '../index';
 
 test('exports', () => {

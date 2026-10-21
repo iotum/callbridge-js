@@ -1,10 +1,18 @@
-/** @jest-environment jsdom */
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  type Mock,
+} from 'vitest';
 
 import Dashboard, { LayoutOption, Service } from '../dashboard';
 
 const createElement = document.createElement.bind(document);
 
-let myPostMessage: jest.Mock;
+let myPostMessage: Mock;
 const mockIFrame = Object.defineProperty(
   document.createElement('iframe'),
   'contentWindow',
@@ -26,13 +34,11 @@ describe('dashboard', () => {
   beforeEach(() => {
     container = createElement('div');
 
-    myPostMessage = jest.fn();
+    myPostMessage = vi.fn();
 
-    jest
-      .spyOn(document, 'createElement')
-      .mockImplementation((tag) =>
-        tag === 'iframe' ? mockIFrame : createElement(tag),
-      );
+    vi.spyOn(document, 'createElement').mockImplementation((tag) =>
+      tag === 'iframe' ? mockIFrame : createElement(tag),
+    );
   });
 
   afterEach(() => {

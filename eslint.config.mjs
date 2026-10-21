@@ -1,8 +1,8 @@
 import js from '@eslint/js';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import jest from 'eslint-plugin-jest';
 import prettier from 'eslint-plugin-prettier';
+import vitest from '@vitest/eslint-plugin';
 import globals from 'globals';
 
 /** @type {import('eslint').Linter.Config[]} */
@@ -11,7 +11,10 @@ export default [
     ignores: ['dist/*', 'docs-site/*'],
   },
   js.configs.recommended,
-  jest.configs['flat/recommended'],
+  {
+    files: ['src/**/__tests__/**'],
+    ...vitest.configs.recommended,
+  },
   {
     plugins: {
       '@typescript-eslint': typescriptEslint,

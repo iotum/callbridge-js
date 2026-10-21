@@ -1,42 +1,51 @@
-/** @jest-environment jsdom */
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  type Mock,
+  type MockInstance,
+} from 'vitest';
 
 import Widget from '../widget';
 
 describe('widget', () => {
   const domain = 'test.callbridge';
 
-  let nodeSpy: jest.SpyInstance;
+  let nodeSpy: MockInstance;
   let mockWindow: Window;
   let popupWindow: Window;
   let container: HTMLElement;
   let widget: Widget<{}>;
 
   const processEvent = (type: string, event: any) => {
-    (mockWindow.addEventListener as jest.Mock).mock.calls.find(
+    (mockWindow.addEventListener as Mock).mock.calls.find(
       (call) => call[0] === type,
-    )[1](event);
+    )![1](event);
   };
 
   beforeEach(() => {
     popupWindow = Object.assign(Object.create(Window.prototype), {
-      close: jest.fn(() => popupWindow),
-      postMessage: jest.fn(),
+      close: vi.fn(() => popupWindow),
+      postMessage: vi.fn(),
       closed: false,
     });
 
     // jsdom's `window.window` is not configurable, so stub the real window's methods.
     mockWindow = window;
-    jest.spyOn(window, 'open').mockReturnValue(popupWindow);
-    jest.spyOn(window, 'addEventListener').mockImplementation(() => {});
-    jest.spyOn(window, 'removeEventListener').mockImplementation(() => {});
-    jest.spyOn(window, 'postMessage').mockImplementation(() => {});
+    vi.spyOn(window, 'open').mockReturnValue(popupWindow);
+    vi.spyOn(window, 'addEventListener').mockImplementation(() => {});
+    vi.spyOn(window, 'removeEventListener').mockImplementation(() => {});
+    vi.spyOn(window, 'postMessage').mockImplementation(() => {});
 
-    nodeSpy = jest.spyOn(document.body, 'appendChild');
+    nodeSpy = vi.spyOn(document.body, 'appendChild');
   });
 
   afterEach(() => {
     widget?.unload();
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   describe('constructor', () => {
@@ -101,13 +110,16 @@ describe('widget', () => {
         let broadcast: BroadcastChannel;
 
         beforeEach(() => {
-          jest.useFakeTimers();
+          vi.useFakeTimers();
 
           broadcast = {
-            postMessage: jest.fn(),
-            close: jest.fn(),
+            postMessage: vi.fn(),
+            close: vi.fn(),
           } as any;
-          self.BroadcastChannel = jest.fn().mockImplementation(() => broadcast);
+          // Must be a `function` (not an arrow) so the mock can be called with `new`.
+          self.BroadcastChannel = vi.fn(function () {
+            return broadcast;
+          }) as any;
 
           widget = new Widget(
             {
@@ -153,7 +165,7 @@ describe('widget', () => {
 
         describe('after waiting', () => {
           beforeEach(() => {
-            jest.runOnlyPendingTimers();
+            vi.runOnlyPendingTimers();
           });
 
           it('opens a new one if no existing widget', () => {
@@ -178,11 +190,11 @@ describe('widget', () => {
     describe('attached HTMLElement container', () => {
       beforeEach(() => {
         container = document.body.appendChild(document.createElement('div'));
-        container.remove = jest.fn();
+        container.remove = vi.fn();
 
         nodeSpy.mockClear();
         widget = new Widget({ container, domain }, true);
-        widget.emit = jest.fn();
+        widget.emit = vi.fn();
       });
 
       describe('load/unload', () => {
@@ -205,11 +217,11 @@ describe('widget', () => {
     describe('detached HTMLElement container', () => {
       beforeEach(() => {
         container = document.createElement('div');
-        container.remove = jest.fn();
+        container.remove = vi.fn();
 
         nodeSpy.mockClear();
         widget = new Widget({ container, domain }, true);
-        widget.emit = jest.fn();
+        widget.emit = vi.fn();
       });
 
       it('supports it', () => {
