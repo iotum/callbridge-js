@@ -41,6 +41,8 @@ See {@link DashboardEvents} and the [Dashboard guide](./dashboard.md).
 | `dashboard.NAVIGATE_TO_SCHEDULE` | The user wants to schedule a meeting (`scheduleAction: intercept`). |
 | `dashboard.SEARCH_START`         | A search is started (Search).                                       |
 | `dashboard.SEARCH_RESULT`        | A search is completed or failed (Search).                           |
+| `dashboard.BOT_MESSAGE`          | The user sent a chat bot command (Team, `bot: true`).               |
+| `dashboard.BOT_MESSAGE_REJECTED` | A chat bot reply was not posted.                                    |
 | `room.READY`                     | A meeting is loaded inline.                                         |
 | `room.UNLOAD`                    | The inline meeting is unloading; the dashboard is unloaded too.     |
 

@@ -151,6 +151,58 @@ describe('dashboard', () => {
     );
   });
 
+  it('can enable the chat bot', () => {
+    dashboard = new Dashboard({ container, domain }, service);
+
+    dashboard.load(Service.Team, { bot: true });
+
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+      { type: 'dashboard', action: 'load', service: Service.Team, bot: true },
+      '*',
+    );
+  });
+
+  it('can reply to a bot message', () => {
+    dashboard = new Dashboard({ container, domain }, service);
+
+    dashboard.replyToBotMessage('1-2-3', 'It is **noon**');
+
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+      {
+        type: 'dashboard',
+        action: 'botMessage',
+        id: '1-2-3',
+        content: 'It is **noon**',
+      },
+      '*',
+    );
+  });
+
+  it('types the bot events', () => {
+    dashboard = new Dashboard({ container, domain }, service);
+    const onMessage = vi.fn();
+    const onRejected = vi.fn();
+    dashboard.on('dashboard.BOT_MESSAGE', ({ id, message, room_id }) =>
+      onMessage(id, message, room_id),
+    );
+    dashboard.on('dashboard.BOT_MESSAGE_REJECTED', ({ id, reason }) =>
+      onRejected(id, reason),
+    );
+
+    dashboard.emit('dashboard.BOT_MESSAGE', {
+      id: '1',
+      message: '/time',
+      room_id: 7,
+    });
+    dashboard.emit('dashboard.BOT_MESSAGE_REJECTED', {
+      id: '1',
+      reason: 'OLD MESSAGE',
+    });
+
+    expect(onMessage).toHaveBeenCalledWith('1', '/time', 7);
+    expect(onRejected).toHaveBeenCalledWith('1', 'OLD MESSAGE');
+  });
+
   describe('search', () => {
     it('throws "not implemented" unless search service', () => {
       dashboard = new Dashboard({ container, domain }, service);

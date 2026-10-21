@@ -86,6 +86,39 @@ const chat = new Dashboard(options, Service.Team, {
 
 Or, in an existing dashboard: `dashboard.load(Service.Team, { pathname: room.path })`.
 
+### Chat bot
+
+With {@link ServiceOptions.bot}, your app can answer slash commands typed in Team chat, e.g. `/weather Toronto`:
+
+1. The user sends a message starting with `/` in a chat room. It is not posted;
+   `dashboard.BOT_MESSAGE` is emitted with the message `id`, its text and the `room_id`.
+2. Your app replies with {@link Dashboard.replyToBotMessage}. The reply is posted to that room as the user.
+
+```ts
+const dashboard = new Dashboard(options, Service.Team, { bot: true });
+
+dashboard.on('dashboard.BOT_MESSAGE', async ({ id, message, room_id }) => {
+  const [command, ...args] = message.split(' ');
+  if (command === '/weather') {
+    const forecast = await getForecast(args.join(' '));
+    dashboard.replyToBotMessage(
+      id,
+      `**${forecast.city}**: ${forecast.summary}`,
+    );
+  }
+});
+
+dashboard.on('dashboard.BOT_MESSAGE_REJECTED', ({ id, reason }) => {
+  console.warn('bot reply rejected', id, reason);
+});
+```
+
+- Reply within **30 seconds**, once per message, while the same user is signed in.
+  Otherwise the reply is not posted and `dashboard.BOT_MESSAGE_REJECTED` is emitted with the `reason`.
+- Commands you don't answer are dropped; nothing is posted.
+- `room_id` is a key of `rooms` or `channels` in `dashboard.ROOM_LIST`.
+- Once enabled, the bot stays enabled until the browser tab is closed.
+
 ## Meetings
 
 By default ({@link MeetingAction.auto}), starting or joining a meeting from the dashboard loads the meeting room

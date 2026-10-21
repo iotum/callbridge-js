@@ -102,6 +102,17 @@ export type ServiceOptions = {
    * The invited host IDs. ("meeting schedule" only)
    */
   invitedHosts?: number[];
+
+  /**
+   * Enables the chat bot: Team chat messages starting with `/` (e.g. `/weather`) are not sent;
+   * {@link DashboardEvents."dashboard.BOT_MESSAGE"} is emitted instead,
+   * and you can answer with {@link Dashboard.replyToBotMessage}.
+   *
+   * Once enabled, it stays enabled until the browser tab is closed.
+   *
+   * See [Chat bot](../docs/guides/dashboard.md#chat-bot).
+   */
+  bot?: boolean;
 };
 
 /**
@@ -250,6 +261,32 @@ export type DashboardEvents = {
       highlight: Record<string, Array<string>>;
     }>;
   };
+  /**
+   * The user sent a chat bot command. ({@link Service.Team} with {@link ServiceOptions.bot} only)
+   *
+   * The message is not posted to the room.
+   * Answer within 30 seconds with {@link Dashboard.replyToBotMessage}.
+   */
+  'dashboard.BOT_MESSAGE': {
+    /** The message id; pass it to {@link Dashboard.replyToBotMessage}. */
+    id: string;
+    /** The message text (Markdown), starting with `/`. */
+    message: string;
+    /** The chat room id, as in {@link DashboardEvents."dashboard.ROOM_LIST"}. */
+    room_id: number;
+  };
+  /** A reply sent with {@link Dashboard.replyToBotMessage} was not posted. */
+  'dashboard.BOT_MESSAGE_REJECTED': {
+    /** The message id. */
+    id: string;
+    /**
+     * Why the reply was not posted:
+     * - `INVALID ID`: no message has this id, or it was already answered.
+     * - `INVALID SENDER`: a different user is now signed in.
+     * - `OLD MESSAGE`: more than 30 seconds have passed since the message was sent.
+     */
+    reason: 'INVALID ID' | 'INVALID SENDER' | 'OLD MESSAGE';
+  };
   /** A meeting room is loaded inline. See {@link MeetingAction.auto}. */
   'room.READY': RoomEvents['room.READY'];
   /**
@@ -390,6 +427,29 @@ export default class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
    */
   go(delta: number) {
     this._send('dashboard', 'go', { delta });
+  }
+
+  /**
+   * Answers a chat bot command: posts `content` to the chat room of the
+   * {@link DashboardEvents."dashboard.BOT_MESSAGE"} as the signed-in user.
+   *
+   * Requires {@link Service.Team} with {@link ServiceOptions.bot}.
+   * Each message can be answered once, within 30 seconds;
+   * otherwise {@link DashboardEvents."dashboard.BOT_MESSAGE_REJECTED"} is emitted.
+   *
+   * @example
+   * ```ts
+   * dashboard.on('dashboard.BOT_MESSAGE', async ({ id, message }) => {
+   *   if (message.startsWith('/time')) {
+   *     dashboard.replyToBotMessage(id, `It is ${new Date().toLocaleTimeString()}`);
+   *   }
+   * });
+   * ```
+   * @param id The {@link DashboardEvents."dashboard.BOT_MESSAGE"} id.
+   * @param content The reply (Markdown).
+   */
+  replyToBotMessage(id: string, content: string) {
+    this._send('dashboard', 'botMessage', { id, content });
   }
 
   /**
