@@ -59,7 +59,17 @@ meeting.unload();
 | [`Dashboard`](https://iotum.github.io/callbridge-js/latest/classes/Dashboard.html)   | Embed Team (chat), Drive, Contacts, Meet or Search. |
 | [`Livestream`](https://iotum.github.io/callbridge-js/latest/classes/Livestream.html) | Watch a meeting livestream.                         |
 
-See the [documentation](https://iotum.github.io/callbridge-js/) for every option, method and event.
+### Guides
+
+- [Getting started](https://iotum.github.io/callbridge-js/latest/documents/Getting_started.html)
+- [Widget lifecycle](https://iotum.github.io/callbridge-js/latest/documents/Widget_lifecycle.html): events, visibility, React.
+- [Using the dashboard](https://iotum.github.io/callbridge-js/latest/documents/Using_the_dashboard.html): team chat, drive, contacts and meetings.
+- [Joining a meeting](https://iotum.github.io/callbridge-js/latest/documents/Joining_a_meeting.html): devices, participants and pop-up windows.
+- [Watching a livestream](https://iotum.github.io/callbridge-js/latest/documents/Watching_a_livestream.html)
+- [Third-party cookies and Safari](https://iotum.github.io/callbridge-js/latest/documents/Third-party_cookies_and_Safari.html)
+- [All events](https://iotum.github.io/callbridge-js/latest/documents/All_events.html)
+
+See the [API reference](https://iotum.github.io/callbridge-js/) for every option, method and event.
 Documentation for a specific release is available at `https://iotum.github.io/callbridge-js/v<version>/`.
 
 ## Development
@@ -72,5 +82,5 @@ npm run build
 npm run doc # generates the documentation site into docs-site/
 ```
 
-The documentation is generated from the TSDoc comments in `src/` by [TypeDoc](https://typedoc.org/), configured in `typedoc.json`,
+The documentation is generated from the TSDoc comments in `src/` and the guides in `docs/guides/` by [TypeDoc](https://typedoc.org/), configured in `typedoc.json`,
 and published to GitHub Pages when a release is published (see `.github/workflows/docs.yml`).

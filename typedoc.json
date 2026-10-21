@@ -10,7 +10,7 @@
   "excludeProtected": true,
   "excludeExternals": true,
   "categorizeByGroup": false,
-  "categoryOrder": ["Widgets", "Events", "Options", "*"],
+  "categoryOrder": ["Guides", "Widgets", "Events", "Options", "*"],
   "navigation": {
     "includeCategories": true,
     "includeGroups": false

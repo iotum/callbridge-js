@@ -10,6 +10,13 @@
  *   '1234567',
  * );
  * ```
+ * @document ../docs/guides/getting-started.md
+ * @document ../docs/guides/widget-lifecycle.md
+ * @document ../docs/guides/dashboard.md
+ * @document ../docs/guides/meeting.md
+ * @document ../docs/guides/livestream.md
+ * @document ../docs/guides/storage-access.md
+ * @document ../docs/guides/events.md
  * @module
  */
 export {
