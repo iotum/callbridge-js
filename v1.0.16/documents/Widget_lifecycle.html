@@ -1,0 +1,125 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Widget lifecycle | Callbridge JS SDK - v1.0.16</title><meta name="description" content="Documentation for Callbridge JS SDK"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">Callbridge JS SDK - v1.0.16</a>
+<div id="tsd-toolbar-links"><a href="https://github.com/iotum/callbridge-js">GitHub</a><a href="https://www.npmjs.com/package/@iotum/callbridge-js">npm</a><a href="https://iotum.github.io/iotum-samples/">Samples</a></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="" aria-current="page">Widget lifecycle</a></li></ul></div>
+<div class="tsd-panel tsd-typography"><h1 id="widget-lifecycle" class="tsd-anchor-link">Widget lifecycle<a href="#widget-lifecycle" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>Every widget (<a href="../classes/Dashboard.html" class="tsd-kind-class"> Dashboard</a>, <a href="../classes/Meeting.html" class="tsd-kind-class"> Meeting</a>, <a href="../classes/Livestream.html" class="tsd-kind-class"> Livestream</a>) shares the same lifecycle,
+methods and <a href="../types/WidgetEvents.html" class="tsd-kind-type-alias"> WidgetEvents</a>.</p>
+<h2 id="loading" class="tsd-anchor-link">Loading<a href="#loading" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Creating a widget immediately adds an iframe to the container (or opens a tab when the container is <code>window</code>).
+Subscribe to events right after creating the widget:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>widget.LOAD</code></td>
+<td>The widget page is loaded and can receive messages. Emitted before each <code>*.READY</code> event.</td>
+</tr>
+<tr>
+<td><code>dashboard.READY</code>, <code>room.READY</code>, <code>livestream.READY</code></td>
+<td>The widget is ready to use. Call widget methods after this.</td>
+</tr>
+<tr>
+<td><code>widget.ERROR</code></td>
+<td>The widget failed to load, e.g. the user is not authorized.</td>
+</tr>
+<tr>
+<td><code>widget.STORAGE_ACCESS_REQUIRED</code></td>
+<td>The browser blocks the widget's cookies. See <a href="Third-party_cookies_and_Safari.html">Third-party cookies and Safari</a>.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="ts"><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">dashboard</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Dashboard</span><span class="hl-1">(</span><span class="hl-6">options</span><span class="hl-1">);</span><br/><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;widget.ERROR&#39;</span><span class="hl-1">, (</span><span class="hl-6">error</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-0">showError</span><span class="hl-1">(</span><span class="hl-6">error</span><span class="hl-1">));</span><br/><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">once</span><span class="hl-1">(</span><span class="hl-2">&#39;dashboard.READY&#39;</span><span class="hl-1">, () </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">load</span><span class="hl-1">(</span><span class="hl-6">Service</span><span class="hl-1">.</span><span class="hl-6">Team</span><span class="hl-1">));</span>
+</code><button type="button">Copy</button></pre>
+
+<p><a href="../classes/Widget.html#isready" class="tsd-kind-accessor"> Widget.isReady</a> tells whether the widget is ready.</p>
+<h2 id="showing-and-hiding" class="tsd-anchor-link">Showing and hiding<a href="#showing-and-hiding" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><a href="../classes/Widget.html#toggle" class="tsd-kind-method"> Widget.toggle</a> shows or hides the iframe without unloading it, e.g. to switch between tabs of your app.
+It is not available when the widget is in a separate tab or window.</p>
+<pre><code class="ts"><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">toggle</span><span class="hl-1">(</span><span class="hl-5">false</span><span class="hl-1">); </span><span class="hl-3">// keep the widget loaded in the background</span><br/><span class="hl-6">dashboard</span><span class="hl-1">.</span><span class="hl-0">toggle</span><span class="hl-1">(</span><span class="hl-5">true</span><span class="hl-1">);</span>
+</code><button type="button">Copy</button></pre>
+
+<p>A hidden widget still emits events, e.g. to keep an unread message badge up to date.</p>
+<p>A detached container (an element that is not in the document) is appended to the document, and the widget starts hidden.
+This is useful for a widget that only provides events, e.g. unread message counts.</p>
+<h2 id="unloading" class="tsd-anchor-link">Unloading<a href="#unloading" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><a href="../classes/Widget.html#unload" class="tsd-kind-method"> Widget.unload</a> removes the iframe, or closes the tab. Always unload the widget when your page or component
+is torn down, otherwise the iframe and its event listeners are left behind.</p>
+<p>The widget also unloads itself, and emits <code>widget.UNLOAD</code>, when its content is unloading, e.g.:</p>
+<ul>
+<li>a <a href="../classes/Meeting.html" class="tsd-kind-class"> Meeting</a> ends (<code>room.UNLOAD</code>);</li>
+<li>a meeting loaded inline in a <a href="../classes/Dashboard.html" class="tsd-kind-class"> Dashboard</a> ends (<code>room.UNLOAD</code>); create a new <code>Dashboard</code> to show it again.</li>
+</ul>
+<p>A widget cannot be reused after it is unloaded; create a new one.</p>
+<h2 id="react" class="tsd-anchor-link">React<a href="#react" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Create the widget in an effect and unload it in the cleanup.
+<code>unload()</code> is safe to call before the widget is loaded, which happens with React <code>StrictMode</code> in development.</p>
+<pre><code class="tsx"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-6">useEffect</span><span class="hl-1">, </span><span class="hl-6">useRef</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;react&#39;</span><span class="hl-1">;</span><br/><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-6">Meeting</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@iotum/callbridge-js&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">MeetingRoom</span><span class="hl-1">({ </span><span class="hl-6">domain</span><span class="hl-1">, </span><span class="hl-6">token</span><span class="hl-1">, </span><span class="hl-6">hostId</span><span class="hl-1">, </span><span class="hl-6">accessCode</span><span class="hl-1"> }) {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">container</span><span class="hl-1"> = </span><span class="hl-0">useRef</span><span class="hl-1">&lt;</span><span class="hl-14">HTMLDivElement</span><span class="hl-1">&gt;(</span><span class="hl-5">null</span><span class="hl-1">);</span><br/><br/><span class="hl-1">  </span><span class="hl-0">useEffect</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">meeting</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Meeting</span><span class="hl-1">(</span><br/><span class="hl-1">      { </span><span class="hl-6">domain</span><span class="hl-1">, </span><span class="hl-6">sso:</span><span class="hl-1"> { </span><span class="hl-6">token</span><span class="hl-1">, </span><span class="hl-6">hostId</span><span class="hl-1"> }, </span><span class="hl-6">container:</span><span class="hl-1"> </span><span class="hl-6">container</span><span class="hl-1">.</span><span class="hl-6">current</span><span class="hl-1">! },</span><br/><span class="hl-1">      </span><span class="hl-6">accessCode</span><span class="hl-1">,</span><br/><span class="hl-1">    );</span><br/><span class="hl-1">    </span><span class="hl-6">meeting</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;widget.ERROR&#39;</span><span class="hl-1">, </span><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-6">error</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-4">return</span><span class="hl-1"> () </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-6">meeting</span><span class="hl-1">.</span><span class="hl-0">unload</span><span class="hl-1">();</span><br/><span class="hl-1">  }, [</span><span class="hl-6">domain</span><span class="hl-1">, </span><span class="hl-6">token</span><span class="hl-1">, </span><span class="hl-6">hostId</span><span class="hl-1">, </span><span class="hl-6">accessCode</span><span class="hl-1">]);</span><br/><br/><span class="hl-1">  </span><span class="hl-4">return</span><span class="hl-1"> </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-1"> </span><span class="hl-10">ref</span><span class="hl-1">=</span><span class="hl-5">{</span><span class="hl-6">container</span><span class="hl-5">}</span><span class="hl-1"> </span><span class="hl-10">style</span><span class="hl-1">=</span><span class="hl-5">{</span><span class="hl-9">{ </span><span class="hl-6">width:</span><span class="hl-9"> </span><span class="hl-2">&#39;100%&#39;</span><span class="hl-9">, </span><span class="hl-6">height:</span><span class="hl-9"> </span><span class="hl-13">600</span><span class="hl-9"> }</span><span class="hl-5">}</span><span class="hl-1"> </span><span class="hl-7">/&gt;</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="errors" class="tsd-anchor-link">Errors<a href="#errors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Unable to locate the container element</code> (thrown)</td>
+<td>The <code>container</code> selector does not match an element.</td>
+</tr>
+<tr>
+<td><code>Missing SSO parameters</code> (thrown)</td>
+<td><code>sso</code> is set without both <code>token</code> and <code>hostId</code>.</td>
+</tr>
+<tr>
+<td><code>widget.ERROR</code> event</td>
+<td>The widget could not be loaded or opened, e.g. a pop-up is blocked.</td>
+</tr>
+<tr>
+<td><code>dashboard.SESSION_EXPIRED</code> event</td>
+<td>The user's session has expired. Create a new widget to sign in again.</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#widget-lifecycle"><span>Widget lifecycle</span></a>
+<ul>
+<li><a href="#loading"><span>Loading</span></a></li>
+<li><a href="#showing-and-hiding"><span>Showing and hiding</span></a></li>
+<li><a href="#unloading"><span>Unloading</span></a></li>
+<li><a href="#react"><span>React</span></a></li>
+<li><a href="#errors"><span>Errors</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://github.com/iotum/callbridge-js" class="tsd-nav-link">GitHub</a><a href="https://www.npmjs.com/package/@iotum/callbridge-js" class="tsd-nav-link">npm</a><a href="https://iotum.github.io/iotum-samples/" class="tsd-nav-link">Samples</a></nav>
+<nav class="tsd-navigation"><a href="../modules.html">Callbridge JS SDK - v1.0.16</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Callbridge JS SDK - v1.0.16</title><meta name="description" content="Documentation for Callbridge JS SDK"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script><script async src="assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="index.html" class="title">Callbridge JS SDK - v1.0.16</a>
+<div id="tsd-toolbar-links"><a href="https://github.com/iotum/callbridge-js">GitHub</a><a href="https://www.npmjs.com/package/@iotum/callbridge-js">npm</a><a href="https://iotum.github.io/iotum-samples/">Samples</a></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<h1>Callbridge JS SDK - v1.0.16</h1></div>
+<div class="tsd-panel tsd-typography"><h1 id="callbridge-js" class="tsd-anchor-link">callbridge-js<a href="#callbridge-js" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>Embed Callbridge meetings, team chat, drive, contacts and livestreams in your web app.</p>
+<p>📖 <strong>Documentation: <a href="https://iotum.github.io/callbridge-js/">https://iotum.github.io/callbridge-js/</a></strong> (searchable API reference)</p>
+<p>🧪 <strong>Live samples: <a href="https://iotum.github.io/iotum-samples/">https://iotum.github.io/iotum-samples/</a></strong> (<a href="https://github.com/iotum/iotum-samples">source</a>)</p>
+<h2 id="installation" class="tsd-anchor-link">Installation<a href="#installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="install-the-library-in-your-project" class="tsd-anchor-link">Install the library in your project:<a href="#install-the-library-in-your-project" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">@iotum/callbridge-js</span>
+</code><button type="button">Copy</button></pre>
+
+<pre><code class="js"><span class="hl-3">// All widgets</span><br/><span class="hl-4">import</span><span class="hl-1"> </span><span class="hl-5">*</span><span class="hl-1"> </span><span class="hl-4">as</span><span class="hl-1"> </span><span class="hl-6">Callbridge</span><span class="hl-1"> </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@iotum/callbridge-js&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-3">// Single widget</span><br/><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-6">Meeting</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@iotum/callbridge-js&#39;</span><span class="hl-1">;</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="manually-include-the-script-tag-in-your-single-page-app" class="tsd-anchor-link">Manually include the script tag in your Single Page App:<a href="#manually-include-the-script-tag-in-your-single-page-app" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Add the following script tag to the <code>&lt;head&gt;</code> section on your site.</p>
+<pre><code class="html"><span class="hl-7">&lt;</span><span class="hl-8">script</span><span class="hl-9"> </span><span class="hl-10">src</span><span class="hl-9">=</span><span class="hl-11">&quot;https://app.callbridge.com/packs/js/widget.js&quot;</span><span class="hl-9"> </span><span class="hl-10">async</span><span class="hl-7">&gt;&lt;/</span><span class="hl-8">script</span><span class="hl-7">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The Widgets are exposed globally under <code>window.Callbridge</code>.</p>
+<h2 id="usage" class="tsd-anchor-link">Usage<a href="#usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<pre><code class="js"><span class="hl-4">import</span><span class="hl-1"> { </span><span class="hl-6">Meeting</span><span class="hl-1"> } </span><span class="hl-4">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@iotum/callbridge-js&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-12">meeting</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Meeting</span><span class="hl-1">(</span><br/><span class="hl-1">  {</span><br/><span class="hl-1">    </span><span class="hl-6">domain:</span><span class="hl-1"> </span><span class="hl-2">&#39;your-company.callbridge.com&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">sso:</span><span class="hl-1"> { </span><span class="hl-6">token:</span><span class="hl-1"> </span><span class="hl-2">&#39;sso-token&#39;</span><span class="hl-1">, </span><span class="hl-6">hostId:</span><span class="hl-1"> </span><span class="hl-13">12345</span><span class="hl-1"> },</span><br/><span class="hl-1">    </span><span class="hl-6">container:</span><span class="hl-1"> </span><span class="hl-2">&#39;#meeting&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-2">&#39;1234567&#39;</span><span class="hl-1">, </span><span class="hl-3">// meeting access code</span><br/><span class="hl-1">  { </span><span class="hl-6">skipJoin:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1"> },</span><br/><span class="hl-1">);</span><br/><br/><span class="hl-6">meeting</span><span class="hl-1">.</span><span class="hl-0">on</span><span class="hl-1">(</span><span class="hl-2">&#39;widget.ERROR&#39;</span><span class="hl-1">, (</span><span class="hl-6">error</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-0">error</span><span class="hl-1">(</span><span class="hl-6">error</span><span class="hl-1">));</span><br/><br/><span class="hl-3">// when your page or component is torn down</span><br/><span class="hl-6">meeting</span><span class="hl-1">.</span><span class="hl-0">unload</span><span class="hl-1">();</span>
+</code><button type="button">Copy</button></pre>
+
+<table>
+<thead>
+<tr>
+<th>Widget</th>
+<th>Use it to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://iotum.github.io/callbridge-js/latest/classes/Meeting.html"><code>Meeting</code></a></td>
+<td>Join a meeting room.</td>
+</tr>
+<tr>
+<td><a href="https://iotum.github.io/callbridge-js/latest/classes/Dashboard.html"><code>Dashboard</code></a></td>
+<td>Embed Team (chat), Drive, Contacts, Meet or Search.</td>
+</tr>
+<tr>
+<td><a href="https://iotum.github.io/callbridge-js/latest/classes/Livestream.html"><code>Livestream</code></a></td>
+<td>Watch a meeting livestream.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="guides" class="tsd-anchor-link">Guides<a href="#guides" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li><a href="https://iotum.github.io/callbridge-js/latest/documents/Getting_started.html">Getting started</a></li>
+<li><a href="https://iotum.github.io/callbridge-js/latest/documents/Widget_lifecycle.html">Widget lifecycle</a>: events, visibility, React.</li>
+<li><a href="https://iotum.github.io/callbridge-js/latest/documents/Using_the_dashboard.html">Using the dashboard</a>: team chat, drive, contacts and meetings.</li>
+<li><a href="https://iotum.github.io/callbridge-js/latest/documents/Joining_a_meeting.html">Joining a meeting</a>: devices, participants and pop-up windows.</li>
+<li><a href="https://iotum.github.io/callbridge-js/latest/documents/Watching_a_livestream.html">Watching a livestream</a></li>
+<li><a href="https://iotum.github.io/callbridge-js/latest/documents/Third-party_cookies_and_Safari.html">Third-party cookies and Safari</a></li>
+<li><a href="https://iotum.github.io/callbridge-js/latest/documents/All_events.html">All events</a></li>
+</ul>
+<p>See the <a href="https://iotum.github.io/callbridge-js/">API reference</a> for every option, method and event.
+Documentation for a specific release is available at <code>https://iotum.github.io/callbridge-js/v&lt;version&gt;/</code>.</p>
+<h2 id="development" class="tsd-anchor-link">Development<a href="#development" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><br/><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">run</span><span class="hl-1"> </span><span class="hl-2">lint</span><br/><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">test</span><br/><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">run</span><span class="hl-1"> </span><span class="hl-2">build</span><br/><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">run</span><span class="hl-1"> </span><span class="hl-2">doc</span><span class="hl-1"> </span><span class="hl-3"># generates the documentation site into docs-site/</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The documentation is generated from the TSDoc comments in <code>src/</code> and the guides in <code>docs/guides/</code> by <a href="https://typedoc.org/">TypeDoc</a>, configured in <code>typedoc.json</code>,
+and published to GitHub Pages when a release is published (see <code>.github/workflows/docs.yml</code>).</p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#callbridge-js"><span>callbridge-<wbr/>js</span></a>
+<ul>
+<li><a href="#installation"><span>Installation</span></a></li>
+<li>
+<ul>
+<li><a href="#install-the-library-in-your-project"><span>Install the library in your project:</span></a></li>
+<li><a href="#manually-include-the-script-tag-in-your-single-page-app"><span>Manually include the script tag in your <wbr/>Single <wbr/>Page <wbr/>App:</span></a></li></ul></li>
+<li><a href="#usage"><span>Usage</span></a></li>
+<li>
+<ul>
+<li><a href="#guides"><span>Guides</span></a></li></ul></li>
+<li><a href="#development"><span>Development</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://github.com/iotum/callbridge-js" class="tsd-nav-link">GitHub</a><a href="https://www.npmjs.com/package/@iotum/callbridge-js" class="tsd-nav-link">npm</a><a href="https://iotum.github.io/iotum-samples/" class="tsd-nav-link">Samples</a></nav>
+<nav class="tsd-navigation"><a href="modules.html">Callbridge JS SDK - v1.0.16</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>
