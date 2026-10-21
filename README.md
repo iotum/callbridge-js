@@ -1,6 +1,10 @@
 # callbridge-js
 
-Loading wrapper for Callbridge WebSDK.
+Embed Callbridge meetings, team chat, drive, contacts and livestreams in your web app.
+
+📖 **Documentation: <https://iotum.github.io/callbridge-js/>** (searchable API reference)
+
+🧪 **Live samples: <https://iotum.github.io/iotum-samples/>** ([source](https://github.com/iotum/iotum-samples))
 
 ## Installation
 
@@ -22,7 +26,7 @@ import { Meeting } from '@iotum/callbridge-js';
 
 Add the following script tag to the `<head>` section on your site.
 
-```js
+```html
 <script src="https://app.callbridge.com/packs/js/widget.js" async></script>
 ```
 
@@ -30,4 +34,43 @@ The Widgets are exposed globally under `window.Callbridge`.
 
 ## Usage
 
-See Wiki for usage: https://github.com/iotum/callbridge-js/tree/main/wiki
+```js
+import { Meeting } from '@iotum/callbridge-js';
+
+const meeting = new Meeting(
+  {
+    domain: 'your-company.callbridge.com',
+    sso: { token: 'sso-token', hostId: 12345 },
+    container: '#meeting',
+  },
+  '1234567', // meeting access code
+  { skipJoin: true },
+);
+
+meeting.on('widget.ERROR', (error) => console.error(error));
+
+// when your page or component is torn down
+meeting.unload();
+```
+
+| Widget                                                                               | Use it to                                           |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------- |
+| [`Meeting`](https://iotum.github.io/callbridge-js/latest/classes/Meeting.html)       | Join a meeting room.                                |
+| [`Dashboard`](https://iotum.github.io/callbridge-js/latest/classes/Dashboard.html)   | Embed Team (chat), Drive, Contacts, Meet or Search. |
+| [`Livestream`](https://iotum.github.io/callbridge-js/latest/classes/Livestream.html) | Watch a meeting livestream.                         |
+
+See the [documentation](https://iotum.github.io/callbridge-js/) for every option, method and event.
+Documentation for a specific release is available at `https://iotum.github.io/callbridge-js/v<version>/`.
+
+## Development
+
+```bash
+npm install
+npm run lint
+npm test
+npm run build
+npm run doc # generates the documentation site into docs-site/
+```
+
+The documentation is generated from the TSDoc comments in `src/` by [TypeDoc](https://typedoc.org/), configured in `typedoc.json`,
+and published to GitHub Pages when a release is published (see `.github/workflows/docs.yml`).

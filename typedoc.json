@@ -1,0 +1,31 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts"],
+  "out": "docs-site",
+  "name": "Callbridge JS SDK",
+  "includeVersion": true,
+  "readme": "README.md",
+  "excludeInternal": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "categorizeByGroup": false,
+  "categoryOrder": ["Widgets", "Events", "Options", "*"],
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": false
+  },
+  "searchInComments": true,
+  "searchInDocuments": true,
+  "navigationLinks": {
+    "GitHub": "https://github.com/iotum/callbridge-js",
+    "npm": "https://www.npmjs.com/package/@iotum/callbridge-js",
+    "Samples": "https://iotum.github.io/iotum-samples/"
+  },
+  "intentionallyNotExported": ["WidgetEventEmitter"],
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": false
+  }
+}
