@@ -179,10 +179,18 @@ search.on('dashboard.SEARCH_RESULT', ({ result, error }) => {
   render(result); // [{ contentType, id, highlight }]
 });
 
+search.on('dashboard.SEARCH_START', ({ query, filters }) => {
+  showSearching(query, filters); // e.g. 'review', { participant: ['alice'] }
+});
+
 search.once('dashboard.READY', () => {
   search.search('quarterly review', { order: 'relevance' });
 });
 ```
+
+The query supports the same `field:value` terms as the Callbridge search box, e.g.
+`review participant:alice after:2026-01-01`. `dashboard.SEARCH_START` reports the free-text part as `query`
+and the terms as `filters`. `dashboard.SEARCH_RESULT` includes the same `query`, to match results to searches.
 
 ## Hiding UI elements
 

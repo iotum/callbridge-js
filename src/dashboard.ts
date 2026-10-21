@@ -238,8 +238,40 @@ export type DashboardEvents = {
   };
   /** A search is started. ({@link Service.Search} only) */
   'dashboard.SEARCH_START': {
-    /** The search query. */
+    /** The free-text part of the search query, in lower case. */
     query: string;
+    /**
+     * The `field:value` terms of the search query, e.g. `participant:alice` or `after:2026-01-01`.
+     * Every value is an array, because a field can be repeated or have comma-separated values.
+     */
+    filters: {
+      /** `subject:` terms. */
+      subject?: string[];
+      /** `description:` terms. */
+      description?: string[];
+      /** `participant:` terms. */
+      participant?: string[];
+      /** `transcript:` terms. */
+      transcript?: string[];
+      /** `filename:` terms (uploaded files). */
+      filename?: string[];
+      /** `before:` dates, as ISO 8601 strings. */
+      before?: string[];
+      /** `after:` dates, as ISO 8601 strings. */
+      after?: string[];
+      /** `sentiment:` terms. */
+      sentiment?: Array<'positive' | 'negative'>;
+      /** `day:` terms, e.g. `monday`. */
+      day?: string[];
+      /** `month:` terms, e.g. `january`. */
+      month?: string[];
+      /** `year:` terms. */
+      year?: string[];
+      /** `video:` terms (`true` or `false`). */
+      video?: string[];
+      /** `audio:` terms (`true` or `false`). */
+      audio?: string[];
+    };
     /** The page of the result. */
     page: number;
     /** The order of the result. */
@@ -247,8 +279,11 @@ export type DashboardEvents = {
   };
   /** A search is completed or failed. ({@link Service.Search} only) */
   'dashboard.SEARCH_RESULT': {
-    /** The search query. */
-    query: string;
+    /**
+     * The query of the search, as in {@link DashboardEvents."dashboard.SEARCH_START"}.
+     * Not sent by older Callbridge versions.
+     */
+    query?: string;
     /** The search error. */
     error?: string;
     /** The search result. */
