@@ -212,9 +212,9 @@ interface WidgetEventEmitter<T extends EventMap> {
  * @typeParam T The events emitted by the widget.
  * @category Widgets
  */
-export default class Widget<T extends EventMap | WidgetEvents>
-  implements WidgetEventEmitter<T>
-{
+export default class Widget<
+  T extends EventMap | WidgetEvents,
+> implements WidgetEventEmitter<T> {
   private emitter = new EventEmitter();
 
   private _attached = true;

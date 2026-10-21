@@ -12,6 +12,7 @@
     "target": "ES2016",
     "module": "CommonJS",
     "types": [],
+    "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
     "stripInternal": true,

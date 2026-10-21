@@ -5,7 +5,6 @@ import Widget from '../widget';
 describe('widget', () => {
   const domain = 'test.callbridge';
 
-  let windowSpy: jest.SpyInstance;
   let nodeSpy: jest.SpyInstance;
   let mockWindow: Window;
   let popupWindow: Window;
@@ -25,23 +24,19 @@ describe('widget', () => {
       closed: false,
     });
 
-    mockWindow = Object.assign(Object.create(Window.prototype), {
-      open: jest.fn().mockReturnValue(popupWindow),
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      postMessage: jest.fn(),
-    });
-
-    windowSpy = jest
-      .spyOn(window, 'window', 'get')
-      .mockImplementation(() => mockWindow as any);
+    // jsdom's `window.window` is not configurable, so stub the real window's methods.
+    mockWindow = window;
+    jest.spyOn(window, 'open').mockReturnValue(popupWindow);
+    jest.spyOn(window, 'addEventListener').mockImplementation(() => {});
+    jest.spyOn(window, 'removeEventListener').mockImplementation(() => {});
+    jest.spyOn(window, 'postMessage').mockImplementation(() => {});
 
     nodeSpy = jest.spyOn(document.body, 'appendChild');
   });
 
   afterEach(() => {
     widget?.unload();
-    windowSpy.mockRestore();
+    jest.restoreAllMocks();
   });
 
   describe('constructor', () => {
