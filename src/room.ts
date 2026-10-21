@@ -1,79 +1,129 @@
 import Widget, { WidgetEvents, WidgetOptions } from './widget';
 
 /**
- * Audio output settings.
+ * Audio output settings of a remote participant.
+ * @category Options
  */
 export type AudioSettings = {
   /**
-   * The output volume.
-   * Valid range: 0 (silence) - 1 (max).
-   * @default 1
+   * The stereo position.
+   * Valid range: -1 (left) - 1 (right).
+   * @defaultValue 0
    */
   pan?: number;
   /**
-   * The stereo position.
-   * Valid range: -1 (left) - 1 (right).
-   * @default 0
+   * The output volume.
+   * Valid range: 0 (silence) - 1 (max).
+   * @defaultValue 1
    */
   volume?: number;
 };
 
 /**
- * Callbridge Room.
+ * Events emitted by the meeting room, in addition to {@link WidgetEvents}.
+ *
+ * @example
+ * ```ts
+ * meeting.on('participant.CHANGE', ({ id, name, isMuted }) => {
+ *   console.log(`${name} (${id}) is ${isMuted ? 'muted' : 'unmuted'}`);
+ * });
+ * ```
+ * @category Events
  */
-export default class Room extends Widget<
-  WidgetEvents & {
-    /** Meeting widget is ready */
-    'room.READY': void;
-    /** Meeting widget is unloading */
-    'room.UNLOAD': { reason: string };
-    'device.DEVICE_LIST_CHANGED': {
-      videoinput: Array<MediaDeviceInfo>;
-      audioinput: Array<MediaDeviceInfo>;
-      audiooutput: Array<MediaDeviceInfo>;
-    };
-    'device.DEVICE_IN_USE': {
-      kind: 'audioinput' | 'audiooutput' | 'videoinput';
-      deviceId: 'default';
-    };
-    'conference.CHANGE': {
-      id: number;
-      name: string;
-      mode: string;
-      roomSize: number;
-      isActive: boolean;
-      isRecording: boolean;
-      isStreaming: boolean;
-      isLocked: boolean;
-      isSecured: boolean;
-      incomingVideo: boolean;
-    };
-    'conference.SPEAKER': { id: number; speakerId: number };
-    'conference.CONFERENCE_CALL_EXIT': { reason: string };
-    'participant.CHANGE': {
-      id: number;
-      name: string;
-      isCurrent: boolean;
-      isOrganizer: boolean;
-      isModerator: boolean;
-      isObserver: boolean;
-      isOnCall: boolean;
-      isViewingOnly: boolean;
-      isLeft: boolean;
-      isBlocked: boolean;
-      isMuted: boolean;
-      isCameraOn: boolean;
-      isPhone: boolean;
-      isInternet: boolean;
-      isJoining: boolean;
-      isStreaming: boolean;
-      handRaised: boolean;
-    };
-    'participant.AUDIO_LEVEL': { id: number; audioLevel: number };
-  }
-> {
+export type RoomEvents = {
+  /** The meeting room is ready, the device and conference methods can be used. */
+  'room.READY': void;
+  /** The meeting room is unloading. */
+  'room.UNLOAD': { reason: string };
+  /** The list of media devices is changed, e.g. a headset is plugged in. */
+  'device.DEVICE_LIST_CHANGED': {
+    /** Cameras. */
+    videoinput: Array<MediaDeviceInfo>;
+    /** Microphones. */
+    audioinput: Array<MediaDeviceInfo>;
+    /** Speakers. */
+    audiooutput: Array<MediaDeviceInfo>;
+  };
+  /** A media device is selected for use. */
+  'device.DEVICE_IN_USE': {
+    /** The device kind. */
+    kind: 'audioinput' | 'audiooutput' | 'videoinput';
+    /** The device id. */
+    deviceId: 'default';
+  };
+  /** The meeting state is changed. */
+  'conference.CHANGE': {
+    /** The meeting id. */
+    id: number;
+    /** The meeting name. */
+    name: string;
+    /** The meeting mode. */
+    mode: string;
+    /** The number of participants. */
+    roomSize: number;
+    isActive: boolean;
+    isRecording: boolean;
+    isStreaming: boolean;
+    isLocked: boolean;
+    isSecured: boolean;
+    /** Whether remote video streams are received. @see {@link Room.setIncomingVideo} */
+    incomingVideo: boolean;
+  };
+  /** The active speaker is changed. */
+  'conference.SPEAKER': {
+    /** The meeting id. */
+    id: number;
+    /** The participant id of the active speaker. */
+    speakerId: number;
+  };
+  /** The current user has left the meeting. */
+  'conference.CONFERENCE_CALL_EXIT': { reason: string };
+  /** A participant joined, left, or their state is changed. */
+  'participant.CHANGE': {
+    /** The participant id. */
+    id: number;
+    /** The participant name. */
+    name: string;
+    /** Whether this is the current user. */
+    isCurrent: boolean;
+    isOrganizer: boolean;
+    isModerator: boolean;
+    isObserver: boolean;
+    isOnCall: boolean;
+    isViewingOnly: boolean;
+    isLeft: boolean;
+    isBlocked: boolean;
+    isMuted: boolean;
+    isCameraOn: boolean;
+    /** Whether the participant joined by phone. */
+    isPhone: boolean;
+    /** Whether the participant joined by computer or app. */
+    isInternet: boolean;
+    isJoining: boolean;
+    isStreaming: boolean;
+    handRaised: boolean;
+  };
   /**
-   * @param options
+   * The audio level of a participant is changed.
+   * Requires {@link MeetingOptions.audioLevel}.
+   */
+  'participant.AUDIO_LEVEL': {
+    /** The participant id. */
+    id: number;
+    /** The audio level, 0 (silence) - 1 (max). */
+    audioLevel: number;
+  };
+};
+
+/**
+ * Base class of the meeting room widgets, with device and conference controls.
+ *
+ * Create a {@link Meeting} instead of using this class directly.
+ * @category Widgets
+ */
+export default class Room extends Widget<WidgetEvents & RoomEvents> {
+  /**
+   * @param options Widget options.
    */
   constructor(options: WidgetOptions) {
     super(options);
