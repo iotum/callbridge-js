@@ -116,8 +116,11 @@ export type ChatRoom = {
   description?: string;
   /** Accounts added to the room. */
   accounts: Array<{
+    /** The account id. */
     id: number;
+    /** The account name. */
     name: string;
+    /** The account picture URL. */
     picture_url: string;
   }>;
 };
@@ -283,6 +286,9 @@ export type DashboardEvents = {
  * @category Widgets
  */
 export default class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
+  /**
+   * Creates the dashboard, signs in, and loads the `service` when the dashboard is ready.
+   */
   constructor(
     /**
      * Widget options

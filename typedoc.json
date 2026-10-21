@@ -26,6 +26,17 @@
   "validation": {
     "notExported": true,
     "invalidLink": true,
-    "notDocumented": false
-  }
+    "notDocumented": true
+  },
+  "requiredToBeDocumented": [
+    "Class",
+    "Constructor",
+    "Method",
+    "Accessor",
+    "Property",
+    "TypeAlias",
+    "Enum",
+    "EnumMember"
+  ],
+  "treatWarningsAsErrors": true
 }

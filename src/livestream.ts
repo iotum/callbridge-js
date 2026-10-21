@@ -53,6 +53,9 @@ export type LivestreamEvents = {
 export default class Livestream extends Widget<
   WidgetEvents & LivestreamEvents
 > {
+  /**
+   * Creates the livestream viewer and plays the livestream.
+   */
   constructor(
     /**
      * Widget options

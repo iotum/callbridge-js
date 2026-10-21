@@ -43,7 +43,7 @@ jobs:
           fi
 
       - name: Build docs
-        run: npx typedoc --gitRevision "${{ steps.version.outputs.revision }}" --treatWarningsAsErrors
+        run: npx typedoc --gitRevision "${{ steps.version.outputs.revision }}"
 
       - name: Build site root
         run: |

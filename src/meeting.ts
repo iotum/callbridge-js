@@ -101,6 +101,9 @@ export type ScheduleOptions = {
  * @category Widgets
  */
 export default class Meeting extends Room {
+  /**
+   * Creates the meeting widget, signs in, and joins the meeting room.
+   */
   constructor(
     /**
      * Widget options

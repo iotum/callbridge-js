@@ -34,7 +34,10 @@ export type RoomEvents = {
   /** The meeting room is ready, the device and conference methods can be used. */
   'room.READY': void;
   /** The meeting room is unloading. */
-  'room.UNLOAD': { reason: string };
+  'room.UNLOAD': {
+    /** The reason, if any. */
+    reason: string;
+  };
   /** The list of media devices is changed, e.g. a headset is plugged in. */
   'device.DEVICE_LIST_CHANGED': {
     /** Cameras. */
@@ -55,16 +58,21 @@ export type RoomEvents = {
   'conference.CHANGE': {
     /** The meeting id. */
     id: number;
-    /** The meeting name. */
+    /** The meeting subject. */
     name: string;
-    /** The meeting mode. */
+    /** The meeting mode: conversation, Q&A or presentation. */
     mode: string;
     /** The number of participants. */
     roomSize: number;
+    /** Whether the meeting is in progress. */
     isActive: boolean;
+    /** Whether the meeting is being recorded. */
     isRecording: boolean;
+    /** Whether the meeting is being livestreamed. */
     isStreaming: boolean;
+    /** Whether the meeting is locked. */
     isLocked: boolean;
+    /** Whether the meeting is secured. */
     isSecured: boolean;
     /** Whether remote video streams are received. @see {@link Room.setIncomingVideo} */
     incomingVideo: boolean;
@@ -77,7 +85,10 @@ export type RoomEvents = {
     speakerId: number;
   };
   /** The current user has left the meeting. */
-  'conference.CONFERENCE_CALL_EXIT': { reason: string };
+  'conference.CONFERENCE_CALL_EXIT': {
+    /** The reason, if any. */
+    reason: string;
+  };
   /** A participant joined, left, or their state is changed. */
   'participant.CHANGE': {
     /** The participant id. */
@@ -86,21 +97,33 @@ export type RoomEvents = {
     name: string;
     /** Whether this is the current user. */
     isCurrent: boolean;
+    /** Whether the participant is the meeting organizer. */
     isOrganizer: boolean;
+    /** Whether the participant is a moderator. */
     isModerator: boolean;
+    /** Whether the participant joined as an observer. @see {@link MeetingOptions.observer} */
     isObserver: boolean;
+    /** Whether the participant is connected to the call. */
     isOnCall: boolean;
+    /** Whether the participant is watching without joining the call, e.g. via the livestream. */
     isViewingOnly: boolean;
+    /** Whether the participant has left the meeting. */
     isLeft: boolean;
+    /** Whether the participant is blocked from the meeting. */
     isBlocked: boolean;
+    /** Whether the participant's microphone is muted. */
     isMuted: boolean;
+    /** Whether the participant's camera is on. */
     isCameraOn: boolean;
     /** Whether the participant joined by phone. */
     isPhone: boolean;
     /** Whether the participant joined by computer or app. */
     isInternet: boolean;
+    /** Whether the participant is joining the call. */
     isJoining: boolean;
+    /** Whether the participant is watching the livestream. */
     isStreaming: boolean;
+    /** Whether the participant's hand is raised. */
     handRaised: boolean;
   };
   /**
@@ -123,6 +146,7 @@ export type RoomEvents = {
  */
 export default class Room extends Widget<WidgetEvents & RoomEvents> {
   /**
+   * Creates the room widget. Use {@link Meeting} instead.
    * @param options Widget options.
    */
   constructor(options: WidgetOptions) {
