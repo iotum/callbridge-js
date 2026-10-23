@@ -77,6 +77,20 @@ describe('dashboard', () => {
     );
   });
 
+  it('loads the Calls service', () => {
+    dashboard = new Dashboard({ container, domain }, Service.Calls);
+
+    dashboard.emit('dashboard.READY');
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+      {
+        type: 'dashboard',
+        action: 'load',
+        service: Service.Calls,
+      },
+      '*',
+    );
+  });
+
   it('loads a specific path with options', () => {
     dashboard = new Dashboard({ container, domain }, service);
 

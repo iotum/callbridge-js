@@ -13,6 +13,7 @@ The {@link Dashboard} embeds the Callbridge services:
 | `Drive`         | Content library.                                  |
 | `Contacts`      | Address book.                                     |
 | `Meet`          | Meetings: list, schedule, start and join.         |
+| `Calls`         | Phone: recent calls, voicemails and call queues.  |
 | `Search`        | Search meetings and calls. See [Search](#search). |
 | `None`          | Only sign in; load a service later.               |
 
