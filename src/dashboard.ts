@@ -19,6 +19,8 @@ export enum Service {
   Contacts = 'Contacts',
   /** Meet (Meetings) */
   Meet = 'Meet',
+  /** Calls (Phone: recent calls, voicemails, contacts and call queues) */
+  Calls = 'Calls',
 }
 
 /**
@@ -332,7 +334,7 @@ export type DashboardEvents = {
 };
 
 /**
- * Callbridge Dashboard: Team (chat), Drive, Contacts, Meet and Search.
+ * Callbridge Dashboard: Team (chat), Drive, Contacts, Meet, Calls and Search.
  *
  * Emits {@link WidgetEvents} and {@link DashboardEvents}.
  *
@@ -382,6 +384,7 @@ export default class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
       case Service.Drive:
       case Service.Contacts:
       case Service.Meet:
+      case Service.Calls:
       case Service.Search:
         this.once('dashboard.READY', () => this.load(service, serviceOptions));
         break;
