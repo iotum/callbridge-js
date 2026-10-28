@@ -53,6 +53,13 @@ function setParams(url, params) {
   }
 }
 var Widget = class {
+  /**
+   * @param options Widget options.
+   * @param autoLoad Whether to load the widget immediately. Used by subclasses.
+   * @throws {Error}
+   *   - "Unable to locate the container element" when `container` cannot be found.
+   *   - "Missing SSO parameters" when `sso` is set without both `token` and `hostId`.
+   */
   constructor({
     container,
     domain,
@@ -212,6 +219,9 @@ var Widget = class {
   }
   /**
    * Unloads the widget by removing the iframe or close the tab/window.
+   *
+   * Call this when the host page or component is torn down (e.g. in a React effect cleanup).
+   * The widget instance cannot be reused afterwards; create a new one instead.
    */
   unload() {
     this._container = null;
@@ -265,6 +275,11 @@ var Widget = class {
   }
   /**
    * Adds the `listener` function to the end of the listeners array for the event named `eventName`.
+   *
+   * @example
+   * ```ts
+   * widget.on('widget.ERROR', (error) => console.error(error));
+   * ```
    */
   on(eventName, listener) {
     this.emitter.on(eventName, listener);
@@ -278,15 +293,15 @@ var Widget = class {
     return this;
   }
   /**
-   * Adds a one-timelistener function for the event named eventName.
-   * The next time eventName is triggered, this listener is removed and then invoked.
+   * Adds a one-time `listener` function for the event named `eventName`.
+   * The next time `eventName` is triggered, this listener is removed and then invoked.
    */
   once(eventName, listener) {
     this.emitter.once(eventName, listener);
     return this;
   }
   /**
-   * Synchronously calls each of the listeners registered for the event namedeventName,
+   * Synchronously calls each of the listeners registered for the event named `eventName`,
    * in the order they were registered, passing the supplied arguments to each.
    * Returns true if the event had listeners, false otherwise.
    */
@@ -313,6 +328,7 @@ var Service = /* @__PURE__ */ ((Service2) => {
   Service2["Drive"] = "Drive";
   Service2["Contacts"] = "Contacts";
   Service2["Meet"] = "Meet";
+  Service2["Calls"] = "Calls";
   return Service2;
 })(Service || {});
 var LayoutOption = /* @__PURE__ */ ((LayoutOption2) => {
@@ -338,6 +354,9 @@ var SearchContentType = /* @__PURE__ */ ((SearchContentType2) => {
   return SearchContentType2;
 })(SearchContentType || {});
 var Dashboard = class extends Widget {
+  /**
+   * Creates the dashboard, signs in, and loads the `service` when the dashboard is ready.
+   */
   constructor(options, service = "" /* None */, serviceOptions = {}) {
     super(options);
     switch (service) {
@@ -345,6 +364,7 @@ var Dashboard = class extends Widget {
       case "Drive" /* Drive */:
       case "Contacts" /* Contacts */:
       case "Meet" /* Meet */:
+      case "Calls" /* Calls */:
       case "Search" /* Search */:
         this.once("dashboard.READY", () => this.load(service, serviceOptions));
         break;
@@ -371,7 +391,17 @@ var Dashboard = class extends Widget {
     });
   }
   /**
-   * Search for thing.
+   * Search for meetings and calls.
+   *
+   * Only available when the dashboard is created with {@link Service.Search}.
+   * Listen to {@link DashboardEvents."dashboard.SEARCH_RESULT"} for the result.
+   *
+   * @example
+   * ```ts
+   * const dashboard = new Dashboard(options, Service.Search);
+   * dashboard.on('dashboard.SEARCH_RESULT', ({ result, error }) => render(result, error));
+   * dashboard.once('dashboard.READY', () => dashboard.search('quarterly review'));
+   * ```
    * @param query The search query.
    * @param options Optional, search options.
    * @throws {Error}
@@ -385,6 +415,14 @@ var Dashboard = class extends Widget {
   }
   /**
    * Loads the service.
+   *
+   * Wait for {@link DashboardEvents."dashboard.READY"} before calling this.
+   *
+   * @example
+   * ```ts
+   * // open a chat room in the main area only
+   * dashboard.load(Service.Team, { pathname: room.path, layout: LayoutOption.main });
+   * ```
    * @param service the service to load.
    * @param options Optional, service options.
    */
@@ -401,8 +439,30 @@ var Dashboard = class extends Widget {
     this._send("dashboard", "go", { delta });
   }
   /**
+   * Answers a chat bot command: posts `content` to the chat room of the
+   * {@link DashboardEvents."dashboard.BOT_MESSAGE"} as the signed-in user.
+   *
+   * Requires {@link Service.Team} with {@link ServiceOptions.bot}.
+   * Each message can be answered once, within 30 seconds;
+   * otherwise {@link DashboardEvents."dashboard.BOT_MESSAGE_REJECTED"} is emitted.
+   *
+   * @example
+   * ```ts
+   * dashboard.on('dashboard.BOT_MESSAGE', async ({ id, message }) => {
+   *   if (message.startsWith('/time')) {
+   *     dashboard.replyToBotMessage(id, `It is ${new Date().toLocaleTimeString()}`);
+   *   }
+   * });
+   * ```
+   * @param id The {@link DashboardEvents."dashboard.BOT_MESSAGE"} id.
+   * @param content The reply (Markdown).
+   */
+  replyToBotMessage(id, content) {
+    this._send("dashboard", "botMessage", { id, content });
+  }
+  /**
    * Hides elements on the dashboard.
-   * @param ids An array of element IDs to hide.
+   * @param ids An array of Callbridge UI element IDs to hide, as used by the "hidden elements" account settings.
    */
   setHiddenElements(ids) {
     this._send("dashboard", "setHiddenElements", { ids });
@@ -412,7 +472,8 @@ var Dashboard = class extends Widget {
 // src/room.ts
 var Room = class extends Widget {
   /**
-   * @param options
+   * Creates the room widget. Use {@link Meeting} instead.
+   * @param options Widget options.
    */
   constructor(options) {
     super(options);
@@ -517,6 +578,9 @@ var Room = class extends Widget {
 
 // src/meeting.ts
 var Meeting = class extends Room {
+  /**
+   * Creates the meeting widget, signs in, and joins the meeting room.
+   */
   constructor(options, roomId, meetingOptions = {}) {
     super(options);
     const { target: { autoClose } = {} } = options;
@@ -555,6 +619,9 @@ var Meeting = class extends Room {
 
 // src/livestream.ts
 var Livestream = class extends Widget {
+  /**
+   * Creates the livestream viewer and plays the livestream.
+   */
   constructor(options, roomId, livestreamOptions) {
     super(options);
     this._load({
@@ -569,7 +636,9 @@ export {
   Livestream,
   Meeting,
   MeetingAction,
+  Room,
   ScheduleAction,
   SearchContentType,
-  Service
+  Service,
+  Widget
 };

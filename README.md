@@ -56,7 +56,7 @@ meeting.unload();
 | Widget                                                                               | Use it to                                           |
 | ------------------------------------------------------------------------------------ | --------------------------------------------------- |
 | [`Meeting`](https://iotum.github.io/callbridge-js/latest/classes/Meeting.html)       | Join a meeting room.                                |
-| [`Dashboard`](https://iotum.github.io/callbridge-js/latest/classes/Dashboard.html)   | Embed Team (chat), Drive, Contacts, Meet or Search. |
+| [`Dashboard`](https://iotum.github.io/callbridge-js/latest/classes/Dashboard.html)   | Embed Team (chat), Drive, Contacts, Meet, Calls or Search. |
 | [`Livestream`](https://iotum.github.io/callbridge-js/latest/classes/Livestream.html) | Watch a meeting livestream.                         |
 
 ### Guides
