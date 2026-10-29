@@ -329,6 +329,7 @@ var Service = /* @__PURE__ */ ((Service2) => {
   Service2["Contacts"] = "Contacts";
   Service2["Meet"] = "Meet";
   Service2["Calls"] = "Calls";
+  Service2["Settings"] = "Settings";
   return Service2;
 })(Service || {});
 var LayoutOption = /* @__PURE__ */ ((LayoutOption2) => {
@@ -366,6 +367,7 @@ var Dashboard = class extends Widget {
       case "Meet" /* Meet */:
       case "Calls" /* Calls */:
       case "Search" /* Search */:
+      case "Settings" /* Settings */:
         this.once("dashboard.READY", () => this.load(service, serviceOptions));
         break;
     }

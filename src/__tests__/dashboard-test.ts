@@ -117,6 +117,62 @@ describe('dashboard', () => {
     );
   });
 
+  it('loads Settings after the dashboard is ready', () => {
+    dashboard = new Dashboard({ container, domain }, Service.Settings);
+
+    expect(dashboard.wnd?.postMessage).not.toHaveBeenCalled();
+
+    dashboard.emit('dashboard.READY');
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledExactlyOnceWith(
+      {
+        type: 'dashboard',
+        action: 'load',
+        service: 'Settings',
+      },
+      '*',
+    );
+
+    dashboard.emit('dashboard.READY');
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledTimes(1);
+  });
+
+  it('loads general Settings with initial options', () => {
+    dashboard = new Dashboard({ container, domain }, Service.Settings, {
+      pathname: '/general',
+      hiddenElements: [1, 2],
+    });
+
+    dashboard.emit('dashboard.READY');
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+      {
+        type: 'dashboard',
+        action: 'load',
+        service: 'Settings',
+        pathname: '/general',
+        hiddenElements: [1, 2],
+      },
+      '*',
+    );
+  });
+
+  it('can switch to general Settings', () => {
+    dashboard = new Dashboard({ container, domain }, service);
+    dashboard.emit('dashboard.READY');
+    myPostMessage.mockClear();
+
+    dashboard.load(Service.Settings, { pathname: '/general' });
+
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledExactlyOnceWith(
+      {
+        type: 'dashboard',
+        action: 'load',
+        service: 'Settings',
+        pathname: '/general',
+      },
+      '*',
+    );
+  });
+
   it('supports sso', () => {
     dashboard = new Dashboard(
       { container, domain, sso: { hostId: 42, token: 'token' } },

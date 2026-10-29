@@ -15,6 +15,7 @@ The {@link Dashboard} embeds the Callbridge services:
 | `Meet`          | Meetings: list, schedule, start and join.         |
 | `Calls`         | Phone: recent calls, voicemails and call queues.  |
 | `Search`        | Search meetings and calls. See [Search](#search). |
+| `Settings`      | Dashboard settings.                              |
 | `None`          | Only sign in; load a service later.               |
 
 ```ts
@@ -42,6 +43,23 @@ dashboard.load(Service.Meet, { pathname: '/schedule' }); // open the scheduler
 
 {@link Dashboard.go} navigates the dashboard's history, like the browser back and forward buttons.
 `dashboard.NAVIGATE` is emitted whenever the user navigates within the dashboard.
+
+## Settings
+
+Use {@link Service.Settings} to embed the dashboard's Settings page.
+The general settings page (`/conf/settings/general`) uses the service-relative pathname `/general`:
+
+```ts
+const settings = new Dashboard(options, Service.Settings, {
+  pathname: '/general',
+});
+```
+
+Or switch an existing dashboard after `dashboard.READY`:
+
+```ts
+dashboard.load(Service.Settings, { pathname: '/general' });
+```
 
 ## Layouts
 
