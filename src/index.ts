@@ -35,6 +35,8 @@ export {
   ScheduleAction,
   SearchContentType,
   type DashboardEvents,
+  type DashboardNotification,
+  type TeamsPresenceLinkResult,
   type ServiceOptions,
   type ChatRoom,
   type SearchOptions,

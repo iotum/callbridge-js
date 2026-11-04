@@ -660,6 +660,27 @@ declare enum SearchContentType {
     event = "event"
 }
 /**
+ * A push notification forwarded by the dashboard.
+ * @category Events
+ */
+type DashboardNotification = {
+    /** JSON-encoded notification payload; parse and validate before using it. */
+    payload: string;
+    /** Additional notification metadata, depending on the notification type. */
+    [key: string]: unknown;
+};
+/**
+ * Result of linking or disconnecting Microsoft Teams presence.
+ * Contains no Microsoft Graph credentials.
+ * @category Events
+ */
+type TeamsPresenceLinkResult = {
+    /** Whether the operation completed successfully, not merely queued. */
+    ok: boolean;
+    /** Failure reason supplied by Callbridge, when unsuccessful. */
+    error?: string;
+};
+/**
  * Events emitted by the dashboard, in addition to {@link WidgetEvents}.
  *
  * @example
@@ -672,6 +693,15 @@ declare enum SearchContentType {
  * @category Events
  */
 type DashboardEvents = {
+    /**
+     * A push notification, including incoming calls and their dismissals.
+     * The payload remains a JSON string, as supplied by Callbridge.
+     */
+    'dashboard.NOTIFICATION': DashboardNotification;
+    /** Result of {@link Dashboard.linkTeamsPresence}. */
+    'dashboard.TEAMS_PRESENCE_LINK': TeamsPresenceLinkResult;
+    /** Result of {@link Dashboard.disconnectTeamsPresence}. */
+    'dashboard.TEAMS_PRESENCE_DISCONNECT': TeamsPresenceLinkResult;
     /**
      * The dashboard is ready, {@link Dashboard.load} and the other methods can be used.
      */
@@ -917,6 +947,37 @@ declare class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
      */
     go(delta: number): void;
     /**
+     * Answers an incoming call as the signed-in user.
+     * Wait for `dashboard.READY`. Callbridge authorizes the UUID and obtains the
+     * trusted call payload, including its holding SIP proxy; the host cannot supply it.
+     * Sending the command does not mean that the call has connected.
+     * @param callUuid The incoming notification's `call_uuid`.
+     */
+    answerCall(callUuid: string): void;
+    /**
+     * Declines an incoming call as the signed-in user.
+     * Wait for `dashboard.READY`. Uses the same authorized UUID and trusted proxy
+     * lookup as {@link Dashboard.answerCall}; no host-supplied call payload is accepted.
+     * @param callUuid The incoming notification's `call_uuid`.
+     */
+    declineCall(callUuid: string): void;
+    /**
+     * Links the signed-in Callbridge account to a Microsoft Teams identity.
+     * This optional adapter does not depend on the Microsoft Teams SDK.
+     * Wait for `dashboard.READY`, acquire a Teams SSO token in the host, then listen
+     * for `dashboard.TEAMS_PRESENCE_LINK`. Callbridge validates the browser-reported
+     * host origin and exchanges the token server-side; never log or persist the token.
+     * @param ssoToken The Microsoft Teams tab SSO token, not a Graph access token.
+     */
+    linkTeamsPresence(ssoToken: string): void;
+    /**
+     * Disconnects Microsoft Teams presence for the signed-in Callbridge account.
+     * Wait for `dashboard.READY` and listen for `dashboard.TEAMS_PRESENCE_DISCONNECT`.
+     * Success means cleanup completed, not just that the request was accepted.
+     * Disconnect before linking a different Teams identity.
+     */
+    disconnectTeamsPresence(): void;
+    /**
      * Answers a chat bot command: posts `content` to the chat room of the
      * {@link DashboardEvents."dashboard.BOT_MESSAGE"} as the signed-in user.
      *
@@ -1011,4 +1072,4 @@ declare class Livestream extends Widget<WidgetEvents & LivestreamEvents> {
 }
 
 export { Dashboard, LayoutOption, Livestream, Meeting, MeetingAction, Room, ScheduleAction, SearchContentType, Service, Widget };
-export type { AudioSettings, ChatRoom, DashboardEvents, EventKey, EventMap, Listener, LivestreamEvents, LivestreamOptions, MeetingOptions, RoomEvents, ScheduleOptions, SearchOptions, ServiceOptions, WidgetEvents, WidgetOptions };
+export type { AudioSettings, ChatRoom, DashboardEvents, DashboardNotification, EventKey, EventMap, Listener, LivestreamEvents, LivestreamOptions, MeetingOptions, RoomEvents, ScheduleOptions, SearchOptions, ServiceOptions, TeamsPresenceLinkResult, WidgetEvents, WidgetOptions };

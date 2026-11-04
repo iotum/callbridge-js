@@ -161,6 +161,29 @@ export enum SearchContentType {
 }
 
 /**
+ * A push notification forwarded by the dashboard.
+ * @category Events
+ */
+export type DashboardNotification = {
+  /** JSON-encoded notification payload; parse and validate before using it. */
+  payload: string;
+  /** Additional notification metadata, depending on the notification type. */
+  [key: string]: unknown;
+};
+
+/**
+ * Result of linking or disconnecting Microsoft Teams presence.
+ * Contains no Microsoft Graph credentials.
+ * @category Events
+ */
+export type TeamsPresenceLinkResult = {
+  /** Whether the operation completed successfully, not merely queued. */
+  ok: boolean;
+  /** Failure reason supplied by Callbridge, when unsuccessful. */
+  error?: string;
+};
+
+/**
  * Events emitted by the dashboard, in addition to {@link WidgetEvents}.
  *
  * @example
@@ -173,6 +196,15 @@ export enum SearchContentType {
  * @category Events
  */
 export type DashboardEvents = {
+  /**
+   * A push notification, including incoming calls and their dismissals.
+   * The payload remains a JSON string, as supplied by Callbridge.
+   */
+  'dashboard.NOTIFICATION': DashboardNotification;
+  /** Result of {@link Dashboard.linkTeamsPresence}. */
+  'dashboard.TEAMS_PRESENCE_LINK': TeamsPresenceLinkResult;
+  /** Result of {@link Dashboard.disconnectTeamsPresence}. */
+  'dashboard.TEAMS_PRESENCE_DISCONNECT': TeamsPresenceLinkResult;
   /**
    * The dashboard is ready, {@link Dashboard.load} and the other methods can be used.
    */
@@ -465,6 +497,64 @@ export default class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
    */
   go(delta: number) {
     this._send('dashboard', 'go', { delta });
+  }
+
+  /**
+   * Answers an incoming call as the signed-in user.
+   * Wait for `dashboard.READY`. Callbridge authorizes the UUID and obtains the
+   * trusted call payload, including its holding SIP proxy; the host cannot supply it.
+   * Sending the command does not mean that the call has connected.
+   * @param callUuid The incoming notification's `call_uuid`.
+   */
+  answerCall(callUuid: string) {
+    this._send(
+      'dashboard',
+      'answerCall',
+      { call_uuid: callUuid },
+      this._url.origin,
+    );
+  }
+
+  /**
+   * Declines an incoming call as the signed-in user.
+   * Wait for `dashboard.READY`. Uses the same authorized UUID and trusted proxy
+   * lookup as {@link Dashboard.answerCall}; no host-supplied call payload is accepted.
+   * @param callUuid The incoming notification's `call_uuid`.
+   */
+  declineCall(callUuid: string) {
+    this._send(
+      'dashboard',
+      'declineCall',
+      { call_uuid: callUuid },
+      this._url.origin,
+    );
+  }
+
+  /**
+   * Links the signed-in Callbridge account to a Microsoft Teams identity.
+   * This optional adapter does not depend on the Microsoft Teams SDK.
+   * Wait for `dashboard.READY`, acquire a Teams SSO token in the host, then listen
+   * for `dashboard.TEAMS_PRESENCE_LINK`. Callbridge validates the browser-reported
+   * host origin and exchanges the token server-side; never log or persist the token.
+   * @param ssoToken The Microsoft Teams tab SSO token, not a Graph access token.
+   */
+  linkTeamsPresence(ssoToken: string) {
+    this._send(
+      'dashboard',
+      'linkTeamsPresence',
+      { ssoToken },
+      this._url.origin,
+    );
+  }
+
+  /**
+   * Disconnects Microsoft Teams presence for the signed-in Callbridge account.
+   * Wait for `dashboard.READY` and listen for `dashboard.TEAMS_PRESENCE_DISCONNECT`.
+   * Success means cleanup completed, not just that the request was accepted.
+   * Disconnect before linking a different Teams identity.
+   */
+  disconnectTeamsPresence() {
+    this._send('dashboard', 'disconnectTeamsPresence', {}, this._url.origin);
   }
 
   /**
