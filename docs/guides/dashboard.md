@@ -168,6 +168,42 @@ When scheduling, {@link ServiceOptions.invitedContacts} and {@link ServiceOption
 dashboard.load(Service.Meet, { pathname: '/schedule', invitedContacts: [42] });
 ```
 
+## Incoming calls
+
+`dashboard.NOTIFICATION` forwards a {@link DashboardNotification}. Its `payload` is a JSON string;
+parse it defensively and validate fields before displaying it. Incoming calls use `type: 'incoming_phone_call'`
+and `call_uuid`; a follow-up notification with `dismiss: true` dismisses that UUID.
+Other notification types may also be delivered.
+
+After `dashboard.READY`, use `dashboard.answerCall(callUuid)` or `dashboard.declineCall(callUuid)`.
+These host-agnostic commands send only the UUID. Callbridge authorizes the pending call and retrieves
+its trusted payload and holding SIP proxy; do not pass a proxy or reconstruct SIP actions in the host.
+Sending a command is not confirmation that the call connected. Cold-start recovery requires a
+Callbridge deployment supporting authenticated pending-call recovery.
+
+## Microsoft Teams presence adapter
+
+After `dashboard.READY`, acquire a Teams tab SSO token in the host and pass it to
+{@link Dashboard.linkTeamsPresence}. The SDK has no Teams dependency:
+
+```ts
+dashboard.on('dashboard.TEAMS_PRESENCE_LINK', ({ ok, error }) => {
+  if (ok) showLinked();
+  else showLinkError(error);
+});
+dashboard.linkTeamsPresence(ssoToken);
+```
+
+Callbridge validates the host's browser-reported origin and exchanges the token server-side.
+Never pass a Graph token or log/persist SSO tokens. The result contains only `ok` and optional `error`,
+not credentials. A queued acknowledgement is not successful linking.
+
+To change identities, call {@link Dashboard.disconnectTeamsPresence} and wait for
+`dashboard.TEAMS_PRESENCE_DISCONNECT` with `ok: true` before linking the new identity.
+Disconnect requires a Callbridge deployment supporting that action; success is emitted only after
+remote cleanup completes. Handle errors and apply a bounded UI timeout for missing results
+(for example, an older deployment or a lost connection).
+
 ## Search
 
 Create the dashboard with {@link Service.Search} to search meetings and calls with {@link Dashboard.search}:

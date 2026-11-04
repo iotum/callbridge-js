@@ -208,14 +208,14 @@ var Widget = class {
       }
     };
     /** @internal */
-    this._send = (type, action, data = {}) => {
+    this._send = (type, action, data = {}, targetOrigin = "*") => {
       this.wnd?.postMessage(
         {
           type,
           action,
           ...data
         },
-        "*"
+        targetOrigin
       );
     };
     if (container) {
@@ -472,6 +472,60 @@ var Dashboard = class extends Widget {
    */
   go(delta) {
     this._send("dashboard", "go", { delta });
+  }
+  /**
+   * Answers an incoming call as the signed-in user.
+   * Wait for `dashboard.READY`. Callbridge authorizes the UUID and obtains the
+   * trusted call payload, including its holding SIP proxy; the host cannot supply it.
+   * Sending the command does not mean that the call has connected.
+   * @param callUuid The incoming notification's `call_uuid`.
+   */
+  answerCall(callUuid) {
+    this._send(
+      "dashboard",
+      "answerCall",
+      { call_uuid: callUuid },
+      this._url.origin
+    );
+  }
+  /**
+   * Declines an incoming call as the signed-in user.
+   * Wait for `dashboard.READY`. Uses the same authorized UUID and trusted proxy
+   * lookup as {@link Dashboard.answerCall}; no host-supplied call payload is accepted.
+   * @param callUuid The incoming notification's `call_uuid`.
+   */
+  declineCall(callUuid) {
+    this._send(
+      "dashboard",
+      "declineCall",
+      { call_uuid: callUuid },
+      this._url.origin
+    );
+  }
+  /**
+   * Links the signed-in Callbridge account to a Microsoft Teams identity.
+   * This optional adapter does not depend on the Microsoft Teams SDK.
+   * Wait for `dashboard.READY`, acquire a Teams SSO token in the host, then listen
+   * for `dashboard.TEAMS_PRESENCE_LINK`. Callbridge validates the browser-reported
+   * host origin and exchanges the token server-side; never log or persist the token.
+   * @param ssoToken The Microsoft Teams tab SSO token, not a Graph access token.
+   */
+  linkTeamsPresence(ssoToken) {
+    this._send(
+      "dashboard",
+      "linkTeamsPresence",
+      { ssoToken },
+      this._url.origin
+    );
+  }
+  /**
+   * Disconnects Microsoft Teams presence for the signed-in Callbridge account.
+   * Wait for `dashboard.READY` and listen for `dashboard.TEAMS_PRESENCE_DISCONNECT`.
+   * Success means cleanup completed, not just that the request was accepted.
+   * Disconnect before linking a different Teams identity.
+   */
+  disconnectTeamsPresence() {
+    this._send("dashboard", "disconnectTeamsPresence", {}, this._url.origin);
   }
   /**
    * Answers a chat bot command: posts `content` to the chat room of the

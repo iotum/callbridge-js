@@ -527,14 +527,19 @@ export default class Widget<
   };
 
   /** @internal */
-  protected _send = (type: string, action: string, data: Object = {}) => {
+  protected _send = (
+    type: string,
+    action: string,
+    data: Object = {},
+    targetOrigin = '*',
+  ) => {
     this.wnd?.postMessage(
       {
         type,
         action,
         ...data,
       },
-      '*',
+      targetOrigin,
     );
   };
 }

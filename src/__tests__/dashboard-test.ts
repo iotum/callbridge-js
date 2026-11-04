@@ -13,12 +13,13 @@ import Dashboard, { LayoutOption, Service } from '../dashboard';
 const createElement = document.createElement.bind(document);
 
 let myPostMessage: Mock;
+let mockWindow: { postMessage: Mock };
 const mockIFrame = Object.defineProperty(
   document.createElement('iframe'),
   'contentWindow',
   {
     get() {
-      return { postMessage: myPostMessage };
+      return mockWindow;
     },
     configurable: false,
   },
@@ -35,6 +36,7 @@ describe('dashboard', () => {
     container = createElement('div');
 
     myPostMessage = vi.fn();
+    mockWindow = { postMessage: myPostMessage };
 
     vi.spyOn(document, 'createElement').mockImplementation((tag) =>
       tag === 'iframe' ? mockIFrame : createElement(tag),
@@ -133,6 +135,90 @@ describe('dashboard', () => {
 
     const redirectUrl = searchParams.get('redirect_url');
     expect(redirectUrl).toBe(`/conf/loading?events=true`);
+  });
+
+  it.each(['answerCall', 'declineCall'] as const)(
+    'sends %s with only the original UUID to the configured origin',
+    (action) => {
+      dashboard = new Dashboard({ container, domain }, Service.Calls);
+      dashboard[action]('call-uuid');
+      expect(myPostMessage).toHaveBeenCalledExactlyOnceWith(
+        { type: 'dashboard', action, call_uuid: 'call-uuid' },
+        `https://${domain}`,
+      );
+    },
+  );
+
+  it('sends the Teams SSO token only in the link command', () => {
+    dashboard = new Dashboard({ container, domain });
+    const onResult = vi.fn();
+    dashboard.on('dashboard.TEAMS_PRESENCE_LINK', onResult);
+    dashboard.linkTeamsPresence('teams-sso-token');
+    expect(myPostMessage).toHaveBeenCalledExactlyOnceWith(
+      {
+        type: 'dashboard',
+        action: 'linkTeamsPresence',
+        ssoToken: 'teams-sso-token',
+      },
+      `https://${domain}`,
+    );
+    expect(onResult).not.toHaveBeenCalled();
+    expect(container.firstElementChild?.getAttribute('src')).not.toContain(
+      'teams-sso-token',
+    );
+  });
+
+  it('sends a credential-free disconnect command', () => {
+    dashboard = new Dashboard({ container, domain });
+    dashboard.disconnectTeamsPresence();
+    expect(myPostMessage).toHaveBeenCalledExactlyOnceWith(
+      { type: 'dashboard', action: 'disconnectTeamsPresence' },
+      `https://${domain}`,
+    );
+  });
+
+  it('types notifications and presence results and preserves source checks', () => {
+    dashboard = new Dashboard({ container, domain });
+    const onNotification = vi.fn();
+    const onLink = vi.fn();
+    const onDisconnect = vi.fn();
+    dashboard.on('dashboard.NOTIFICATION', ({ payload }) =>
+      onNotification(payload),
+    );
+    dashboard.on('dashboard.TEAMS_PRESENCE_LINK', ({ ok, error }) =>
+      onLink(ok, error),
+    );
+    dashboard.on('dashboard.TEAMS_PRESENCE_DISCONNECT', ({ ok, error }) =>
+      onDisconnect(ok, error),
+    );
+
+    const deliver = (event: string, extra: object, source = dashboard.wnd) => {
+      window.dispatchEvent(
+        new MessageEvent('message', {
+          source,
+          origin: `https://${domain}`,
+          data: { type: 'dashboard', event, ...extra },
+        }),
+      );
+    };
+    const payload = JSON.stringify({
+      type: 'incoming_phone_call',
+      call_uuid: 'uuid',
+      proxy: 'trusted-proxy',
+    });
+    deliver('NOTIFICATION', { payload }, window);
+    deliver('TEAMS_PRESENCE_LINK', { ok: true }, window);
+    deliver('TEAMS_PRESENCE_DISCONNECT', { ok: true }, window);
+    expect(onNotification).not.toHaveBeenCalled();
+    expect(onLink).not.toHaveBeenCalled();
+    expect(onDisconnect).not.toHaveBeenCalled();
+
+    deliver('NOTIFICATION', { payload });
+    deliver('TEAMS_PRESENCE_LINK', { ok: false, error: 'consent_required' });
+    deliver('TEAMS_PRESENCE_DISCONNECT', { ok: true });
+    expect(onNotification).toHaveBeenCalledExactlyOnceWith(payload);
+    expect(onLink).toHaveBeenCalledExactlyOnceWith(false, 'consent_required');
+    expect(onDisconnect).toHaveBeenCalledExactlyOnceWith(true, undefined);
   });
 
   it('can navigate the history', () => {
