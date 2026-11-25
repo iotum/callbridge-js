@@ -105,6 +105,28 @@ describe('dashboard', () => {
     );
   });
 
+  it('loads an array of services', () => {
+    const services = [Service.Team, Service.Meet];
+    dashboard = new Dashboard({ container, domain }, services);
+
+    dashboard.emit('dashboard.READY');
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+      {
+        type: 'dashboard',
+        action: 'load',
+        service: services,
+      },
+      '*',
+    );
+  });
+
+  it('does not load an empty array of services', () => {
+    dashboard = new Dashboard({ container, domain }, []);
+
+    dashboard.emit('dashboard.READY');
+    expect(dashboard.wnd?.postMessage).not.toHaveBeenCalled();
+  });
+
   it('loads a specific path with options', () => {
     dashboard = new Dashboard({ container, domain }, service);
 
@@ -242,6 +264,23 @@ describe('dashboard', () => {
       dashboard = new Dashboard({ container, domain }, Service.Search);
       expect(() => dashboard.search('')).toThrow('Nothing to search');
       expect(dashboard.wnd?.postMessage).not.toHaveBeenCalled();
+    });
+
+    it('is available when the services include search', () => {
+      dashboard = new Dashboard({ container, domain }, [
+        Service.Team,
+        Service.Search,
+      ]);
+      dashboard.search('query');
+      expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+        {
+          type: 'dashboard',
+          action: 'search',
+          contentType: 'event',
+          query: 'query',
+        },
+        '*',
+      );
     });
 
     it('can use options', () => {

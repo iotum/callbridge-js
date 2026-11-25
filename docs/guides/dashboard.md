@@ -31,6 +31,12 @@ const dashboard = new Dashboard(
 );
 ```
 
+To show only some services, with navigation between them, pass an array of services:
+
+```ts
+const dashboard = new Dashboard(widgetOptions, [Service.Team, Service.Meet, Service.Calls]);
+```
+
 ## Switching services
 
 Use one dashboard for several services, e.g. as tabs of your app, and switch with {@link Dashboard.load}
