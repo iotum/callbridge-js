@@ -534,7 +534,9 @@ declare enum Service {
     /** Meet (Meetings) */
     Meet = "Meet",
     /** Calls (Phone: recent calls, voicemails, contacts and call queues) */
-    Calls = "Calls"
+    Calls = "Calls",
+    /** All (the entire dashboard, with navigation between all services) */
+    All = "All"
 }
 /**
  * Dashboard service layout options.
@@ -834,7 +836,7 @@ type DashboardEvents = {
     'room.UNLOAD': RoomEvents['room.UNLOAD'];
 };
 /**
- * Callbridge Dashboard: Team (chat), Drive, Contacts, Meet, Calls and Search.
+ * Callbridge Dashboard: Team (chat), Drive, Contacts, Meet, Calls and Search, or all of them.
  *
  * Emits {@link WidgetEvents} and {@link DashboardEvents}.
  *
