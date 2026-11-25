@@ -15,7 +15,7 @@ The {@link Dashboard} embeds the Callbridge services:
 | `Meet`          | Meetings: list, schedule, start and join.         |
 | `Calls`         | Phone: recent calls, voicemails and call queues.  |
 | `Search`        | Search meetings and calls. See [Search](#search). |
-| `All`           | The entire dashboard, with all the services.      |
+| `All`           | All services the host has access to.              |
 | `None`          | Only sign in; load a service later.               |
 
 ```ts

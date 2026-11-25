@@ -535,7 +535,7 @@ declare enum Service {
     Meet = "Meet",
     /** Calls (Phone: recent calls, voicemails, contacts and call queues) */
     Calls = "Calls",
-    /** All (the entire dashboard, with navigation between all services) */
+    /** All services the host has access to (the entire dashboard, with navigation between them) */
     All = "All"
 }
 /**
