@@ -91,6 +91,20 @@ describe('dashboard', () => {
     );
   });
 
+  it('loads the entire dashboard', () => {
+    dashboard = new Dashboard({ container, domain }, Service.All);
+
+    dashboard.emit('dashboard.READY');
+    expect(dashboard.wnd?.postMessage).toHaveBeenCalledWith(
+      {
+        type: 'dashboard',
+        action: 'load',
+        service: Service.All,
+      },
+      '*',
+    );
+  });
+
   it('loads a specific path with options', () => {
     dashboard = new Dashboard({ container, domain }, service);
 
