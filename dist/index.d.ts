@@ -871,10 +871,9 @@ declare class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
      */
     options: WidgetOptions, 
     /**
-     * Optional, the page to load after logging in,
-     * or an array of services to show, with navigation between them.
+     * Optional, the page to load after logging in
      */
-    service?: Service | Service[], 
+    service?: Service, 
     /**
      * Optional, service options.
      */
@@ -882,8 +881,7 @@ declare class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
     /**
      * Search for meetings and calls.
      *
-     * Only available when the dashboard is created with {@link Service.Search}
-     * (or an array of services that includes it).
+     * Only available when the dashboard is created with {@link Service.Search}.
      * Listen to {@link DashboardEvents."dashboard.SEARCH_RESULT"} for the result.
      *
      * @example
@@ -895,7 +893,7 @@ declare class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
      * @param query The search query.
      * @param options Optional, search options.
      * @throws {Error}
-     *   - "Not implemented" when the service is not (or does not include) "Search".
+     *   - "Not implemented" when the service is not "Search".
      *   - "Nothing to search" when the query is empty.
      */
     search(query: string, options?: SearchOptions): void;
@@ -909,11 +907,10 @@ declare class Dashboard extends Widget<WidgetEvents & DashboardEvents> {
      * // open a chat room in the main area only
      * dashboard.load(Service.Team, { pathname: room.path, layout: LayoutOption.main });
      * ```
-     * @param service the service to load,
-     * or an array of services to show, with navigation between them, e.g. `[Service.Team, Service.Meet]`.
+     * @param service the service to load.
      * @param options Optional, service options.
      */
-    load(service: Service | Service[], options?: ServiceOptions): void;
+    load(service: Service, options?: ServiceOptions): void;
     /**
      * Loads a specific page from the session history.
      * @param delta The position in the history to which you want to move,

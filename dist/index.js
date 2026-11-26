@@ -395,21 +395,33 @@ var Dashboard = class extends Widget {
    */
   constructor(options, service = "" /* None */, serviceOptions = {}) {
     super(options);
-    const services = Array.isArray(service) ? service : [service];
-    if (services.some((s) => s !== "" /* None */)) {
-      this.once("dashboard.READY", () => this.load(service, serviceOptions));
+    switch (service) {
+      case "Team" /* Team */:
+      case "Drive" /* Drive */:
+      case "Contacts" /* Contacts */:
+      case "Meet" /* Meet */:
+      case "Calls" /* Calls */:
+      case "All" /* All */:
+      case "Search" /* Search */:
+        this.once("dashboard.READY", () => this.load(service, serviceOptions));
+        break;
     }
-    if (services.includes("Search" /* Search */)) {
-      this.search = (query, { contentType = "event" /* event */, ...opts } = {}) => {
-        if (!query) {
-          throw new Error("Nothing to search");
-        }
-        this._send("dashboard", "search", {
-          query,
-          contentType,
+    switch (service) {
+      case "Search" /* Search */:
+        this.search = (query, {
+          contentType = "event" /* event */,
           ...opts
-        });
-      };
+        } = {}) => {
+          if (!query) {
+            throw new Error("Nothing to search");
+          }
+          this._send("dashboard", "search", {
+            query,
+            contentType,
+            ...opts
+          });
+        };
+        break;
     }
     this._load({
       redirect_url: `/conf/loading`
@@ -418,8 +430,7 @@ var Dashboard = class extends Widget {
   /**
    * Search for meetings and calls.
    *
-   * Only available when the dashboard is created with {@link Service.Search}
-   * (or an array of services that includes it).
+   * Only available when the dashboard is created with {@link Service.Search}.
    * Listen to {@link DashboardEvents."dashboard.SEARCH_RESULT"} for the result.
    *
    * @example
@@ -431,7 +442,7 @@ var Dashboard = class extends Widget {
    * @param query The search query.
    * @param options Optional, search options.
    * @throws {Error}
-   *   - "Not implemented" when the service is not (or does not include) "Search".
+   *   - "Not implemented" when the service is not "Search".
    *   - "Nothing to search" when the query is empty.
    */
   search(query, options) {
@@ -449,8 +460,7 @@ var Dashboard = class extends Widget {
    * // open a chat room in the main area only
    * dashboard.load(Service.Team, { pathname: room.path, layout: LayoutOption.main });
    * ```
-   * @param service the service to load,
-   * or an array of services to show, with navigation between them, e.g. `[Service.Team, Service.Meet]`.
+   * @param service the service to load.
    * @param options Optional, service options.
    */
   load(service, options = {}) {
